@@ -228,6 +228,8 @@
   }
   .flashcard-front{ background:var(--surface); border-color:var(--region-color,var(--accent)); position:relative; }
   .flashcard-front .flag{ font-size:2.2rem; }
+  .mini-map-wrap{ width:100%; height:58px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .mini-map-wrap svg{ height:100%; width:auto; display:block; overflow:visible; }
   .flashcard-front .region-tag{ font-size:.62rem; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; }
   .flashcard-back{ background:var(--accent); color:var(--accent-ink); transform:rotateY(180deg); }
   .flashcard-back h3{ color:var(--accent-ink); font-size:.98rem; }
@@ -459,14 +461,14 @@
       </div>
       <div class="quiz-card" id="quizStart">
         <h2>Prête à t'entraîner&nbsp;? 🎓</h2>
-        <p>On te montre un drapeau, tu retrouves le pays parmi 4 choix.</p>
+        <p>On te montre son emplacement sur la carte, tu retrouves le pays parmi 4 choix.</p>
         <p class="quiz-best">Meilleur score&nbsp;: <strong id="quizBestScore">—</strong></p>
         <button class="btn btn-primary" id="quizStartBtn">Commencer le quiz 🍀</button>
       </div>
       <div class="quiz-card" id="quizPlay" hidden>
         <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
         <p class="quiz-meta">Question <span id="quizIndex">1</span>/12 · Score&nbsp;: <span id="quizScore">0</span></p>
-        <div class="quiz-flag" id="quizFlag">🇸🇳</div>
+        <div class="ecriture-map-wrap"><svg id="quizMap" role="img" aria-label="Pays à deviner colorié sur la carte"></svg></div>
         <h3>Quel est ce pays&nbsp;?</h3>
         <div class="quiz-options" id="quizOptions"></div>
         <button class="btn btn-ghost" id="quizNextBtn" hidden>Suivant →</button>
@@ -518,7 +520,6 @@
       <div class="ecriture-ghost ecriture-ghost-1" aria-hidden="true"></div>
       <div class="ecriture-card" id="ecritureCard">
         <span class="eyebrow">Écris le nom de ce pays</span>
-        <div class="ecriture-flag" id="ecritureFlag">🏳️</div>
         <div class="ecriture-map-wrap">
           <svg id="ecritureMap" role="img" aria-label="Le pays à deviner est colorié sur la carte"></svg>
         </div>
@@ -861,6 +862,12 @@
     return shapesByCode;
   }
 
+  function buildDisplayMap(svgEl, targetCode){
+    var shapes = buildMapInto(svgEl, "display", null);
+    if(targetCode && shapes[targetCode]) shapes[targetCode].classList.add("target");
+    return shapes;
+  }
+
   function renderDetail(c){
     var el = document.getElementById("countryDetail");
     var known = isKnown(c.code);
@@ -936,15 +943,17 @@
       card.innerHTML =
         '<div class="flashcard-inner">'+
           '<div class="flashcard-face flashcard-front" style="--region-color:'+REGIONS[c.region].color+'">'+
-            '<span class="flag">'+flagEmoji(c.code)+'</span>'+
+            '<div class="mini-map-wrap"><svg class="mini-map"></svg></div>'+
             '<span class="region-tag">'+REGIONS[c.region].label+'</span>'+
           '</div>'+
           '<div class="flashcard-face flashcard-back">'+
-            '<h3>'+c.name+'</h3>'+
+            '<h3>'+flagEmoji(c.code)+' '+c.name+'</h3>'+
             '<p>Capitale&nbsp;: '+c.capital+'</p>'+
             '<button class="know-btn">🍀 Je la sais</button>'+
           '</div>'+
         '</div>';
+      var miniSvg = card.querySelector(".mini-map");
+      if(miniSvg) buildDisplayMap(miniSvg, c.code);
       card.addEventListener("click", function(e){
         if(e.target.classList.contains("know-btn")) return;
         card.classList.toggle("flipped");
@@ -991,7 +1000,19 @@
   var quizBestScoreEl = document.getElementById("quizBestScore");
   if(state.quizBest) quizBestScoreEl.textContent = state.quizBest + "/12 (" + vaudNote(state.quizBest,12).toFixed(1) + "/6)";
 
+  var quizShapes = null;
+  function ensureQuizMap(){
+    if(quizShapes) return;
+    quizShapes = buildMapInto(document.getElementById("quizMap"), "display", null);
+  }
+  function highlightQuizCountry(code){
+    Object.keys(quizShapes).forEach(function(k){
+      quizShapes[k].classList.toggle("target", k===code);
+    });
+  }
+
   function startQuiz(){
+    ensureQuizMap();
     quizQuestions = shuffle(COUNTRIES).slice(0,12);
     quizIndex = 0; quizScore = 0;
     quizStartEl.hidden = true; quizEndEl.hidden = true; quizPlayEl.hidden = false;
@@ -1003,9 +1024,7 @@
     document.getElementById("quizIndex").textContent = (quizIndex+1);
     document.getElementById("quizScore").textContent = quizScore;
     document.getElementById("quizProgressBar").style.width = ((quizIndex)/12*100)+"%";
-    var flagEl = document.getElementById("quizFlag");
-    flagEl.textContent = flagEmoji(c.code);
-    flagEl.style.animation = "none"; void flagEl.offsetWidth; flagEl.style.animation = "";
+    highlightQuizCountry(c.code);
     var others = shuffle(COUNTRIES.filter(function(x){ return x.code!==c.code; })).slice(0,3);
     var options = shuffle(others.concat([c]));
     var optWrap = document.getElementById("quizOptions");
@@ -1172,7 +1191,6 @@
     ecriState.seenCodes[c.code] = true;
     updateEcritureProgressLine();
 
-    document.getElementById("ecritureFlag").textContent = flagEmoji(c.code);
     highlightEcritureCountry(c.code);
 
     var input = document.getElementById("ecritureInput");
@@ -1249,7 +1267,6 @@
   }
 
   function finishEcriture(){
-    document.getElementById("ecritureFlag").hidden = true;
     document.getElementById("ecritureStepName").hidden = true;
     document.getElementById("ecritureEnd").hidden = false;
     document.getElementById("ecritureProgressLine").textContent = "Terminé 🎉";
