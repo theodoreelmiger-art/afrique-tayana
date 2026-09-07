@@ -1,0 +1,1318 @@
+<title>L'Afrique de Tayana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:#FFF3F8; --surface:#FFFFFF; --surface-alt:#FFE7F1; --surface-raised:#FFD8EA;
+    --ink:#4A1030; --ink-soft:#8A4468; --ink-faint:#B87DA0;
+    --accent:#E8447A; --accent-2:#FFB4D2; --accent-ink:#FFFFFF;
+    --clover:#3FA35E; --clover-dark:#2C7A45; --gold:#F4B740;
+    --line:#F5C6DC; --shadow:rgba(74,16,48,.14);
+    --region-nord:#F4B740; --region-ouest:#E8447A; --region-centre:#3FA35E; --region-est:#3596A8; --region-sud:#A8578C;
+    --font-display:'Fredoka',ui-rounded,'Segoe UI',sans-serif;
+    --font-body:'Nunito','Segoe UI',sans-serif;
+    --shell-w:480px;
+    --bottom-nav-h:4.6rem;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#231220; --surface:#32192C; --surface-alt:#3B2033; --surface-raised:#48263F;
+      --ink:#FBE7F0; --ink-soft:#D8A6C3; --ink-faint:#986C88;
+      --accent:#FF6FA3; --accent-2:#C15E8C; --accent-ink:#2A0F20;
+      --clover:#5FCB82; --clover-dark:#3FA35E; --gold:#F7C860;
+      --line:#4A2A41; --shadow:rgba(0,0,0,.4);
+      --region-nord:#F7C860; --region-ouest:#FF6FA3; --region-centre:#5FCB82; --region-est:#54BFCB; --region-sud:#CE84AE;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#231220; --surface:#32192C; --surface-alt:#3B2033; --surface-raised:#48263F;
+    --ink:#FBE7F0; --ink-soft:#D8A6C3; --ink-faint:#986C88;
+    --accent:#FF6FA3; --accent-2:#C15E8C; --accent-ink:#2A0F20;
+    --clover:#5FCB82; --clover-dark:#3FA35E; --gold:#F7C860;
+    --line:#4A2A41; --shadow:rgba(0,0,0,.4);
+    --region-nord:#F7C860; --region-ouest:#FF6FA3; --region-centre:#5FCB82; --region-est:#54BFCB; --region-sud:#CE84AE;
+  }
+
+  *{box-sizing:border-box;}
+  [hidden]{ display:none !important; }
+  html{ background:var(--bg); }
+  body{
+    margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
+    line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:var(--font-display); font-weight:600; text-wrap:balance; margin:0; color:var(--ink); }
+  p{ margin:0; }
+  button{ font-family:var(--font-body); }
+  ::selection{ background:var(--accent-2); color:var(--ink); }
+  :focus-visible{ outline:3px solid var(--clover); outline-offset:2px; border-radius:6px; }
+  path:focus, path:focus-visible{ outline:none; }
+
+  .eyebrow{
+    font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);
+  }
+
+  /* ---------- app shell (largeur téléphone fixe) ---------- */
+  .app-shell{ max-width:var(--shell-w); margin:0 auto; position:relative; min-height:100vh; }
+  main{ padding:0 1rem calc(var(--bottom-nav-h) + 2rem); }
+
+  /* ---------- clover field ---------- */
+  .clover-field{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:5; max-width:var(--shell-w); margin:0 auto; }
+  .clover-particle{
+    position:absolute; top:-10vh; font-size:1.2rem; opacity:.85; will-change:transform;
+    animation:cloverFall linear forwards;
+  }
+  @keyframes cloverFall{
+    0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0; }
+    8%{ opacity:.9; }
+    100%{ transform:translateY(115vh) translateX(var(--drift,20px)) rotate(var(--spin,180deg)); opacity:.15; }
+  }
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between;
+    gap:.6rem; padding:.75rem 1rem; background:color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:.4rem; font-family:var(--font-display); font-weight:600; font-size:.98rem; white-space:nowrap; }
+  .brand strong{ color:var(--accent); }
+  .progress-chip{
+    font-variant-numeric:tabular-nums; font-weight:800; font-size:.78rem; background:var(--surface-alt);
+    color:var(--ink); border:1px solid var(--line); padding:.35rem .7rem; border-radius:999px; white-space:nowrap;
+  }
+  .progress-chip.bump{ animation:chipBump .4s ease; }
+  @keyframes chipBump{ 0%{ transform:scale(1); } 45%{ transform:scale(1.2); } 100%{ transform:scale(1); } }
+
+  /* ---------- bottom nav ---------- */
+  .bottom-nav{
+    position:fixed; left:0; right:0; bottom:0; z-index:30; max-width:var(--shell-w); margin:0 auto;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:.2rem;
+    background:color-mix(in srgb, var(--surface) 96%, transparent); backdrop-filter:blur(10px);
+    border-top:1px solid var(--line); padding:.5rem .5rem calc(.5rem + env(safe-area-inset-bottom, 0px));
+    height:var(--bottom-nav-h); box-shadow:0 -6px 18px var(--shadow);
+  }
+  .bnav-btn{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:.2rem; background:none; border:none;
+    color:var(--ink-soft); font-weight:700; font-size:.62rem; padding:.35rem .1rem; border-radius:12px; cursor:pointer;
+  }
+  .bnav-btn .bnav-icon{ font-size:1.25rem; line-height:1; }
+  .bnav-btn[aria-selected="true"]{ color:var(--accent); background:var(--surface-alt); }
+  .bnav-fab{
+    flex:0 0 auto; width:3.6rem; height:3.6rem; margin-top:-1.6rem; border-radius:50%; border:4px solid var(--bg);
+    background:linear-gradient(135deg,var(--accent),var(--gold)); color:#fff; font-size:1.5rem; cursor:pointer;
+    box-shadow:0 6px 16px var(--shadow); display:flex; align-items:center; justify-content:center;
+  }
+  .bnav-fab:active{ transform:scale(.94); }
+
+  /* ---------- hero ---------- */
+  .hero{ display:flex; flex-direction:column; gap:.9rem; padding:1.4rem 0 1.6rem; animation:fadeUp .6s ease both; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+  .hero h1{ font-size:1.7rem; }
+  .countdown-msg{
+    background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:.75rem .9rem;
+    font-weight:700; font-size:.92rem; color:var(--ink); box-shadow:0 3px 0 var(--line);
+  }
+  .countdown-msg strong{ color:var(--accent); }
+  .stat-row{ display:flex; gap:.5rem; }
+  .stat-chip{
+    flex:1; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:.55rem .5rem;
+    font-weight:800; font-size:.74rem; text-align:center; box-shadow:0 3px 0 var(--line);
+  }
+  .stat-chip span{ display:block; font-family:var(--font-display); font-size:1.15rem; color:var(--accent); font-variant-numeric:tabular-nums; }
+
+  .hero-stickers{ display:flex; flex-wrap:wrap; gap:.5rem; }
+  .sticker{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:.4rem .55rem;
+    font-size:1.2rem; box-shadow:0 3px 0 var(--line); display:flex; flex-direction:column; align-items:center; gap:.1rem;
+    transform:rotate(var(--r,0deg)); animation:stickerFloat 4.8s ease-in-out infinite; animation-delay:var(--sd,0s);
+  }
+  .sticker small{ font-size:.55rem; font-weight:800; color:var(--ink-soft); }
+  .sticker:nth-child(1){ --r:-5deg; --sd:0s; }
+  .sticker:nth-child(2){ --r:4deg; --sd:.3s; }
+  .sticker:nth-child(3){ --r:-3deg; --sd:.6s; }
+  .sticker:nth-child(4){ --r:6deg; --sd:.9s; }
+  .sticker:nth-child(5){ --r:-6deg; --sd:1.2s; }
+  .sticker:nth-child(6){ --r:3deg; --sd:1.5s; }
+  @keyframes stickerFloat{ 0%,100%{ transform:translateY(0) rotate(var(--r,0deg)); } 50%{ transform:translateY(-6px) rotate(var(--r,0deg)); } }
+
+  /* ---------- panels ---------- */
+  .panel{ padding-top:.4rem; }
+  .panel.enter{ animation:panelIn .35s ease; }
+  @keyframes panelIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+  .panel-head{ margin-bottom:1rem; }
+  .panel-head h2{ font-size:1.3rem; }
+  .panel-head p{ color:var(--ink-soft); margin-top:.3rem; font-size:.92rem; }
+
+  /* ---------- map ---------- */
+  .map-card{
+    background:var(--surface); border-radius:24px; padding:.8rem; box-shadow:0 10px 28px var(--shadow);
+    border:1px solid var(--line);
+  }
+  .map-card svg{ width:100%; height:auto; display:block; overflow:visible; }
+  .map-countries{ filter:drop-shadow(0 6px 12px var(--shadow)); }
+  .country-shape{
+    stroke:var(--surface); stroke-width:1.3; cursor:pointer; pointer-events:all; outline:none;
+    transition:filter .15s ease, transform .15s ease, stroke-width .15s ease;
+    transform-box:fill-box; transform-origin:center;
+    opacity:0; animation:shapeIn .45s ease forwards; animation-delay:var(--d,0s);
+  }
+  @keyframes shapeIn{ from{ opacity:0; transform:scale(.86); } to{ opacity:1; transform:scale(1); } }
+  .country-shape:hover{ filter:brightness(1.14); transform:scale(1.02); }
+  .country-shape.active{ stroke:var(--ink); stroke-width:2.4; }
+  .country-shape.known{ stroke:var(--clover); stroke-width:2.2; }
+  .hover-label{
+    font-family:var(--font-display); font-weight:600; font-size:12px; fill:var(--ink); opacity:0;
+    transition:opacity .15s ease; pointer-events:none; paint-order:stroke fill; stroke:var(--surface); stroke-width:4px;
+    stroke-linejoin:round; text-anchor:middle;
+  }
+  .hover-label.visible{ opacity:1; }
+  .map-legend{ display:flex; flex-wrap:wrap; gap:.4rem .7rem; margin:1rem 0 0; padding:0 .1rem; }
+  .legend-item{ display:flex; align-items:center; gap:.35rem; font-size:.72rem; font-weight:700; color:var(--ink-soft); }
+  .legend-dot{ width:.6rem; height:.6rem; border-radius:50%; display:inline-block; }
+
+  .country-detail{
+    background:var(--surface); border-radius:20px; padding:1.1rem; border:1px solid var(--line);
+    box-shadow:0 8px 22px var(--shadow); min-height:9rem; display:flex; flex-direction:column; gap:.5rem;
+    margin-top:.9rem;
+  }
+  .country-detail.flash{ animation:detailFlash .6s ease; }
+  @keyframes detailFlash{
+    0%{ box-shadow:0 0 0 3px var(--clover), 0 8px 22px var(--shadow); }
+    100%{ box-shadow:0 8px 22px var(--shadow); }
+  }
+  .detail-flag{ font-size:2.6rem; line-height:1; animation:popIn .35s ease; }
+  @keyframes popIn{ from{ transform:scale(.6); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .country-detail h3{ font-size:1.3rem; }
+  .detail-row{ color:var(--ink-soft); font-size:.9rem; }
+  .region-badge{
+    align-self:flex-start; background:color-mix(in srgb, var(--c) 20%, var(--surface)); color:var(--ink);
+    border:1px solid var(--c); padding:.22rem .6rem; border-radius:999px; font-size:.72rem; font-weight:800;
+  }
+  .know-btn{
+    margin-top:.3rem; align-self:flex-start; font-family:var(--font-display); font-weight:600; border:2px solid var(--clover);
+    background:var(--surface); color:var(--clover-dark); border-radius:999px; padding:.5em 1em; cursor:pointer; font-size:.82rem;
+  }
+  .know-btn.is-known{ background:var(--clover); color:#fff; }
+
+  /* ---------- flashcards ---------- */
+  .fiches-controls{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin-bottom:1.1rem; }
+  .region-filter{ display:flex; flex-wrap:wrap; gap:.35rem; }
+  .pill-btn{
+    border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); font-weight:700; font-size:.76rem;
+    padding:.38rem .75rem; border-radius:999px; cursor:pointer;
+  }
+  .pill-btn[aria-pressed="true"]{ background:var(--ink); color:var(--surface); border-color:var(--ink); }
+  .toggle{ display:flex; align-items:center; gap:.4rem; font-size:.8rem; font-weight:700; color:var(--ink-soft); }
+  .flash-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .flashcard{ perspective:1000px; height:160px; }
+  .flashcard.shuffle-pulse{ animation:shufflePulse .4s ease; }
+  @keyframes shufflePulse{ 0%{ transform:scale(1); } 40%{ transform:scale(.92) rotate(2deg); } 100%{ transform:scale(1); } }
+  .flashcard:nth-child(4n+1) .flashcard-inner{ --rest:-2deg; }
+  .flashcard:nth-child(4n+2) .flashcard-inner{ --rest:1.6deg; }
+  .flashcard:nth-child(4n+3) .flashcard-inner{ --rest:-1deg; }
+  .flashcard:nth-child(4n+4) .flashcard-inner{ --rest:2deg; }
+  .flashcard-inner{
+    position:relative; width:100%; height:100%; transform-style:preserve-3d; cursor:pointer;
+    transition:transform .5s cubic-bezier(.2,.8,.3,1); transform:rotate(var(--rest,0deg));
+  }
+  .flashcard.flipped .flashcard-inner{ transform:rotate(var(--rest,0deg)) rotateY(180deg); }
+  .flashcard-face{
+    position:absolute; inset:0; backface-visibility:hidden; border-radius:18px; border:2px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem; padding:.7rem;
+    box-shadow:0 5px 0 var(--line); text-align:center;
+  }
+  .flashcard-front{ background:var(--surface); border-color:var(--region-color,var(--accent)); position:relative; }
+  .flashcard-front .flag{ font-size:2.2rem; }
+  .flashcard-front .region-tag{ font-size:.62rem; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; }
+  .flashcard-back{ background:var(--accent); color:var(--accent-ink); transform:rotateY(180deg); }
+  .flashcard-back h3{ color:var(--accent-ink); font-size:.98rem; }
+  .flashcard-back p{ font-size:.72rem; opacity:.9; }
+  .flashcard-back .know-btn{ border-color:#fff; color:#fff; background:transparent; font-size:.68rem; padding:.35em .7em; }
+  .flashcard-back .know-btn.is-known{ background:#fff; color:var(--clover-dark); }
+  .flashcard.known .flashcard-front::after{ content:"🍀"; position:absolute; top:.35rem; right:.45rem; font-size:.9rem; }
+
+  /* ---------- quiz ---------- */
+  .quiz-card{
+    background:var(--surface); border-radius:22px; padding:1.5rem 1.2rem; width:100%;
+    box-shadow:0 10px 28px var(--shadow); border:1px solid var(--line); text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:.9rem;
+  }
+  .quiz-card h2{ font-size:1.25rem; }
+  .quiz-card p{ color:var(--ink-soft); font-size:.92rem; }
+  .quiz-best strong{ color:var(--accent); font-variant-numeric:tabular-nums; }
+  .quiz-progress{ width:100%; height:7px; background:var(--surface-alt); border-radius:999px; overflow:hidden; }
+  .quiz-progress-bar{ height:100%; width:0%; background:var(--clover); transition:width .3s ease; }
+  .quiz-meta{ font-weight:800; font-size:.8rem; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
+  .quiz-flag{ font-size:3.4rem; animation:popIn .35s ease; }
+  .quiz-options{ display:grid; grid-template-columns:1fr 1fr; gap:.6rem; width:100%; }
+  .quiz-opt{
+    border:2px solid var(--line); background:var(--surface-alt); color:var(--ink); font-weight:700; font-size:.82rem;
+    padding:.65em .5em; border-radius:14px; cursor:pointer;
+  }
+  .quiz-opt:hover:not(:disabled){ border-color:var(--accent); }
+  .quiz-opt.correct{ background:var(--clover); border-color:var(--clover-dark); color:#fff; animation:optPop .35s ease; }
+  .quiz-opt.wrong{ background:#E8447A; border-color:#B12F5A; color:#fff; animation:optShake .4s ease; }
+  @keyframes optPop{ 0%{ transform:scale(1); } 50%{ transform:scale(1.08); } 100%{ transform:scale(1); } }
+  @keyframes optShake{ 20%{ transform:translateX(-6px); } 40%{ transform:translateX(6px); } 60%{ transform:translateX(-4px); } 80%{ transform:translateX(4px); } 100%{ transform:translateX(0); } }
+  .quiz-opt:disabled{ cursor:default; opacity:.9; }
+  .quiz-end-emoji{ font-size:2.8rem; animation:popIn .4s ease; }
+  .note-card{
+    background:var(--surface-alt); border:1px solid var(--line); border-radius:14px; padding:.7rem .9rem; width:100%;
+  }
+  .note-card .note-big{ font-family:var(--font-display); font-size:1.4rem; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .note-card .note-label{ font-size:.78rem; font-weight:800; color:var(--ink-soft); }
+
+  /* ---------- repertoire ---------- */
+  .search-input{
+    width:100%; padding:.8em 1em; border-radius:14px; border:2px solid var(--line); background:var(--surface);
+    color:var(--ink); font-size:.95rem; font-family:var(--font-body); margin-bottom:1.1rem;
+  }
+  .search-input:focus{ border-color:var(--accent); outline:none; }
+  details.region-group{ border-bottom:1px solid var(--line); padding:.5rem 0; }
+  details.region-group summary{
+    cursor:pointer; list-style:none; display:flex; align-items:center; gap:.5rem; font-family:var(--font-display);
+    font-weight:600; font-size:.98rem; padding:.45rem .3rem .45rem .7rem; border-left:5px solid var(--rc,var(--accent));
+  }
+  details.region-group summary::-webkit-details-marker{ display:none; }
+  details.region-group summary .count{ color:var(--ink-soft); font-family:var(--font-body); font-weight:700; font-size:.76rem; }
+  .country-row{
+    display:flex; align-items:center; gap:.6rem; padding:.5rem .6rem .5rem 1.4rem; border-bottom:1px dashed var(--line);
+    font-size:.88rem; flex-wrap:wrap;
+  }
+  .country-row:last-child{ border-bottom:none; }
+  .country-row .flag{ font-size:1.2rem; }
+  .country-row .cname{ font-weight:800; }
+  .country-row .ccap{ color:var(--ink-soft); font-size:.82rem; width:100%; padding-left:1.85rem; }
+  .country-row .cknown{ margin-left:auto; opacity:.5; }
+  .country-row.is-known .cknown{ opacity:1; }
+
+  /* ---------- mode ecriture ---------- */
+  .ecriture-overlay{
+    position:fixed; inset:0; z-index:100; background:var(--bg); max-width:var(--shell-w); margin:0 auto;
+    display:flex; flex-direction:column; overflow-y:auto;
+  }
+  .ecriture-overlay.opening{ animation:overlayIn .3s ease both; }
+  @keyframes overlayIn{ from{ opacity:0; transform:scale(.97); } to{ opacity:1; transform:none; } }
+  .ecriture-top{ display:flex; align-items:center; justify-content:space-between; padding:.9rem 1rem; gap:.6rem; }
+  .ecriture-top .brand{ display:flex; align-items:center; gap:.4rem; font-family:var(--font-display); font-weight:600; font-size:.95rem; }
+  .ecriture-close{
+    background:var(--surface); border:1px solid var(--line); width:2.3rem; height:2.3rem; border-radius:50%;
+    font-size:1.1rem; cursor:pointer; color:var(--ink); line-height:1; flex-shrink:0;
+  }
+  .ecriture-progress-line{ font-weight:800; font-size:.78rem; color:var(--ink-soft); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .ecriture-body{ flex:1; display:flex; align-items:center; justify-content:center; padding:.5rem 1rem 2.5rem; }
+  .ecriture-stack{ position:relative; width:100%; }
+  .ecriture-ghost{ position:absolute; inset:0; background:var(--surface); border:1px solid var(--line); border-radius:24px; z-index:0; }
+  .ecriture-ghost-2{ transform:scale(.94) translateY(14px) rotate(-2deg); opacity:.5; }
+  .ecriture-ghost-1{ transform:scale(.97) translateY(7px) rotate(1.3deg); opacity:.8; }
+  .ecriture-card{
+    position:relative; z-index:1; background:var(--surface); border:1px solid var(--line); border-radius:24px;
+    box-shadow:0 14px 32px var(--shadow); padding:1.6rem 1.3rem; display:flex; flex-direction:column;
+    align-items:center; gap:1rem; text-align:center;
+  }
+  .ecriture-card.exit-success{ animation:cardFlyRight .55s cubic-bezier(.34,1.05,.4,1) forwards; }
+  @keyframes cardFlyRight{ 0%{ transform:rotate(0) translateX(0); opacity:1; } 100%{ transform:rotate(24deg) translateX(130%); opacity:0; } }
+  .ecriture-card.exit-miss{ animation:cardFadeDown .4s ease forwards; }
+  @keyframes cardFadeDown{ 0%{ transform:translateY(0); opacity:1; } 100%{ transform:translateY(14px); opacity:0; } }
+  .ecriture-flag{ font-size:3.8rem; line-height:1; }
+  .ecriture-name-display{ font-family:var(--font-display); font-size:1.3rem; font-weight:600; color:var(--ink); }
+  .ecriture-step{ width:100%; display:flex; flex-direction:column; gap:.6rem; align-items:center; }
+  .ecriture-input{
+    width:100%; padding:.8em 1em; border-radius:14px; border:2px solid var(--line); background:var(--surface-alt);
+    color:var(--ink); font-size:1rem; font-family:var(--font-body); text-align:center;
+  }
+  .ecriture-input:focus{ outline:none; border-color:var(--accent); }
+  .ecriture-input.shake{ animation:inputShake .4s ease; border-color:var(--accent); }
+  @keyframes inputShake{ 0%,100%{ transform:translateX(0); } 20%{ transform:translateX(-7px); } 40%{ transform:translateX(7px); } 60%{ transform:translateX(-5px); } 80%{ transform:translateX(5px); } }
+  .ecriture-hint{ font-size:.82rem; color:var(--accent); font-weight:800; min-height:1.2em; }
+  .ecriture-hint.ok{ color:var(--clover-dark); }
+  .ecriture-map-wrap{ width:100%; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--surface-alt); }
+  .ecriture-map-wrap svg{ width:100%; height:auto; display:block; overflow:visible; }
+  .guess-shape{ fill:var(--surface-raised); stroke:var(--surface); stroke-width:1.1; cursor:pointer; pointer-events:all; outline:none; transition:filter .12s ease; }
+  .guess-shape:hover{ filter:brightness(1.1); }
+  .guess-shape.guess-correct{ fill:var(--clover) !important; }
+  .guess-shape.guess-wrong{ fill:#E24C74 !important; }
+  .success-spin{
+    position:absolute; top:50%; left:50%; width:5rem; height:5rem; margin:-2.5rem 0 0 -2.5rem;
+    border-radius:50%; z-index:5; pointer-events:none; display:flex; align-items:center; justify-content:center;
+    animation:spinPop .6s ease forwards;
+  }
+  .success-spin::before{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(var(--clover) 0deg 300deg, transparent 300deg 360deg);
+  }
+  .success-spin::after{
+    content:"✓"; position:relative; color:#fff; font-size:1.7rem; font-weight:800; background:var(--clover-dark);
+    width:3.3rem; height:3.3rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  }
+  @keyframes spinPop{
+    0%{ transform:scale(.3) rotate(0deg); opacity:0; }
+    30%{ opacity:1; }
+    75%{ transform:scale(1.05) rotate(430deg); opacity:1; }
+    100%{ transform:scale(1.1) rotate(480deg); opacity:0; }
+  }
+  .ecriture-end{ display:flex; flex-direction:column; gap:.9rem; align-items:center; text-align:center; width:100%; }
+  .ecriture-end-emoji{ font-size:3rem; animation:popIn .4s ease; }
+  .ecriture-end-actions{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; width:100%; }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    font-family:var(--font-display); font-weight:600; border-radius:999px; border:none; cursor:pointer;
+    padding:.75em 1.3em; font-size:.92rem; transition:transform .12s ease, box-shadow .12s ease; text-align:center;
+  }
+  .btn:active{ transform:translateY(1px) scale(.98); }
+  .btn-primary{ background:var(--accent); color:var(--accent-ink); box-shadow:0 4px 0 var(--clover-dark); }
+  .btn-primary:hover{ box-shadow:0 5px 0 var(--clover-dark); transform:translateY(-1px); }
+  .btn-ghost{ background:var(--surface-alt); color:var(--ink); }
+  .btn-ghost:hover{ background:var(--surface-raised); }
+
+  /* ---------- footer ---------- */
+  footer{
+    text-align:center; padding:1.6rem 1rem 1.2rem; color:var(--ink-soft); font-size:.8rem; position:relative; z-index:2;
+  }
+  footer strong{ color:var(--accent); }
+
+  @media (prefers-reduced-motion: reduce){
+    .clover-field{ display:none; }
+    .hero{ animation:none; }
+    .flashcard-inner{ transition:none; }
+    .flashcard.shuffle-pulse{ animation:none; }
+    .btn, .quiz-opt{ transition:none; }
+    .sticker{ animation:none; }
+    .country-shape{ animation:none; opacity:1; transition:none; }
+    .panel.enter{ animation:none; }
+    .progress-chip.bump{ animation:none; }
+    .quiz-opt.correct, .quiz-opt.wrong{ animation:none; }
+    .detail-flag, .quiz-flag, .quiz-end-emoji, .ecriture-end-emoji{ animation:none; }
+    .ecriture-overlay.opening{ animation:none; }
+    .ecriture-card.exit-success, .ecriture-card.exit-miss{ animation:none; opacity:0; }
+    .ecriture-input.shake{ animation:none; }
+    .success-spin{ animation:none; opacity:0; }
+    .country-detail.flash{ animation:none; }
+  }
+</style>
+
+<div class="clover-field" id="cloverField" aria-hidden="true"></div>
+
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand">🍀 <span>L'Afrique de <strong>Tayana</strong></span></div>
+    <span class="progress-chip" id="progressChip">🍀 0/55 récoltés</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Salut Tayana 👋🌸</h1>
+      <p class="countdown-msg" id="countdownMsg">Entraîne-toi à ton rythme avant le test 🍀</p>
+      <div class="stat-row">
+        <div class="stat-chip"><span id="statCountries">0</span>pays</div>
+        <div class="stat-chip"><span id="statRegions">0</span>régions</div>
+        <div class="stat-chip"><span>🎯</span>sans-faute</div>
+      </div>
+      <div class="hero-stickers" aria-hidden="true">
+        <div class="sticker">🇸🇳<small>Sénégal</small></div>
+        <div class="sticker">🇰🇪<small>Kenya</small></div>
+        <div class="sticker">🇲🇦<small>Maroc</small></div>
+        <div class="sticker">🇿🇦<small>Afr. du Sud</small></div>
+        <div class="sticker">🇬🇭<small>Ghana</small></div>
+        <div class="sticker">🇲🇬<small>Madagascar</small></div>
+      </div>
+    </section>
+
+    <section id="panel-carte" class="panel" role="tabpanel" aria-labelledby="carte">
+      <div class="panel-head">
+        <h2>La carte à explorer</h2>
+        <p>Touche un pays pour découvrir sa fiche. Les frontières sont réelles.</p>
+      </div>
+      <div class="map-card">
+        <svg id="africaMap" role="img" aria-label="Carte de l'Afrique avec les frontières des 55 pays"></svg>
+      </div>
+      <aside class="country-detail" id="countryDetail"></aside>
+      <div class="map-legend" id="mapLegend"></div>
+    </section>
+
+    <section id="panel-fiches" class="panel" role="tabpanel" aria-labelledby="fiches" hidden>
+      <div class="panel-head">
+        <h2>Les fiches mémo</h2>
+        <p>Touche une carte pour la retourner. Le bouton 🍀 garde ce que tu sais déjà.</p>
+      </div>
+      <div class="fiches-controls">
+        <div class="region-filter" id="regionFilter"></div>
+        <label class="toggle"><input type="checkbox" id="onlyUnknown"> Seulement à revoir</label>
+        <button class="btn btn-ghost" id="shuffleBtn">🔀 Mélanger</button>
+      </div>
+      <div class="flash-grid" id="flashGrid"></div>
+    </section>
+
+    <section id="panel-quiz" class="panel" role="tabpanel" aria-labelledby="quiz" hidden>
+      <div class="panel-head">
+        <h2>Entraînement — test blanc</h2>
+        <p>12 questions au hasard, comme un vrai petit contrôle. Rejoue autant de fois que tu veux&nbsp;!</p>
+      </div>
+      <div class="quiz-card" id="quizStart">
+        <h2>Prête à t'entraîner&nbsp;? 🎓</h2>
+        <p>On te montre un drapeau, tu retrouves le pays parmi 4 choix.</p>
+        <p class="quiz-best">Meilleur score&nbsp;: <strong id="quizBestScore">—</strong></p>
+        <button class="btn btn-primary" id="quizStartBtn">Commencer le quiz 🍀</button>
+      </div>
+      <div class="quiz-card" id="quizPlay" hidden>
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+        <p class="quiz-meta">Question <span id="quizIndex">1</span>/12 · Score&nbsp;: <span id="quizScore">0</span></p>
+        <div class="quiz-flag" id="quizFlag">🇸🇳</div>
+        <h3>Quel est ce pays&nbsp;?</h3>
+        <div class="quiz-options" id="quizOptions"></div>
+        <button class="btn btn-ghost" id="quizNextBtn" hidden>Suivant →</button>
+      </div>
+      <div class="quiz-card" id="quizEnd" hidden>
+        <div class="quiz-end-emoji" id="quizEndEmoji">🎉</div>
+        <h2 id="quizEndTitle">Bravo Tayana&nbsp;!</h2>
+        <p id="quizEndText"></p>
+        <div class="note-card">
+          <div class="note-big" id="quizNoteBig">4.0/6</div>
+          <div class="note-label" id="quizNoteLabel">Barème vaudois</div>
+        </div>
+        <button class="btn btn-primary" id="quizRetryBtn">Rejouer 🍀</button>
+      </div>
+    </section>
+
+    <section id="panel-repertoire" class="panel" role="tabpanel" aria-labelledby="repertoire" hidden>
+      <div class="panel-head">
+        <h2>Le répertoire complet</h2>
+        <p>Les 55 pays, classés par région avec leur capitale.</p>
+      </div>
+      <input type="search" class="search-input" id="searchInput" placeholder="🔎 Cherche un pays ou une capitale…">
+      <div id="repertoireList"></div>
+    </section>
+  </main>
+
+  <footer>
+    Fait avec 💗 et quelques 🍀 par <strong>Théodore</strong>, pour Tayana&nbsp;! 🌍
+  </footer>
+
+  <nav class="bottom-nav" role="tablist" aria-label="Navigation">
+    <button class="bnav-btn" role="tab" data-tab="carte" aria-selected="true"><span class="bnav-icon">🗺️</span><span>Carte</span></button>
+    <button class="bnav-btn" role="tab" data-tab="fiches" aria-selected="false"><span class="bnav-icon">🎴</span><span>Fiches</span></button>
+    <button class="bnav-fab" id="openEcritureNav" type="button" aria-label="Mode Écriture">✍️</button>
+    <button class="bnav-btn" role="tab" data-tab="quiz" aria-selected="false"><span class="bnav-icon">🎯</span><span>Quiz</span></button>
+    <button class="bnav-btn" role="tab" data-tab="repertoire" aria-selected="false"><span class="bnav-icon">📖</span><span>Liste</span></button>
+  </nav>
+</div>
+
+<div class="ecriture-overlay" id="ecritureOverlay" hidden>
+  <div class="ecriture-top">
+    <div class="brand">✍️ Mode Écriture</div>
+    <span class="ecriture-progress-line" id="ecritureProgressLine">55 pays restants</span>
+    <button class="ecriture-close" id="ecritureCloseBtn" aria-label="Fermer le mode Écriture">✕</button>
+  </div>
+  <div class="ecriture-body">
+    <div class="ecriture-stack" id="ecritureStack">
+      <div class="ecriture-ghost ecriture-ghost-2" aria-hidden="true"></div>
+      <div class="ecriture-ghost ecriture-ghost-1" aria-hidden="true"></div>
+      <div class="ecriture-card" id="ecritureCard">
+        <span class="eyebrow" id="ecritureTaskLabel">Écris le nom du pays</span>
+        <div class="ecriture-flag" id="ecritureFlag" hidden>🏳️</div>
+        <div class="ecriture-name-display" id="ecritureNameDisplay" hidden></div>
+
+        <div class="ecriture-step" id="ecritureStepName">
+          <input type="text" class="ecriture-input" id="ecritureInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Nom du pays…">
+          <span class="ecriture-hint" id="ecritureHint"></span>
+          <button class="btn btn-primary" id="ecritureValidateBtn">Valider ✅</button>
+        </div>
+
+        <div class="ecriture-step" id="ecritureStepMap" hidden>
+          <div class="ecriture-map-wrap">
+            <svg id="ecritureMap" role="img" aria-label="Carte pour situer le pays"></svg>
+          </div>
+        </div>
+
+        <div class="ecriture-end" id="ecritureEnd" hidden>
+          <div class="ecriture-end-emoji" id="ecritureEndEmoji">🏆</div>
+          <h2 id="ecritureEndTitle">Tous les pays sont passés&nbsp;!</h2>
+          <p id="ecritureEndText"></p>
+          <div class="note-card">
+            <div class="note-big" id="ecritureNoteBig">4.0/6</div>
+            <div class="note-label" id="ecritureNoteLabel">Barème vaudois (première tentative)</div>
+          </div>
+          <div class="ecriture-end-actions">
+            <button class="btn btn-primary" id="ecritureReplayBtn">Rejouer 🍀</button>
+            <button class="btn btn-ghost" id="ecritureBackBtn">Retour</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="map-data.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ================= DATA ================= */
+  var REGION_ORDER = ["nord","ouest","centre","est","sud"];
+  var REGIONS = {
+    nord:   { label:"Afrique du Nord",   color:"var(--region-nord)"   },
+    ouest:  { label:"Afrique de l'Ouest",color:"var(--region-ouest)"  },
+    centre: { label:"Afrique centrale",  color:"var(--region-centre)" },
+    est:    { label:"Afrique de l'Est",  color:"var(--region-est)"    },
+    sud:    { label:"Afrique australe",  color:"var(--region-sud)"    }
+  };
+
+  var COUNTRIES = [
+    {name:"Algérie",code:"DZ",capital:"Alger",region:"nord"},
+    {name:"Égypte",code:"EG",capital:"Le Caire",region:"nord"},
+    {name:"Libye",code:"LY",capital:"Tripoli",region:"nord"},
+    {name:"Maroc",code:"MA",capital:"Rabat",region:"nord"},
+    {name:"Soudan",code:"SD",capital:"Khartoum",region:"nord"},
+    {name:"Tunisie",code:"TN",capital:"Tunis",region:"nord"},
+    {name:"Sahara occidental",code:"EH",capital:"Laâyoune",region:"nord"},
+
+    {name:"Bénin",code:"BJ",capital:"Porto-Novo",region:"ouest"},
+    {name:"Burkina Faso",code:"BF",capital:"Ouagadougou",region:"ouest"},
+    {name:"Cap-Vert",code:"CV",capital:"Praia",region:"ouest"},
+    {name:"Côte d'Ivoire",code:"CI",capital:"Yamoussoukro",region:"ouest"},
+    {name:"Gambie",code:"GM",capital:"Banjul",region:"ouest"},
+    {name:"Ghana",code:"GH",capital:"Accra",region:"ouest"},
+    {name:"Guinée",code:"GN",capital:"Conakry",region:"ouest"},
+    {name:"Guinée-Bissau",code:"GW",capital:"Bissau",region:"ouest"},
+    {name:"Libéria",code:"LR",capital:"Monrovia",region:"ouest"},
+    {name:"Mali",code:"ML",capital:"Bamako",region:"ouest"},
+    {name:"Mauritanie",code:"MR",capital:"Nouakchott",region:"ouest"},
+    {name:"Niger",code:"NE",capital:"Niamey",region:"ouest"},
+    {name:"Nigéria",code:"NG",capital:"Abuja",region:"ouest"},
+    {name:"Sénégal",code:"SN",capital:"Dakar",region:"ouest"},
+    {name:"Sierra Leone",code:"SL",capital:"Freetown",region:"ouest"},
+    {name:"Togo",code:"TG",capital:"Lomé",region:"ouest"},
+
+    {name:"Cameroun",code:"CM",capital:"Yaoundé",region:"centre"},
+    {name:"République centrafricaine",code:"CF",capital:"Bangui",region:"centre"},
+    {name:"Tchad",code:"TD",capital:"N'Djamena",region:"centre"},
+    {name:"Congo",code:"CG",capital:"Brazzaville",region:"centre"},
+    {name:"République démocratique du Congo",code:"CD",capital:"Kinshasa",region:"centre"},
+    {name:"Guinée équatoriale",code:"GQ",capital:"Malabo",region:"centre"},
+    {name:"Gabon",code:"GA",capital:"Libreville",region:"centre"},
+    {name:"Sao Tomé-et-Principe",code:"ST",capital:"São Tomé",region:"centre"},
+
+    {name:"Burundi",code:"BI",capital:"Gitega",region:"est"},
+    {name:"Comores",code:"KM",capital:"Moroni",region:"est"},
+    {name:"Djibouti",code:"DJ",capital:"Djibouti",region:"est"},
+    {name:"Érythrée",code:"ER",capital:"Asmara",region:"est"},
+    {name:"Éthiopie",code:"ET",capital:"Addis-Abeba",region:"est"},
+    {name:"Kenya",code:"KE",capital:"Nairobi",region:"est"},
+    {name:"Madagascar",code:"MG",capital:"Antananarivo",region:"est"},
+    {name:"Malawi",code:"MW",capital:"Lilongwe",region:"est"},
+    {name:"Maurice",code:"MU",capital:"Port-Louis",region:"est"},
+    {name:"Mozambique",code:"MZ",capital:"Maputo",region:"est"},
+    {name:"Rwanda",code:"RW",capital:"Kigali",region:"est"},
+    {name:"Seychelles",code:"SC",capital:"Victoria",region:"est"},
+    {name:"Somalie",code:"SO",capital:"Mogadiscio",region:"est"},
+    {name:"Soudan du Sud",code:"SS",capital:"Djouba",region:"est"},
+    {name:"Tanzanie",code:"TZ",capital:"Dodoma",region:"est"},
+    {name:"Ouganda",code:"UG",capital:"Kampala",region:"est"},
+    {name:"Zambie",code:"ZM",capital:"Lusaka",region:"est"},
+    {name:"Zimbabwe",code:"ZW",capital:"Harare",region:"est"},
+
+    {name:"Angola",code:"AO",capital:"Luanda",region:"sud"},
+    {name:"Botswana",code:"BW",capital:"Gaborone",region:"sud"},
+    {name:"Eswatini",code:"SZ",capital:"Mbabane",region:"sud"},
+    {name:"Lesotho",code:"LS",capital:"Maseru",region:"sud"},
+    {name:"Namibie",code:"NA",capital:"Windhoek",region:"sud"},
+    {name:"Afrique du Sud",code:"ZA",capital:"Pretoria",region:"sud"}
+  ];
+
+  /* ================= MAP DATA (frontières réelles, générées depuis Natural Earth 1:50m) ================= */
+
+  /* ================= UTILITIES ================= */
+  function flagEmoji(code){
+    return code.toUpperCase().replace(/./g, function(c){
+      return String.fromCodePoint(127397 + c.charCodeAt(0));
+    });
+  }
+  function norm(s){
+    return s.normalize("NFD").replace(new RegExp("[\\u0300-\\u036f]","g"),"").toLowerCase();
+  }
+  function strictNorm(s){
+    return norm(s).replace(/[^a-z0-9]/g,"");
+  }
+  function levenshtein(a,b){
+    var m=a.length, n=b.length;
+    if(m===0) return n;
+    if(n===0) return m;
+    var prev = new Array(n+1);
+    var cur = new Array(n+1);
+    for(var j=0;j<=n;j++) prev[j]=j;
+    for(var i=1;i<=m;i++){
+      cur[0]=i;
+      for(var j2=1;j2<=n;j2++){
+        var cost = a.charAt(i-1)===b.charAt(j2-1) ? 0 : 1;
+        cur[j2] = Math.min(prev[j2]+1, cur[j2-1]+1, prev[j2-1]+cost);
+      }
+      var tmp = prev; prev = cur; cur = tmp;
+    }
+    return prev[n];
+  }
+  // tolère les accents manquants et les petites fautes de frappe, sans accepter un autre vrai pays
+  function isCloseEnough(input, correctCountry){
+    var a = strictNorm(input);
+    var b = strictNorm(correctCountry.name);
+    if(!a) return false;
+    if(a===b) return true;
+    var maxLen = Math.max(a.length, b.length);
+    var threshold = maxLen<=6 ? 1 : (maxLen<=12 ? 2 : 3);
+    var distToTarget = levenshtein(a,b);
+    if(distToTarget > threshold) return false;
+    for(var i=0;i<COUNTRIES.length;i++){
+      var other = COUNTRIES[i];
+      if(other.code===correctCountry.code) continue;
+      var ob = strictNorm(other.name);
+      if(ob===a) return false;
+      if(levenshtein(a,ob) <= distToTarget) return false;
+    }
+    return true;
+  }
+  function shuffle(arr){
+    var a = arr.slice();
+    for(var i=a.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t=a[i]; a[i]=a[j]; a[j]=t;
+    }
+    return a;
+  }
+  var byCode = {};
+  COUNTRIES.forEach(function(c){ byCode[c.code]=c; });
+
+  // barème vaudois : note = 1 + (points/max)*5, arrondie au dixième
+  function vaudNote(score, max){
+    var n = 1 + (score/max)*5;
+    n = Math.max(1, Math.min(6, n));
+    return Math.round(n*10)/10;
+  }
+  function noteLabel(n){
+    if(n>=5.5) return "Excellent 🌟";
+    if(n>=4.5) return "Très bien";
+    if(n>=4)   return "Suffisant ✅";
+    if(n>=3)   return "Insuffisant, mais proche";
+    return "À retravailler";
+  }
+
+  /* ================= STATE ================= */
+  var STORE_KEY = "tayanaAfrica.v3";
+  var state = { known:[], quizBest:0 };
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if(raw){ var parsed = JSON.parse(raw); if(parsed && parsed.known) state = parsed; }
+  }catch(e){}
+  function saveState(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} }
+  function isKnown(code){ return state.known.indexOf(code) !== -1; }
+  function toggleKnown(code){
+    var i = state.known.indexOf(code);
+    if(i!==-1) state.known.splice(i,1); else state.known.push(code);
+    saveState();
+    refreshKnownUI();
+  }
+  var progressChip = document.getElementById("progressChip");
+  var lastKnownCount = state.known.length;
+  function refreshKnownUI(){
+    var newCount = state.known.length;
+    progressChip.textContent = "🍀 " + newCount + "/55 récoltés";
+    if(newCount !== lastKnownCount){
+      progressChip.classList.remove("bump"); void progressChip.offsetWidth; progressChip.classList.add("bump");
+      lastKnownCount = newCount;
+    }
+    if(selectedCountry) renderDetail(selectedCountry);
+    document.querySelectorAll(".country-shape").forEach(function(g){
+      g.classList.toggle("known", isKnown(g.getAttribute("data-code")));
+    });
+    document.querySelectorAll(".flashcard").forEach(function(card){
+      var code = card.getAttribute("data-code");
+      var known = isKnown(code);
+      card.classList.toggle("known", known);
+      var btn = card.querySelector(".know-btn");
+      btn.textContent = known ? "✅ Retenue !" : "🍀 Je la sais";
+      btn.classList.toggle("is-known", known);
+    });
+    applyFlashFilter();
+    document.querySelectorAll(".country-row").forEach(function(row){
+      row.classList.toggle("is-known", isKnown(row.getAttribute("data-code")));
+    });
+  }
+
+  /* ================= COUNTDOWN ================= */
+  (function(){
+    var TEST_DATE = new Date(2026, 8, 8); // 8 septembre 2026
+    var now = new Date();
+    var today0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var days = Math.round((TEST_DATE - today0) / 86400000);
+    var el = document.getElementById("countdownMsg");
+    if(days > 1){
+      el.innerHTML = "Encore <strong>" + days + " jours</strong> avant le test — on continue tranquillement 🍀";
+    } else if(days === 1){
+      el.innerHTML = "Ton test est <strong>demain</strong> — dernière ligne droite, tu gères 💪🍀";
+    } else if(days === 0){
+      el.innerHTML = "Ton test est <strong>aujourd'hui</strong> — un dernier tour et fonce 💪🌸";
+    } else {
+      el.innerHTML = "J'espère que ton test s'est <strong>super bien passé</strong> 🎉 — continue à réviser si tu veux !";
+    }
+  })();
+
+  /* ================= BOTTOM NAV ================= */
+  var navButtons = document.querySelectorAll(".bnav-btn");
+  var panelNames = ["carte","fiches","quiz","repertoire"];
+  navButtons.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var tab = btn.getAttribute("data-tab");
+      navButtons.forEach(function(b){ b.setAttribute("aria-selected", b===btn ? "true":"false"); });
+      panelNames.forEach(function(name){
+        var panel = document.getElementById("panel-"+name);
+        if(name===tab){
+          panel.hidden = false;
+          panel.classList.remove("enter"); void panel.offsetWidth; panel.classList.add("enter");
+        } else {
+          panel.hidden = true;
+        }
+      });
+      window.scrollTo({top:0, behavior: reduceMotion ? "auto" : "smooth"});
+    });
+  });
+
+  /* ================= CLOVER FIELD ================= */
+  var cloverField = document.getElementById("cloverField");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var emojis = ["🍀","🍀","🍀","✨","🍀"];
+  function spawnClover(){
+    var span = document.createElement("span");
+    span.className = "clover-particle";
+    span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    var left = Math.random()*100;
+    var duration = 7 + Math.random()*7;
+    var drift = (Math.random()*100-50).toFixed(0)+"px";
+    var spin = (Math.random()*360).toFixed(0)+"deg";
+    span.style.left = left+"%";
+    span.style.fontSize = (1+Math.random()*1.0).toFixed(2)+"rem";
+    span.style.setProperty("--drift", drift);
+    span.style.setProperty("--spin", spin);
+    span.style.animationDuration = duration+"s";
+    cloverField.appendChild(span);
+    span.addEventListener("animationend", function(){ span.remove(); });
+  }
+  if(!reduceMotion){
+    setInterval(spawnClover, 1500);
+    for(var s=0;s<2;s++) setTimeout(spawnClover, s*500);
+  }
+
+  /* ================= MAP (frontières réelles) ================= */
+  var svgNS = "http://www.w3.org/2000/svg";
+  var selectedCountry = null;
+
+  function buildMapInto(svgEl, mode, onSelect){
+    svgEl.innerHTML = "";
+    svgEl.setAttribute("viewBox", MAP_VIEWBOX);
+    var group = document.createElementNS(svgNS,"g");
+    group.setAttribute("class", mode==="explore" ? "map-countries" : "");
+    svgEl.appendChild(group);
+
+    var hoverLabel = null;
+    if(mode==="explore"){
+      hoverLabel = document.createElementNS(svgNS,"text");
+      hoverLabel.setAttribute("class","hover-label");
+    }
+
+    var shapesByCode = {};
+    COUNTRIES.forEach(function(c, i){
+      var d = COUNTRY_PATHS[c.code];
+      if(!d) return;
+      var path = document.createElementNS(svgNS,"path");
+      path.setAttribute("d", d);
+      path.setAttribute("data-code", c.code);
+      if(mode==="explore"){
+        path.setAttribute("class","country-shape");
+        path.style.setProperty("--d", (i*0.012).toFixed(3)+"s");
+        path.setAttribute("fill", REGIONS[c.region].color);
+        path.setAttribute("tabindex","0");
+        path.setAttribute("role","button");
+        path.setAttribute("aria-label", c.name);
+        path.addEventListener("mouseenter", function(){
+          var ctr = COUNTRY_CENTROIDS[c.code];
+          if(ctr && hoverLabel){
+            hoverLabel.setAttribute("x", ctr[0]);
+            hoverLabel.setAttribute("y", ctr[1]);
+            hoverLabel.textContent = c.name;
+            hoverLabel.classList.add("visible");
+          }
+        });
+        path.addEventListener("mouseleave", function(){
+          if(hoverLabel) hoverLabel.classList.remove("visible");
+        });
+        var activate = function(){ if(onSelect) onSelect(c, path); };
+        path.addEventListener("mousedown", function(e){ e.preventDefault(); });
+        path.addEventListener("click", activate);
+        path.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); activate(); } });
+        group.appendChild(path);
+      } else {
+        path.setAttribute("class","guess-shape");
+        path.addEventListener("mousedown", function(e){ e.preventDefault(); });
+        path.addEventListener("click", function(){ if(onSelect) onSelect(c, path); });
+        svgEl.appendChild(path);
+      }
+      shapesByCode[c.code] = path;
+    });
+    if(hoverLabel) svgEl.appendChild(hoverLabel);
+    return shapesByCode;
+  }
+
+  function renderDetail(c){
+    var el = document.getElementById("countryDetail");
+    var known = isKnown(c.code);
+    el.innerHTML =
+      '<div class="detail-flag">'+flagEmoji(c.code)+'</div>'+
+      '<h3>'+c.name+'</h3>'+
+      '<p class="detail-row"><span class="eyebrow">Capitale</span><br>'+c.capital+'</p>'+
+      '<span class="region-badge" style="--c:'+REGIONS[c.region].color+'">'+REGIONS[c.region].label+'</span>'+
+      '<button class="know-btn'+(known?' is-known':'')+'" id="detailKnowBtn">'+(known?'✅ Retenu !':'🍀 Marquer comme sue')+'</button>';
+    document.getElementById("detailKnowBtn").addEventListener("click", function(){ toggleKnown(c.code); });
+  }
+
+  function buildLegend(){
+    var legend = document.getElementById("mapLegend");
+    legend.innerHTML = "";
+    REGION_ORDER.forEach(function(key){
+      var r = REGIONS[key];
+      var item = document.createElement("span");
+      item.className = "legend-item";
+      item.innerHTML = '<span class="legend-dot" style="background:'+r.color+'"></span>'+r.label;
+      legend.appendChild(item);
+    });
+  }
+
+  function selectCountry(c, path, fromUserClick){
+    Object.keys(exploreShapes).forEach(function(code){ exploreShapes[code].classList.remove("active"); });
+    path.classList.add("active");
+    selectedCountry = c;
+    renderDetail(c);
+    var detailEl = document.getElementById("countryDetail");
+    detailEl.classList.remove("flash"); void detailEl.offsetWidth; detailEl.classList.add("flash");
+    if(fromUserClick){
+      detailEl.scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block:"nearest"});
+    }
+  }
+
+  var exploreShapes = buildMapInto(document.getElementById("africaMap"), "explore", function(c,path){ selectCountry(c,path,true); });
+  buildLegend();
+  var defaultCountry = byCode["SN"];
+  if(defaultCountry && exploreShapes["SN"]) selectCountry(defaultCountry, exploreShapes["SN"], false);
+
+  /* ================= FLASHCARDS ================= */
+  var flashGrid = document.getElementById("flashGrid");
+  var currentRegionFilter = "all";
+  var flashOrder = COUNTRIES.slice();
+
+  function buildRegionFilter(){
+    var wrap = document.getElementById("regionFilter");
+    var allBtn = document.createElement("button");
+    allBtn.className = "pill-btn"; allBtn.textContent = "Tous"; allBtn.setAttribute("aria-pressed","true");
+    allBtn.addEventListener("click", function(){ setRegionFilter("all", allBtn); });
+    wrap.appendChild(allBtn);
+    REGION_ORDER.forEach(function(key){
+      var btn = document.createElement("button");
+      btn.className = "pill-btn"; btn.textContent = REGIONS[key].label; btn.setAttribute("aria-pressed","false");
+      btn.addEventListener("click", function(){ setRegionFilter(key, btn); });
+      wrap.appendChild(btn);
+    });
+    function setRegionFilter(key, activeBtn){
+      currentRegionFilter = key;
+      wrap.querySelectorAll(".pill-btn").forEach(function(b){ b.setAttribute("aria-pressed", b===activeBtn?"true":"false"); });
+      applyFlashFilter();
+    }
+  }
+
+  function renderFlashcards(){
+    flashGrid.innerHTML = "";
+    flashOrder.forEach(function(c){
+      var card = document.createElement("div");
+      card.className = "flashcard";
+      card.setAttribute("data-code", c.code);
+      card.setAttribute("data-region", c.region);
+      card.innerHTML =
+        '<div class="flashcard-inner">'+
+          '<div class="flashcard-face flashcard-front" style="--region-color:'+REGIONS[c.region].color+'">'+
+            '<span class="flag">'+flagEmoji(c.code)+'</span>'+
+            '<span class="region-tag">'+REGIONS[c.region].label+'</span>'+
+          '</div>'+
+          '<div class="flashcard-face flashcard-back">'+
+            '<h3>'+c.name+'</h3>'+
+            '<p>Capitale&nbsp;: '+c.capital+'</p>'+
+            '<button class="know-btn">🍀 Je la sais</button>'+
+          '</div>'+
+        '</div>';
+      card.addEventListener("click", function(e){
+        if(e.target.classList.contains("know-btn")) return;
+        card.classList.toggle("flipped");
+      });
+      card.querySelector(".know-btn").addEventListener("click", function(e){
+        e.stopPropagation();
+        toggleKnown(c.code);
+      });
+      flashGrid.appendChild(card);
+    });
+    refreshKnownUI();
+  }
+
+  function applyFlashFilter(){
+    var onlyUnknown = document.getElementById("onlyUnknown").checked;
+    document.querySelectorAll(".flashcard").forEach(function(card){
+      var code = card.getAttribute("data-code");
+      var region = card.getAttribute("data-region");
+      var show = (currentRegionFilter==="all" || region===currentRegionFilter) && (!onlyUnknown || !isKnown(code));
+      card.style.display = show ? "" : "none";
+    });
+  }
+  document.getElementById("onlyUnknown").addEventListener("change", applyFlashFilter);
+  document.getElementById("shuffleBtn").addEventListener("click", function(){
+    flashOrder = shuffle(flashOrder);
+    renderFlashcards();
+    if(!reduceMotion){
+      document.querySelectorAll(".flashcard").forEach(function(card, i){
+        setTimeout(function(){
+          card.classList.remove("shuffle-pulse"); void card.offsetWidth; card.classList.add("shuffle-pulse");
+        }, i*12);
+      });
+    }
+  });
+
+  buildRegionFilter();
+  renderFlashcards();
+
+  /* ================= QUIZ ================= */
+  var quizQuestions = [], quizIndex = 0, quizScore = 0;
+  var quizStartEl = document.getElementById("quizStart");
+  var quizPlayEl = document.getElementById("quizPlay");
+  var quizEndEl = document.getElementById("quizEnd");
+  var quizBestScoreEl = document.getElementById("quizBestScore");
+  if(state.quizBest) quizBestScoreEl.textContent = state.quizBest + "/12 (" + vaudNote(state.quizBest,12).toFixed(1) + "/6)";
+
+  function startQuiz(){
+    quizQuestions = shuffle(COUNTRIES).slice(0,12);
+    quizIndex = 0; quizScore = 0;
+    quizStartEl.hidden = true; quizEndEl.hidden = true; quizPlayEl.hidden = false;
+    renderQuizQuestion();
+  }
+
+  function renderQuizQuestion(){
+    var c = quizQuestions[quizIndex];
+    document.getElementById("quizIndex").textContent = (quizIndex+1);
+    document.getElementById("quizScore").textContent = quizScore;
+    document.getElementById("quizProgressBar").style.width = ((quizIndex)/12*100)+"%";
+    var flagEl = document.getElementById("quizFlag");
+    flagEl.textContent = flagEmoji(c.code);
+    flagEl.style.animation = "none"; void flagEl.offsetWidth; flagEl.style.animation = "";
+    var others = shuffle(COUNTRIES.filter(function(x){ return x.code!==c.code; })).slice(0,3);
+    var options = shuffle(others.concat([c]));
+    var optWrap = document.getElementById("quizOptions");
+    optWrap.innerHTML = "";
+    var nextBtn = document.getElementById("quizNextBtn");
+    nextBtn.hidden = true;
+    options.forEach(function(o){
+      var btn = document.createElement("button");
+      btn.className = "quiz-opt";
+      btn.textContent = o.name;
+      btn.addEventListener("click", function(){
+        document.querySelectorAll(".quiz-opt").forEach(function(b){ b.disabled = true; });
+        if(o.code===c.code){
+          btn.classList.add("correct");
+          quizScore++;
+          if(!reduceMotion) for(var i=0;i<8;i++) setTimeout(spawnClover, i*60);
+        } else {
+          btn.classList.add("wrong");
+          optWrap.querySelectorAll(".quiz-opt").forEach(function(b){
+            if(b.textContent===c.name) b.classList.add("correct");
+          });
+        }
+        document.getElementById("quizScore").textContent = quizScore;
+        nextBtn.hidden = false;
+        nextBtn.focus();
+      });
+      optWrap.appendChild(btn);
+    });
+  }
+
+  document.getElementById("quizNextBtn").addEventListener("click", function(){
+    quizIndex++;
+    if(quizIndex>=quizQuestions.length){
+      endQuiz();
+    } else {
+      renderQuizQuestion();
+    }
+  });
+
+  function endQuiz(){
+    document.getElementById("quizProgressBar").style.width = "100%";
+    quizPlayEl.hidden = true;
+    quizEndEl.hidden = false;
+    var title = document.getElementById("quizEndTitle");
+    var text = document.getElementById("quizEndText");
+    var emoji = document.getElementById("quizEndEmoji");
+    if(quizScore>state.quizBest){ state.quizBest = quizScore; saveState(); }
+    var note = vaudNote(quizScore, 12);
+    quizBestScoreEl.textContent = state.quizBest + "/12 (" + vaudNote(state.quizBest,12).toFixed(1) + "/6)";
+    document.getElementById("quizNoteBig").textContent = note.toFixed(1) + "/6";
+    document.getElementById("quizNoteLabel").textContent = "Barème vaudois — " + noteLabel(note);
+    if(quizScore>=11){ emoji.textContent="🏆"; title.textContent="Perfection, Tayana !"; text.textContent="Score : "+quizScore+"/12 — tu es prête à 200% pour le vrai test !"; }
+    else if(quizScore>=9){ emoji.textContent="🎉"; title.textContent="Super score !"; text.textContent="Score : "+quizScore+"/12 — tu es prête pour le test !"; }
+    else if(quizScore>=6){ emoji.textContent="💪"; title.textContent="Pas mal du tout !"; text.textContent="Score : "+quizScore+"/12 — encore un petit tour de fiches et ce sera parfait."; }
+    else { emoji.textContent="📚"; title.textContent="On continue !"; text.textContent="Score : "+quizScore+"/12 — direction les fiches mémo pour réviser encore un peu."; }
+    if(quizScore>=9 && !reduceMotion) for(var i=0;i<30;i++) setTimeout(spawnClover, i*40);
+  }
+
+  document.getElementById("quizStartBtn").addEventListener("click", startQuiz);
+  document.getElementById("quizRetryBtn").addEventListener("click", startQuiz);
+
+  /* ================= REPERTOIRE ================= */
+  var repertoireList = document.getElementById("repertoireList");
+  function renderRepertoire(){
+    repertoireList.innerHTML = "";
+    REGION_ORDER.forEach(function(key){
+      var group = COUNTRIES.filter(function(c){ return c.region===key; });
+      var details = document.createElement("details");
+      details.className = "region-group";
+      details.open = true;
+      details.setAttribute("data-region", key);
+      var summary = document.createElement("summary");
+      summary.style.setProperty("--rc", REGIONS[key].color);
+      summary.innerHTML = REGIONS[key].label + ' <span class="count">('+group.length+' pays)</span>';
+      details.appendChild(summary);
+      group.forEach(function(c){
+        var row = document.createElement("div");
+        row.className = "country-row" + (isKnown(c.code) ? " is-known":"");
+        row.setAttribute("data-code", c.code);
+        row.setAttribute("data-search", norm(c.name+" "+c.capital));
+        row.innerHTML =
+          '<span class="flag">'+flagEmoji(c.code)+'</span>'+
+          '<span class="cname">'+c.name+'</span>'+
+          '<span class="cknown">🍀</span>'+
+          '<span class="ccap">Capitale : '+c.capital+'</span>';
+        details.appendChild(row);
+      });
+      repertoireList.appendChild(details);
+    });
+  }
+  document.getElementById("searchInput").addEventListener("input", function(e){
+    var q = norm(e.target.value.trim());
+    document.querySelectorAll(".region-group").forEach(function(group){
+      var anyVisible = false;
+      group.querySelectorAll(".country-row").forEach(function(row){
+        var match = !q || row.getAttribute("data-search").indexOf(q)!==-1;
+        row.hidden = !match;
+        if(match) anyVisible = true;
+      });
+      group.hidden = !anyVisible;
+      group.open = true;
+    });
+  });
+  renderRepertoire();
+
+  /* ================= MODE ÉCRITURE (une seule tâche par carte) ================= */
+  var ecritureShapes = null;
+  var ecriState = null;
+
+  function ensureEcritureMap(){
+    if(ecritureShapes) return;
+    ecritureShapes = buildMapInto(document.getElementById("ecritureMap"), "guess", handleMapGuess);
+  }
+
+  function updateEcritureProgressLine(){
+    var remaining = ecriState.queue.length + (ecriState.current ? 1 : 0);
+    document.getElementById("ecritureProgressLine").textContent = remaining + " pays restant" + (remaining>1?"s":"");
+  }
+
+  function openEcriture(){
+    ensureEcritureMap();
+    ecriState = {
+      queue: shuffle(COUNTRIES), current:null, attempts:0, hadMistake:false,
+      taskType:"name", isFirstAttempt:true, seenCodes:{}, firstTryClean:0, totalSeen:0
+    };
+    var overlay = document.getElementById("ecritureOverlay");
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+    overlay.classList.remove("opening"); void overlay.offsetWidth; overlay.classList.add("opening");
+    document.getElementById("ecritureEnd").hidden = true;
+    nextEcritureCard();
+  }
+  function closeEcriture(){
+    document.getElementById("ecritureOverlay").hidden = true;
+    document.body.style.overflow = "";
+  }
+  document.getElementById("openEcritureNav").addEventListener("click", openEcriture);
+  document.getElementById("ecritureCloseBtn").addEventListener("click", closeEcriture);
+  document.getElementById("ecritureBackBtn").addEventListener("click", closeEcriture);
+  document.getElementById("ecritureReplayBtn").addEventListener("click", openEcriture);
+  document.addEventListener("keydown", function(e){
+    if(e.key==="Escape" && !document.getElementById("ecritureOverlay").hidden) closeEcriture();
+  });
+
+  function nextEcritureCard(){
+    var card = document.getElementById("ecritureCard");
+    card.classList.remove("exit-success","exit-miss");
+
+    if(ecriState.queue.length===0){
+      finishEcriture();
+      return;
+    }
+    var c = ecriState.queue.shift();
+    ecriState.current = c;
+    ecriState.hadMistake = false;
+    ecriState.taskType = Math.random() < 0.5 ? "name" : "map";
+    ecriState.isFirstAttempt = !ecriState.seenCodes[c.code];
+    ecriState.seenCodes[c.code] = true;
+    updateEcritureProgressLine();
+
+    var flagEl = document.getElementById("ecritureFlag");
+    var nameDisplay = document.getElementById("ecritureNameDisplay");
+    var taskLabel = document.getElementById("ecritureTaskLabel");
+    document.getElementById("ecritureEnd").hidden = true;
+
+    if(ecriState.taskType === "name"){
+      taskLabel.textContent = "Écris le nom du pays";
+      flagEl.hidden = false;
+      flagEl.textContent = flagEmoji(c.code);
+      nameDisplay.hidden = true;
+      document.getElementById("ecritureStepName").hidden = false;
+      document.getElementById("ecritureStepMap").hidden = true;
+      var input = document.getElementById("ecritureInput");
+      input.value = "";
+      input.classList.remove("shake");
+      var hint = document.getElementById("ecritureHint");
+      hint.textContent = ""; hint.className = "ecriture-hint";
+      document.getElementById("ecritureValidateBtn").disabled = false;
+      setTimeout(function(){ input.focus(); }, 60);
+    } else {
+      taskLabel.textContent = "Clique où se trouve ce pays";
+      flagEl.hidden = false;
+      flagEl.textContent = flagEmoji(c.code);
+      nameDisplay.hidden = false;
+      nameDisplay.textContent = c.name;
+      document.getElementById("ecritureStepName").hidden = true;
+      document.getElementById("ecritureStepMap").hidden = false;
+      Object.keys(ecritureShapes).forEach(function(code){
+        ecritureShapes[code].classList.remove("guess-correct","guess-wrong");
+      });
+      var wrap = document.querySelector(".ecriture-map-wrap");
+      if(wrap) wrap.style.pointerEvents = "";
+    }
+  }
+
+  function checkEcritureName(){
+    var c = ecriState.current;
+    if(!c) return;
+    if(document.getElementById("ecritureValidateBtn").disabled) return;
+    var input = document.getElementById("ecritureInput");
+    var hint = document.getElementById("ecritureHint");
+    var val = input.value.trim();
+    if(!val){
+      input.classList.remove("shake"); void input.offsetWidth; input.classList.add("shake");
+      return;
+    }
+    document.getElementById("ecritureValidateBtn").disabled = true;
+    if(isCloseEnough(val, c)){
+      hint.textContent = "Bien joué ! ✅ (" + c.name + ")";
+      hint.className = "ecriture-hint ok";
+      finalizeEcritureCard(true);
+    } else {
+      ecriState.hadMistake = true;
+      hint.textContent = "Pas tout à fait — c'était \"" + c.name + "\".";
+      hint.className = "ecriture-hint";
+      input.classList.remove("shake"); void input.offsetWidth; input.classList.add("shake");
+      setTimeout(function(){ finalizeEcritureCard(false); }, 1100);
+    }
+  }
+  document.getElementById("ecritureValidateBtn").addEventListener("click", checkEcritureName);
+  document.getElementById("ecritureInput").addEventListener("keydown", function(e){
+    if(e.key==="Enter"){ e.preventDefault(); checkEcritureName(); }
+  });
+
+  function handleMapGuess(c, path){
+    if(!ecriState || !ecriState.current || ecriState.taskType!=="map") return;
+    var wrap = document.querySelector(".ecriture-map-wrap");
+    if(wrap) wrap.style.pointerEvents = "none";
+    var current = ecriState.current;
+    if(c.code === current.code){
+      path.classList.add("guess-correct");
+      finalizeEcritureCard(true);
+    } else {
+      ecriState.hadMistake = true;
+      path.classList.add("guess-wrong");
+      var correctPath = ecritureShapes[current.code];
+      if(correctPath) correctPath.classList.add("guess-correct");
+      setTimeout(function(){ finalizeEcritureCard(false); }, 900);
+    }
+  }
+
+  function finalizeEcritureCard(success){
+    var card = document.getElementById("ecritureCard");
+    var current = ecriState.current;
+    ecriState.attempts++;
+    ecriState.totalSeen++;
+    var cleanPass = success && !ecriState.hadMistake;
+    if(cleanPass && ecriState.isFirstAttempt){ ecriState.firstTryClean++; }
+    if(!success || ecriState.hadMistake){
+      ecriState.queue.push(current);
+    } else if(cleanPass){
+      if(state.known.indexOf(current.code)===-1){
+        state.known.push(current.code); saveState(); refreshKnownUI();
+      }
+    }
+    ecriState.current = null;
+
+    if(success){
+      if(!reduceMotion){
+        var spin = document.createElement("div");
+        spin.className = "success-spin";
+        card.appendChild(spin);
+        spin.addEventListener("animationend", function(){ spin.remove(); });
+      }
+      card.classList.add("exit-success");
+      if(!reduceMotion) for(var i=0;i<5;i++) setTimeout(spawnClover, i*70);
+    } else {
+      card.classList.add("exit-miss");
+    }
+
+    setTimeout(function(){
+      card.classList.remove("exit-success","exit-miss");
+      nextEcritureCard();
+    }, reduceMotion ? 60 : (success ? 600 : 460));
+  }
+
+  function finishEcriture(){
+    document.getElementById("ecritureFlag").hidden = true;
+    document.getElementById("ecritureNameDisplay").hidden = true;
+    document.getElementById("ecritureTaskLabel").textContent = "";
+    document.getElementById("ecritureStepName").hidden = true;
+    document.getElementById("ecritureStepMap").hidden = true;
+    document.getElementById("ecritureEnd").hidden = false;
+    document.getElementById("ecritureProgressLine").textContent = "Terminé 🎉";
+    var note = vaudNote(ecriState.firstTryClean, 55);
+    document.getElementById("ecritureEndText").textContent =
+      "Les 55 pays sont passés, en " + ecriState.attempts + " cartes au total. " + ecriState.firstTryClean + "/55 réussis du premier coup.";
+    document.getElementById("ecritureNoteBig").textContent = note.toFixed(1) + "/6";
+    document.getElementById("ecritureNoteLabel").textContent = "Barème vaudois — " + noteLabel(note);
+    if(!reduceMotion) for(var i=0;i<30;i++) setTimeout(spawnClover, i*40);
+  }
+
+  /* ================= HERO STAT COUNTERS ================= */
+  function animateCount(el, target, duration){
+    if(!el) return;
+    if(reduceMotion){ el.textContent = target; return; }
+    var start = performance.now();
+    function step(now){
+      var t = Math.min(1, (now-start)/duration);
+      var eased = 1-Math.pow(1-t,3);
+      el.textContent = Math.round(eased*target);
+      if(t<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  animateCount(document.getElementById("statCountries"), 55, 900);
+  animateCount(document.getElementById("statRegions"), 5, 700);
+
+  refreshKnownUI();
+})();
+</script>
