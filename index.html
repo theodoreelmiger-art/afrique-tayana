@@ -656,11 +656,24 @@
     return prev[n];
   }
   // tolère les accents manquants et les petites fautes de frappe, sans accepter un autre vrai pays
+  // noms courts/usuels tolérés en plus du nom officiel
+  var NAME_ALIASES = {
+    CD: ["congo","rdc","rd congo","congo kinshasa"],
+    CF: ["centrafrique","rca"],
+    SZ: ["swaziland"],
+    ST: ["sao tome","saotome"]
+  };
   function isCloseEnough(input, correctCountry){
     var a = strictNorm(input);
     var b = strictNorm(correctCountry.name);
     if(!a) return false;
     if(a===b) return true;
+    var aliases = NAME_ALIASES[correctCountry.code];
+    if(aliases){
+      for(var k=0;k<aliases.length;k++){
+        if(a===strictNorm(aliases[k])) return true;
+      }
+    }
     var maxLen = Math.max(a.length, b.length);
     var threshold = maxLen<=6 ? 1 : (maxLen<=12 ? 2 : 3);
     var distToTarget = levenshtein(a,b);
@@ -669,8 +682,8 @@
       var other = COUNTRIES[i];
       if(other.code===correctCountry.code) continue;
       var ob = strictNorm(other.name);
-      if(ob===a) return false;
-      if(levenshtein(a,ob) <= distToTarget) return false;
+      if(ob===a && distToTarget>0) return false;
+      if(levenshtein(a,ob) < distToTarget) return false;
     }
     return true;
   }
