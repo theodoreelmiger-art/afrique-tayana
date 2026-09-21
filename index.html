@@ -4,702 +4,848 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>L'Afrique de Tayana</title>
-<meta name="description" content="Carte interactive, fiches memo, quiz et mode Ecriture pour apprendre a ecrire et placer les 55 pays d'Afrique. Fait avec amour par Theodore, pour Tayana.">
+<meta name="description" content="Carte interactive, fiches, quiz et mode Ecriture pour apprendre les 55 pays d'Afrique et leurs capitales. Fait avec amour par Theodore, pour Tayana.">
 <meta name="theme-color" content="#E8447A">
 <meta property="og:type" content="website">
 <meta property="og:title" content="L'Afrique de Tayana">
-<meta property="og:description" content="Carte interactive, fiches memo, quiz et mode Ecriture pour apprendre a ecrire et placer les 55 pays d'Afrique.">
-<meta property="og:image" content="https://theodoreelmiger-art.github.io/afrique-tayana/og-image.png">
+<meta property="og:description" content="Carte interactive, fiches, quiz et mode Ecriture pour apprendre les 55 pays d'Afrique et leurs capitales.">
+<meta property="og:image" content="https://theodoreelmiger-art.github.io/afrique-tayana/og-image.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://theodoreelmiger-art.github.io/afrique-tayana/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="L'Afrique de Tayana">
-<meta name="twitter:description" content="Carte interactive, fiches memo, quiz et mode Ecriture pour apprendre a ecrire et placer les 55 pays d'Afrique.">
-<meta name="twitter:image" content="https://theodoreelmiger-art.github.io/afrique-tayana/og-image.png">
+<meta name="twitter:description" content="Carte interactive, fiches, quiz et mode Ecriture pour apprendre les 55 pays d'Afrique et leurs capitales.">
+<meta name="twitter:image" content="https://theodoreelmiger-art.github.io/afrique-tayana/og-image.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
 <style>
-  :root{
-    --bg:#FFF3F8; --surface:#FFFFFF; --surface-alt:#FFE7F1; --surface-raised:#FFD8EA;
-    --ink:#4A1030; --ink-soft:#8A4468; --ink-faint:#B87DA0;
-    --accent:#E8447A; --accent-2:#FFB4D2; --accent-ink:#FFFFFF;
-    --clover:#3FA35E; --clover-dark:#2C7A45; --gold:#F4B740;
-    --line:#F5C6DC; --shadow:rgba(74,16,48,.14);
-    --region-nord:#F4B740; --region-ouest:#E8447A; --region-centre:#3FA35E; --region-est:#3596A8; --region-sud:#A8578C;
-    --font-display:'Fredoka',ui-rounded,'Segoe UI',sans-serif;
-    --font-body:'Nunito','Segoe UI',sans-serif;
-    --shell-w:480px;
-    --bottom-nav-h:4.6rem;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#231220; --surface:#32192C; --surface-alt:#3B2033; --surface-raised:#48263F;
-      --ink:#FBE7F0; --ink-soft:#D8A6C3; --ink-faint:#986C88;
-      --accent:#FF6FA3; --accent-2:#C15E8C; --accent-ink:#2A0F20;
-      --clover:#5FCB82; --clover-dark:#3FA35E; --gold:#F7C860;
-      --line:#4A2A41; --shadow:rgba(0,0,0,.4);
-      --region-nord:#F7C860; --region-ouest:#FF6FA3; --region-centre:#5FCB82; --region-est:#54BFCB; --region-sud:#CE84AE;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#231220; --surface:#32192C; --surface-alt:#3B2033; --surface-raised:#48263F;
+:root{
+  --bg:#FFF3F8; --surface:#FFFFFF; --surface-alt:#FFE7F1; --surface-raised:#FFD3E6;
+  --ink:#4A1030; --ink-soft:#8A4468; --ink-faint:#B87DA0;
+  --accent:#E8447A; --accent-2:#FFB4D2; --accent-ink:#FFFFFF;
+  --clover:#3FA35E; --clover-dark:#2C7A45; --gold:#F4B740;
+  --good:#2C7A45; --bad:#C2305F;
+  --line:#F5C6DC; --shadow:rgba(74,16,48,.14);
+  --region-nord:#F4B740; --region-ouest:#E8447A; --region-centre:#3FA35E; --region-est:#3596A8; --region-sud:#A8578C;
+  --font-display:'Fredoka',ui-rounded,'Segoe UI',sans-serif;
+  --font-body:'Nunito','Segoe UI',sans-serif;
+  --shell-w:480px;
+  --bottom-nav-h:4.6rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#231220; --surface:#32192C; --surface-alt:#3B2033; --surface-raised:#4E2A44;
     --ink:#FBE7F0; --ink-soft:#D8A6C3; --ink-faint:#986C88;
     --accent:#FF6FA3; --accent-2:#C15E8C; --accent-ink:#2A0F20;
     --clover:#5FCB82; --clover-dark:#3FA35E; --gold:#F7C860;
+    --good:#5FCB82; --bad:#FF7A9E;
     --line:#4A2A41; --shadow:rgba(0,0,0,.4);
     --region-nord:#F7C860; --region-ouest:#FF6FA3; --region-centre:#5FCB82; --region-est:#54BFCB; --region-sud:#CE84AE;
   }
+}
+:root[data-theme="dark"]{
+  --bg:#231220; --surface:#32192C; --surface-alt:#3B2033; --surface-raised:#4E2A44;
+  --ink:#FBE7F0; --ink-soft:#D8A6C3; --ink-faint:#986C88;
+  --accent:#FF6FA3; --accent-2:#C15E8C; --accent-ink:#2A0F20;
+  --clover:#5FCB82; --clover-dark:#3FA35E; --gold:#F7C860;
+  --good:#5FCB82; --bad:#FF7A9E;
+  --line:#4A2A41; --shadow:rgba(0,0,0,.4);
+  --region-nord:#F7C860; --region-ouest:#FF6FA3; --region-centre:#5FCB82; --region-est:#54BFCB; --region-sud:#CE84AE;
+}
 
-  *{box-sizing:border-box;}
-  [hidden]{ display:none !important; }
-  html{ background:var(--bg); }
-  body{
-    margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
-    line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:hidden;
-  }
-  h1,h2,h3{ font-family:var(--font-display); font-weight:600; text-wrap:balance; margin:0; color:var(--ink); }
-  p{ margin:0; }
-  button{ font-family:var(--font-body); }
-  ::selection{ background:var(--accent-2); color:var(--ink); }
-  :focus-visible{ outline:3px solid var(--clover); outline-offset:2px; border-radius:6px; }
-  path:focus, path:focus-visible{ outline:none; }
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+[hidden]{ display:none !important; }
+html{ background:var(--bg); -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body);
+  line-height:1.5; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+h1,h2,h3{ font-family:var(--font-display); font-weight:600; margin:0; color:var(--ink); }
+p{ margin:0; }
+button, input{ font-family:var(--font-body); }
+button{ touch-action:manipulation; }
+input{ font-size:16px; }
+::selection{ background:var(--accent-2); color:var(--ink); }
+:focus-visible{ outline:3px solid var(--clover); outline-offset:2px; border-radius:6px; }
+svg :focus, svg :focus-visible{ outline:none; }
+.eyebrow{ font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); }
 
-  .eyebrow{
-    font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);
-  }
+/* ---------- coquille téléphone ---------- */
+.app-shell{ max-width:var(--shell-w); margin:0 auto; position:relative; min-height:100vh; min-height:100dvh; }
+main{ padding:0 1rem calc(var(--bottom-nav-h) + 2rem); }
 
-  /* ---------- app shell (largeur téléphone fixe) ---------- */
-  .app-shell{ max-width:var(--shell-w); margin:0 auto; position:relative; min-height:100vh; min-height:100dvh; }
-  main{ padding:0 1rem calc(var(--bottom-nav-h) + 2rem); }
+/* ---------- trèfles ---------- */
+.clover-field{ position:fixed; top:0; left:0; right:0; bottom:0; pointer-events:none; overflow:hidden; z-index:150; max-width:var(--shell-w); margin:0 auto; }
+.clover-particle{ position:absolute; top:-10vh; font-size:1.2rem; opacity:.85; will-change:transform; animation:cloverFall linear forwards; }
+@keyframes cloverFall{
+  0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0; }
+  8%{ opacity:.9; }
+  100%{ transform:translateY(115vh) translateX(var(--drift,20px)) rotate(var(--spin,180deg)); opacity:.15; }
+}
 
-  /* ---------- clover field ---------- */
-  .clover-field{ position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:5; max-width:var(--shell-w); margin:0 auto; }
-  .clover-particle{
-    position:absolute; top:-10vh; font-size:1.2rem; opacity:.85; will-change:transform;
-    animation:cloverFall linear forwards;
-  }
-  @keyframes cloverFall{
-    0%{ transform:translateY(0) translateX(0) rotate(0deg); opacity:0; }
-    8%{ opacity:.9; }
-    100%{ transform:translateY(115vh) translateX(var(--drift,20px)) rotate(var(--spin,180deg)); opacity:.15; }
-  }
+/* ---------- barre du haut ---------- */
+.topbar{
+  position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+  padding:.7rem 1rem; background:var(--bg); background:color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.brand{ display:flex; align-items:center; gap:.4rem; font-family:var(--font-display); font-weight:600; font-size:.98rem; white-space:nowrap; }
+.brand strong{ color:var(--accent); }
+.progress-chip{
+  font-variant-numeric:tabular-nums; font-weight:800; font-size:.78rem; background:var(--surface-alt); color:var(--ink);
+  border:1px solid var(--line); padding:.35rem .7rem; border-radius:999px; white-space:nowrap;
+}
+.progress-chip.bump{ animation:chipBump .4s ease; }
+@keyframes chipBump{ 0%{ transform:scale(1); } 45%{ transform:scale(1.2); } 100%{ transform:scale(1); } }
 
-  /* ---------- topbar ---------- */
-  .topbar{
-    position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between;
-    gap:.6rem; padding:.75rem 1rem; background:color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
-  }
-  .brand{ display:flex; align-items:center; gap:.4rem; font-family:var(--font-display); font-weight:600; font-size:.98rem; white-space:nowrap; }
-  .brand strong{ color:var(--accent); }
-  .progress-chip{
-    font-variant-numeric:tabular-nums; font-weight:800; font-size:.78rem; background:var(--surface-alt);
-    color:var(--ink); border:1px solid var(--line); padding:.35rem .7rem; border-radius:999px; white-space:nowrap;
-  }
-  .progress-chip.bump{ animation:chipBump .4s ease; }
-  @keyframes chipBump{ 0%{ transform:scale(1); } 45%{ transform:scale(1.2); } 100%{ transform:scale(1); } }
+/* ---------- navigation du bas ---------- */
+.bottom-nav{
+  position:fixed; left:0; right:0; bottom:0; z-index:30; max-width:var(--shell-w); margin:0 auto;
+  display:flex; align-items:flex-end; justify-content:space-between; gap:.2rem;
+  background:var(--surface); background:color-mix(in srgb, var(--surface) 96%, transparent);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  border-top:1px solid var(--line); padding:.5rem .5rem calc(.5rem + env(safe-area-inset-bottom, 0px));
+  height:calc(var(--bottom-nav-h) + env(safe-area-inset-bottom, 0px)); box-shadow:0 -6px 18px var(--shadow);
+}
+.bnav-btn{
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:.2rem; background:none; border:none;
+  color:var(--ink-soft); font-weight:700; font-size:.62rem; padding:.35rem .1rem; border-radius:12px; cursor:pointer;
+}
+.bnav-btn .bnav-icon{ font-size:1.25rem; line-height:1; }
+.bnav-btn[aria-selected="true"]{ color:var(--accent); background:var(--surface-alt); }
+.bnav-fab{
+  flex:0 0 auto; width:3.6rem; height:3.6rem; margin-top:-1.6rem; border-radius:50%; border:4px solid var(--bg);
+  background:linear-gradient(135deg,var(--accent),var(--gold)); color:#fff; font-size:1.5rem; cursor:pointer;
+  box-shadow:0 6px 16px var(--shadow); display:flex; align-items:center; justify-content:center;
+}
+.bnav-fab:active{ transform:scale(.94); }
 
-  /* ---------- bottom nav ---------- */
-  .bottom-nav{
-    position:fixed; left:0; right:0; bottom:0; z-index:30; max-width:var(--shell-w); margin:0 auto;
-    display:flex; align-items:flex-end; justify-content:space-between; gap:.2rem;
-    background:color-mix(in srgb, var(--surface) 96%, transparent); backdrop-filter:blur(10px);
-    border-top:1px solid var(--line); padding:.5rem .5rem calc(.5rem + env(safe-area-inset-bottom, 0px));
-    height:var(--bottom-nav-h); box-shadow:0 -6px 18px var(--shadow);
-  }
-  .bnav-btn{
-    flex:1; display:flex; flex-direction:column; align-items:center; gap:.2rem; background:none; border:none;
-    color:var(--ink-soft); font-weight:700; font-size:.62rem; padding:.35rem .1rem; border-radius:12px; cursor:pointer;
-  }
-  .bnav-btn .bnav-icon{ font-size:1.25rem; line-height:1; }
-  .bnav-btn[aria-selected="true"]{ color:var(--accent); background:var(--surface-alt); }
-  .bnav-fab{
-    flex:0 0 auto; width:3.6rem; height:3.6rem; margin-top:-1.6rem; border-radius:50%; border:4px solid var(--bg);
-    background:linear-gradient(135deg,var(--accent),var(--gold)); color:#fff; font-size:1.5rem; cursor:pointer;
-    box-shadow:0 6px 16px var(--shadow); display:flex; align-items:center; justify-content:center;
-  }
-  .bnav-fab:active{ transform:scale(.94); }
+/* ---------- accueil ---------- */
+.hero{ display:flex; flex-direction:column; gap:.8rem; padding:1.2rem 0 1.4rem; animation:fadeUp .6s ease both; }
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+.hero h1{ font-size:1.65rem; }
+.hero-msg{
+  background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:.7rem .9rem;
+  font-weight:700; font-size:.9rem; box-shadow:0 3px 0 var(--line);
+}
+.hero-msg strong{ color:var(--accent); }
+.progress-duo{ display:grid; grid-template-columns:1fr 1fr; gap:.6rem; }
+.pbar{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:.55rem .7rem; box-shadow:0 3px 0 var(--line); }
+.pbar-top{ display:flex; justify-content:space-between; align-items:baseline; font-size:.74rem; font-weight:800; color:var(--ink-soft); margin-bottom:.35rem; }
+.pbar-top b{ font-family:var(--font-display); font-size:1rem; color:var(--accent); font-variant-numeric:tabular-nums; }
+.pbar-track{ height:8px; border-radius:99px; background:var(--surface-alt); overflow:hidden; }
+.pbar-track i{ display:block; height:100%; width:0; background:var(--clover); border-radius:99px; transition:width .6s ease; }
 
-  /* ---------- hero ---------- */
-  .hero{ display:flex; flex-direction:column; gap:.9rem; padding:1.4rem 0 1.6rem; animation:fadeUp .6s ease both; }
-  @keyframes fadeUp{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
-  .hero h1{ font-size:1.7rem; }
-  .countdown-msg{
-    background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:.75rem .9rem;
-    font-weight:700; font-size:.92rem; color:var(--ink); box-shadow:0 3px 0 var(--line);
-  }
-  .countdown-msg strong{ color:var(--accent); }
-  .stat-row{ display:flex; gap:.5rem; }
-  .stat-chip{
-    flex:1; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:.55rem .5rem;
-    font-weight:800; font-size:.74rem; text-align:center; box-shadow:0 3px 0 var(--line);
-  }
-  .stat-chip span{ display:block; font-family:var(--font-display); font-size:1.15rem; color:var(--accent); font-variant-numeric:tabular-nums; }
+/* ---------- panneaux ---------- */
+.panel{ padding-top:.5rem; }
+.panel.enter{ animation:panelIn .35s ease; }
+@keyframes panelIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+.panel-head{ margin-bottom:.9rem; }
+.panel-head h2{ font-size:1.3rem; }
+.panel-head p{ color:var(--ink-soft); margin-top:.25rem; font-size:.9rem; }
 
-  .hero-stickers{ display:flex; flex-wrap:wrap; gap:.5rem; }
-  .sticker{
-    background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:.4rem .55rem;
-    font-size:1.2rem; box-shadow:0 3px 0 var(--line); display:flex; flex-direction:column; align-items:center; gap:.1rem;
-    transform:rotate(var(--r,0deg)); animation:stickerFloat 4.8s ease-in-out infinite; animation-delay:var(--sd,0s);
-  }
-  .sticker small{ font-size:.55rem; font-weight:800; color:var(--ink-soft); }
-  .sticker:nth-child(1){ --r:-5deg; --sd:0s; }
-  .sticker:nth-child(2){ --r:4deg; --sd:.3s; }
-  .sticker:nth-child(3){ --r:-3deg; --sd:.6s; }
-  .sticker:nth-child(4){ --r:6deg; --sd:.9s; }
-  .sticker:nth-child(5){ --r:-6deg; --sd:1.2s; }
-  .sticker:nth-child(6){ --r:3deg; --sd:1.5s; }
-  @keyframes stickerFloat{ 0%,100%{ transform:translateY(0) rotate(var(--r,0deg)); } 50%{ transform:translateY(-6px) rotate(var(--r,0deg)); } }
+/* ---------- puces, segments, cases ---------- */
+.chips{ display:flex; gap:.4rem; overflow-x:auto; padding:.1rem 0 .35rem; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.chips::-webkit-scrollbar{ display:none; }
+.chip{
+  flex:0 0 auto; border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); font-weight:800; font-size:.78rem;
+  padding:.42rem .85rem; border-radius:999px; cursor:pointer; white-space:nowrap;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--surface); border-color:var(--ink); }
+.seg{ display:flex; gap:.15rem; background:var(--surface-alt); border:1px solid var(--line); border-radius:999px; padding:.2rem; }
+.seg button{
+  flex:1; border:none; background:transparent; border-radius:999px; padding:.5rem .3rem; font-weight:800; font-size:.8rem;
+  color:var(--ink-soft); cursor:pointer;
+}
+.seg button[aria-pressed="true"]{ background:var(--accent); color:var(--accent-ink); box-shadow:0 2px 0 rgba(0,0,0,.12); }
+.field-label{ font-size:.72rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); margin:.9rem 0 .4rem; }
+.check{ display:flex; align-items:center; gap:.55rem; font-size:.85rem; font-weight:700; color:var(--ink-soft); cursor:pointer; }
+.check input{ width:1.2rem; height:1.2rem; accent-color:var(--accent); margin:0; }
 
-  /* ---------- panels ---------- */
-  .panel{ padding-top:.4rem; }
-  .panel.enter{ animation:panelIn .35s ease; }
-  @keyframes panelIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
-  .panel-head{ margin-bottom:1rem; }
-  .panel-head h2{ font-size:1.3rem; }
-  .panel-head p{ color:var(--ink-soft); margin-top:.3rem; font-size:.92rem; }
+/* ---------- boutons ---------- */
+.btn{
+  font-family:var(--font-display); font-weight:600; border-radius:999px; border:none; cursor:pointer;
+  padding:.8em 1.4em; font-size:1rem; transition:transform .12s ease, box-shadow .12s ease; text-align:center;
+}
+.btn:active{ transform:translateY(1px) scale(.98); }
+.btn[disabled]{ opacity:.5; cursor:default; }
+.btn-primary{ background:var(--accent); color:var(--accent-ink); box-shadow:0 4px 0 var(--clover-dark); }
+.btn-ghost{ background:var(--surface-alt); color:var(--ink); }
+.btn-block{ width:100%; }
+.link-btn{ background:none; border:none; color:var(--ink-soft); font-weight:800; font-size:.85rem; text-decoration:underline; cursor:pointer; padding:.4rem; }
 
-  /* ---------- map ---------- */
-  .map-card{
-    background:var(--surface); border-radius:24px; padding:.8rem; box-shadow:0 10px 28px var(--shadow);
-    border:1px solid var(--line);
-  }
-  .map-card svg{ width:100%; height:auto; display:block; overflow:visible; }
-  .map-countries{ filter:drop-shadow(0 6px 12px var(--shadow)); }
-  .country-shape{
-    stroke:var(--surface); stroke-width:1.3; cursor:pointer; pointer-events:all; outline:none;
-    transition:filter .15s ease, transform .15s ease, stroke-width .15s ease;
-    transform-box:fill-box; transform-origin:center;
-    opacity:0; animation:shapeIn .45s ease forwards; animation-delay:var(--d,0s);
-  }
-  @keyframes shapeIn{ from{ opacity:0; transform:scale(.86); } to{ opacity:1; transform:scale(1); } }
-  .country-shape:hover{ filter:brightness(1.14); transform:scale(1.02); }
-  .country-shape.active{ stroke:var(--ink); stroke-width:2.4; }
-  .country-shape.known{ stroke:var(--clover); stroke-width:2.2; }
-  .hover-label{
-    font-family:var(--font-display); font-weight:600; font-size:12px; fill:var(--ink); opacity:0;
-    transition:opacity .15s ease; pointer-events:none; paint-order:stroke fill; stroke:var(--surface); stroke-width:4px;
-    stroke-linejoin:round; text-anchor:middle;
-  }
-  .hover-label.visible{ opacity:1; }
-  .map-legend{ display:flex; flex-wrap:wrap; gap:.4rem .7rem; margin:1rem 0 0; padding:0 .1rem; }
-  .legend-item{ display:flex; align-items:center; gap:.35rem; font-size:.72rem; font-weight:700; color:var(--ink-soft); }
-  .legend-dot{ width:.6rem; height:.6rem; border-radius:50%; display:inline-block; }
+/* ---------- carte ---------- */
+.map-card{ background:var(--surface); border-radius:24px; padding:.7rem .8rem .8rem; box-shadow:0 10px 28px var(--shadow); border:1px solid var(--line); }
+.map-tools{ display:flex; justify-content:space-between; align-items:center; gap:.5rem; margin-bottom:.4rem; }
+.map-tools .hint{ font-size:.74rem; font-weight:700; color:var(--ink-soft); }
+.map-card svg{ width:100%; height:auto; display:block; overflow:visible; }
+.map-countries{ filter:drop-shadow(0 6px 10px var(--shadow)); }
+.country-shape{
+  stroke:var(--surface); stroke-width:1.3; cursor:pointer; pointer-events:all; outline:none;
+  transition:filter .15s ease, stroke-width .15s ease;
+  opacity:0; animation:shapeIn .45s ease forwards; animation-delay:var(--d,0s);
+}
+@keyframes shapeIn{ from{ opacity:0; } to{ opacity:1; } }
+@media (hover:hover){ .country-shape:hover{ filter:brightness(1.12); } }
+.country-shape.active{ stroke:var(--ink); stroke-width:2.6; }
+.country-shape.known-both{ stroke:var(--clover); stroke-width:2; }
+.tiny-hit{ fill:transparent; pointer-events:all; cursor:pointer; }
+.cap-dot{ fill:var(--ink); stroke:var(--surface); stroke-width:1.6; pointer-events:none; display:none; }
+.show-caps .cap-dot{ display:block; }
+.cap-dot.sel{ display:block; fill:var(--accent); stroke:var(--ink); stroke-width:2; }
+.cap-dot.pulse{ animation:dotPulse 1.4s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+@keyframes dotPulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.35); } }
+.cap-label{
+  font-family:var(--font-display); font-weight:600; font-size:21px; fill:var(--ink); pointer-events:none; text-anchor:middle;
+  paint-order:stroke fill; stroke:var(--surface); stroke-width:7px; stroke-linejoin:round;
+}
+.target-ring{ fill:none; stroke:var(--accent); stroke-width:3.5; pointer-events:none; animation:ringPulse 1.4s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+@keyframes ringPulse{ 0%,100%{ transform:scale(1); opacity:1; } 50%{ transform:scale(1.25); opacity:.6; } }
+.display-shape{ fill:var(--surface-raised); stroke:var(--surface); stroke-width:1; pointer-events:none; }
+.display-shape.target{ fill:var(--accent); animation:targetPulse 1.6s ease-in-out infinite; }
+@keyframes targetPulse{ 0%,100%{ filter:brightness(1); } 50%{ filter:brightness(1.25); } }
+.map-legend{ display:flex; flex-wrap:wrap; gap:.35rem .7rem; margin:.9rem 0 0; padding:0 .1rem; }
+.legend-item{ display:flex; align-items:center; gap:.35rem; font-size:.72rem; font-weight:700; color:var(--ink-soft); }
+.legend-dot{ width:.6rem; height:.6rem; border-radius:50%; display:inline-block; }
 
-  .country-detail{
-    background:var(--surface); border-radius:20px; padding:1.1rem; border:1px solid var(--line);
-    box-shadow:0 8px 22px var(--shadow); min-height:9rem; display:flex; flex-direction:column; gap:.5rem;
-    margin-top:.9rem;
-  }
-  .country-detail.flash{ animation:detailFlash .6s ease; }
-  @keyframes detailFlash{
-    0%{ box-shadow:0 0 0 3px var(--clover), 0 8px 22px var(--shadow); }
-    100%{ box-shadow:0 8px 22px var(--shadow); }
-  }
-  .detail-flag{ font-size:2.6rem; line-height:1; animation:popIn .35s ease; }
-  @keyframes popIn{ from{ transform:scale(.6); opacity:0; } to{ transform:scale(1); opacity:1; } }
-  .country-detail h3{ font-size:1.3rem; }
-  .detail-row{ color:var(--ink-soft); font-size:.9rem; }
-  .region-badge{
-    align-self:flex-start; background:color-mix(in srgb, var(--c) 20%, var(--surface)); color:var(--ink);
-    border:1px solid var(--c); padding:.22rem .6rem; border-radius:999px; font-size:.72rem; font-weight:800;
-  }
-  .know-btn{
-    margin-top:.3rem; align-self:flex-start; font-family:var(--font-display); font-weight:600; border:2px solid var(--clover);
-    background:var(--surface); color:var(--clover-dark); border-radius:999px; padding:.5em 1em; cursor:pointer; font-size:.82rem;
-  }
-  .know-btn.is-known{ background:var(--clover); color:#fff; }
+.country-detail{
+  background:var(--surface); border-radius:20px; padding:1.1rem; border:1px solid var(--line); box-shadow:0 8px 22px var(--shadow);
+  margin-top:.9rem; display:flex; flex-direction:column; gap:.7rem;
+}
+.country-detail.flash{ animation:detailFlash .6s ease; }
+@keyframes detailFlash{ 0%{ box-shadow:0 0 0 3px var(--clover), 0 8px 22px var(--shadow); } 100%{ box-shadow:0 8px 22px var(--shadow); } }
+.detail-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:.6rem; }
+.detail-top h3{ font-size:1.35rem; line-height:1.15; }
+.region-badge{
+  flex:0 0 auto; background:var(--surface-alt); background:color-mix(in srgb, var(--c) 20%, var(--surface)); color:var(--ink);
+  border:1px solid var(--c); padding:.2rem .6rem; border-radius:999px; font-size:.7rem; font-weight:800; white-space:nowrap;
+}
+.detail-cap{ background:var(--surface-alt); border-radius:14px; padding:.7rem .9rem; animation:popIn .3s ease; }
+.detail-cap strong{ display:block; font-family:var(--font-display); font-size:1.4rem; color:var(--accent); line-height:1.2; }
+.detail-cap small{ display:block; color:var(--ink-soft); font-size:.78rem; font-weight:700; margin-top:.15rem; }
+@keyframes popIn{ from{ transform:scale(.92); opacity:0; } to{ transform:scale(1); opacity:1; } }
+.detail-actions{ display:flex; gap:.5rem; flex-wrap:wrap; }
+.know-btn{
+  flex:1 1 9rem; font-family:var(--font-display); font-weight:600; border:2px solid var(--clover); background:var(--surface);
+  color:var(--clover-dark); border-radius:999px; padding:.5em .8em; cursor:pointer; font-size:.82rem;
+}
+.know-btn.is-known{ background:var(--clover); color:#fff; }
 
-  /* ---------- flashcards ---------- */
-  .fiches-controls{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin-bottom:1.1rem; }
-  .region-filter{ display:flex; flex-wrap:wrap; gap:.35rem; }
-  .pill-btn{
-    border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); font-weight:700; font-size:.76rem;
-    padding:.38rem .75rem; border-radius:999px; cursor:pointer;
-  }
-  .pill-btn[aria-pressed="true"]{ background:var(--ink); color:var(--surface); border-color:var(--ink); }
-  .toggle{ display:flex; align-items:center; gap:.4rem; font-size:.8rem; font-weight:700; color:var(--ink-soft); }
-  .flash-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
-  .flashcard{ perspective:1000px; height:160px; }
-  .flashcard.shuffle-pulse{ animation:shufflePulse .4s ease; }
-  @keyframes shufflePulse{ 0%{ transform:scale(1); } 40%{ transform:scale(.92) rotate(2deg); } 100%{ transform:scale(1); } }
-  .flashcard:nth-child(4n+1) .flashcard-inner{ --rest:-2deg; }
-  .flashcard:nth-child(4n+2) .flashcard-inner{ --rest:1.6deg; }
-  .flashcard:nth-child(4n+3) .flashcard-inner{ --rest:-1deg; }
-  .flashcard:nth-child(4n+4) .flashcard-inner{ --rest:2deg; }
-  .flashcard-inner{
-    position:relative; width:100%; height:100%; transform-style:preserve-3d; cursor:pointer;
-    transition:transform .5s cubic-bezier(.2,.8,.3,1); transform:rotate(var(--rest,0deg));
-  }
-  .flashcard.flipped .flashcard-inner{ transform:rotate(var(--rest,0deg)) rotateY(180deg); }
-  .flashcard-face{
-    position:absolute; inset:0; backface-visibility:hidden; border-radius:18px; border:2px solid var(--line);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem; padding:.7rem;
-    box-shadow:0 5px 0 var(--line); text-align:center;
-  }
-  .flashcard-front{ background:var(--surface); border-color:var(--region-color,var(--accent)); position:relative; }
-  .flashcard-front .flag{ font-size:2.2rem; }
-  .mini-map-wrap{ width:100%; height:58px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-  .mini-map-wrap svg{ height:100%; width:auto; display:block; overflow:visible; }
-  .flashcard-front .region-tag{ font-size:.62rem; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; }
-  .flashcard-back{ background:var(--accent); color:var(--accent-ink); transform:rotateY(180deg); }
-  .flashcard-back h3{ color:var(--accent-ink); font-size:.98rem; }
-  .flashcard-back p{ font-size:.72rem; opacity:.9; }
-  .flashcard-back .know-btn{ border-color:#fff; color:#fff; background:transparent; font-size:.68rem; padding:.35em .7em; }
-  .flashcard-back .know-btn.is-known{ background:#fff; color:var(--clover-dark); }
-  .flashcard.known .flashcard-front::after{ content:"🍀"; position:absolute; top:.35rem; right:.45rem; font-size:.9rem; }
+/* ---------- fiches ---------- */
+.fiches-tools{ display:flex; flex-direction:column; gap:.5rem; margin-bottom:.9rem; }
+.tools-row{ display:flex; align-items:center; justify-content:space-between; gap:.6rem; }
+.flash-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem .9rem; }
+.fcard{ perspective:1000px; height:178px; }
+.fcard.pulse{ animation:shufflePulse .4s ease; }
+@keyframes shufflePulse{ 0%{ transform:scale(1); } 40%{ transform:scale(.92) rotate(2deg); } 100%{ transform:scale(1); } }
+.fcard:nth-child(4n+1) .fcard-inner{ --rest:-1.6deg; }
+.fcard:nth-child(4n+2) .fcard-inner{ --rest:1.4deg; }
+.fcard:nth-child(4n+3) .fcard-inner{ --rest:-.8deg; }
+.fcard:nth-child(4n+4) .fcard-inner{ --rest:1.8deg; }
+.fcard-inner{
+  position:relative; width:100%; height:100%; transform-style:preserve-3d; -webkit-transform-style:preserve-3d; cursor:pointer;
+  transition:transform .5s cubic-bezier(.2,.8,.3,1); transform:rotate(var(--rest,0deg));
+}
+.fcard.flipped .fcard-inner{ transform:rotate(var(--rest,0deg)) rotateY(180deg); }
+.fface{
+  position:absolute; top:0; left:0; right:0; bottom:0; -webkit-backface-visibility:hidden; backface-visibility:hidden; border-radius:18px;
+  border:2px solid var(--line); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.35rem;
+  padding:.6rem; box-shadow:0 5px 0 var(--line); text-align:center;
+}
+.ffront{ background:var(--surface); border-color:var(--rc,var(--accent)); }
+.ffront .big{ font-family:var(--font-display); font-weight:600; font-size:1.15rem; line-height:1.15; color:var(--ink); }
+.ffront .tag{ font-size:.6rem; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; }
+.ffront .ico{ font-size:1.3rem; line-height:1; }
+.fback{ background:var(--accent); color:var(--accent-ink); transform:rotateY(180deg); }
+.fback h3{ color:var(--accent-ink); font-size:1rem; line-height:1.15; }
+.fback .cap{ font-size:.78rem; font-weight:700; opacity:.95; }
+.fback .cap b{ font-family:var(--font-display); font-size:1rem; }
+.fback .fnote{ font-size:.62rem; opacity:.85; line-height:1.2; }
+.fknow{ border:2px solid #fff; color:#fff; background:transparent; font-family:var(--font-display); font-weight:600; font-size:.7rem; padding:.3em .8em; border-radius:999px; cursor:pointer; }
+.fknow.is-known{ background:#fff; color:var(--clover-dark); }
+.fcard .badge{ position:absolute; top:.3rem; right:.4rem; font-size:.85rem; pointer-events:none; }
+.mini-map-wrap{ width:100%; height:78px; display:flex; align-items:center; justify-content:center; }
+.mini-map-wrap.small{ height:44px; }
+.mini-map{ height:100%; width:auto; display:block; overflow:visible; }
+.mm-base{ fill:var(--surface-raised); }
+.mm-target{ fill:var(--accent); }
+.mm-ring{ fill:none; stroke:var(--accent); stroke-width:4; }
+.fback .mm-base{ fill:rgba(255,255,255,.28); }
+.fback .mm-target{ fill:#fff; }
+.fback .mm-ring{ stroke:#fff; }
+.empty{ text-align:center; color:var(--ink-soft); font-weight:700; padding:2rem 1rem; grid-column:1 / -1; }
 
-  /* ---------- quiz ---------- */
-  .quiz-card{
-    background:var(--surface); border-radius:22px; padding:1.5rem 1.2rem; width:100%;
-    box-shadow:0 10px 28px var(--shadow); border:1px solid var(--line); text-align:center;
-    display:flex; flex-direction:column; align-items:center; gap:.9rem;
-  }
-  .quiz-card h2{ font-size:1.25rem; }
-  .quiz-card p{ color:var(--ink-soft); font-size:.92rem; }
-  .quiz-best strong{ color:var(--accent); font-variant-numeric:tabular-nums; }
-  .quiz-progress{ width:100%; height:7px; background:var(--surface-alt); border-radius:999px; overflow:hidden; }
-  .quiz-progress-bar{ height:100%; width:0%; background:var(--clover); transition:width .3s ease; }
-  .quiz-meta{ font-weight:800; font-size:.8rem; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
-  .quiz-flag{ font-size:3.4rem; animation:popIn .35s ease; }
-  .quiz-options{ display:grid; grid-template-columns:1fr 1fr; gap:.6rem; width:100%; }
-  .quiz-opt{
-    border:2px solid var(--line); background:var(--surface-alt); color:var(--ink); font-weight:700; font-size:.82rem;
-    padding:.65em .5em; border-radius:14px; cursor:pointer;
-  }
-  .quiz-opt:hover:not(:disabled){ border-color:var(--accent); }
-  .quiz-opt.correct{ background:var(--clover); border-color:var(--clover-dark); color:#fff; animation:optPop .35s ease; }
-  .quiz-opt.wrong{ background:#E8447A; border-color:#B12F5A; color:#fff; animation:optShake .4s ease; }
-  @keyframes optPop{ 0%{ transform:scale(1); } 50%{ transform:scale(1.08); } 100%{ transform:scale(1); } }
-  @keyframes optShake{ 20%{ transform:translateX(-6px); } 40%{ transform:translateX(6px); } 60%{ transform:translateX(-4px); } 80%{ transform:translateX(4px); } 100%{ transform:translateX(0); } }
-  .quiz-opt:disabled{ cursor:default; opacity:.9; }
-  .quiz-end-emoji{ font-size:2.8rem; animation:popIn .4s ease; }
-  .note-card{
-    background:var(--surface-alt); border:1px solid var(--line); border-radius:14px; padding:.7rem .9rem; width:100%;
-  }
-  .note-card .note-big{ font-family:var(--font-display); font-size:1.4rem; color:var(--accent); font-variant-numeric:tabular-nums; }
-  .note-card .note-label{ font-size:.78rem; font-weight:800; color:var(--ink-soft); }
+/* ---------- quiz ---------- */
+.card{
+  background:var(--surface); border-radius:22px; padding:1.3rem 1.1rem; width:100%; box-shadow:0 10px 28px var(--shadow);
+  border:1px solid var(--line); display:flex; flex-direction:column; gap:.9rem;
+}
+.card.center{ align-items:center; text-align:center; }
+.card h2{ font-size:1.25rem; }
+.card p{ color:var(--ink-soft); font-size:.92rem; }
+.best-line{ font-size:.85rem; font-weight:800; color:var(--ink-soft); }
+.best-line strong{ color:var(--accent); }
+.quiz-progress{ width:100%; height:7px; background:var(--surface-alt); border-radius:999px; overflow:hidden; }
+.quiz-progress i{ display:block; height:100%; width:0; background:var(--clover); transition:width .3s ease; }
+.quiz-meta{ font-weight:800; font-size:.8rem; color:var(--ink-soft); font-variant-numeric:tabular-nums; text-align:center; }
+.q-map{ border:1px solid var(--line); border-radius:16px; background:var(--surface-alt); padding:.2rem; }
+.q-map svg{ width:100%; height:auto; max-height:min(30vh,250px); max-height:min(30dvh,250px); display:block; overflow:visible; }
+.q-block{ text-align:center; background:var(--surface-alt); border-radius:14px; padding:.7rem; }
+.q-block strong{ display:block; font-family:var(--font-display); font-size:1.5rem; color:var(--accent); line-height:1.15; }
+.q-question{ font-family:var(--font-display); font-weight:600; font-size:1.1rem; text-align:center; }
+.quiz-options{ display:grid; grid-template-columns:1fr 1fr; gap:.55rem; width:100%; }
+.quiz-opt{
+  border:2px solid var(--line); background:var(--surface-alt); color:var(--ink); font-weight:800; font-size:.86rem; line-height:1.2;
+  padding:.75em .5em; border-radius:14px; cursor:pointer; min-height:3rem;
+}
+.quiz-opt.correct{ background:var(--clover); border-color:var(--clover-dark); color:#fff; animation:optPop .35s ease; }
+.quiz-opt.wrong{ background:#E24C74; border-color:#B12F5A; color:#fff; animation:optShake .4s ease; }
+.quiz-opt:disabled{ cursor:default; }
+@keyframes optPop{ 0%{ transform:scale(1); } 50%{ transform:scale(1.07); } 100%{ transform:scale(1); } }
+@keyframes optShake{ 20%{ transform:translateX(-6px); } 40%{ transform:translateX(6px); } 60%{ transform:translateX(-4px); } 80%{ transform:translateX(4px); } 100%{ transform:translateX(0); } }
+.q-feedback{ text-align:center; font-weight:800; font-size:.9rem; min-height:1.3em; }
+.q-feedback.ok{ color:var(--good); }
+.q-feedback.bad{ color:var(--bad); }
+.q-feedback small{ display:block; font-weight:700; color:var(--ink-soft); margin-top:.15rem; }
+.end-emoji{ font-size:2.8rem; animation:popIn .4s ease; }
+.note-card{ background:var(--surface-alt); border:1px solid var(--line); border-radius:14px; padding:.7rem .9rem; width:100%; }
+.note-big{ font-family:var(--font-display); font-size:1.9rem; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1.1; }
+.note-label{ font-size:.8rem; font-weight:800; color:var(--ink-soft); }
+.recap{ width:100%; text-align:left; }
+.recap h4{ margin:0 0 .4rem; font-family:var(--font-display); font-size:.95rem; }
+.recap ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.3rem; }
+.recap li{ display:flex; justify-content:space-between; gap:.6rem; background:var(--surface-alt); border-radius:10px; padding:.4rem .7rem; font-size:.85rem; font-weight:700; }
+.recap li b{ color:var(--accent); text-align:right; }
+.end-actions{ display:flex; flex-direction:column; gap:.5rem; width:100%; }
 
-  /* ---------- repertoire ---------- */
-  .search-input{
-    width:100%; padding:.8em 1em; border-radius:14px; border:2px solid var(--line); background:var(--surface);
-    color:var(--ink); font-size:.95rem; font-family:var(--font-body); margin-bottom:1.1rem;
-  }
-  .search-input:focus{ border-color:var(--accent); outline:none; }
-  details.region-group{ border-bottom:1px solid var(--line); padding:.5rem 0; }
-  details.region-group summary{
-    cursor:pointer; list-style:none; display:flex; align-items:center; gap:.5rem; font-family:var(--font-display);
-    font-weight:600; font-size:.98rem; padding:.45rem .3rem .45rem .7rem; border-left:5px solid var(--rc,var(--accent));
-  }
-  details.region-group summary::-webkit-details-marker{ display:none; }
-  details.region-group summary .count{ color:var(--ink-soft); font-family:var(--font-body); font-weight:700; font-size:.76rem; }
-  .country-row{
-    display:flex; align-items:center; gap:.6rem; padding:.5rem .6rem .5rem 1.4rem; border-bottom:1px dashed var(--line);
-    font-size:.88rem; flex-wrap:wrap;
-  }
-  .country-row:last-child{ border-bottom:none; }
-  .country-row .flag{ font-size:1.2rem; }
-  .country-row .cname{ font-weight:800; }
-  .country-row .ccap{ color:var(--ink-soft); font-size:.82rem; width:100%; padding-left:1.85rem; }
-  .country-row .cknown{ margin-left:auto; opacity:.5; }
-  .country-row.is-known .cknown{ opacity:1; }
+/* ---------- liste ---------- */
+.search-input{
+  width:100%; padding:.8em 1em; border-radius:14px; border:2px solid var(--line); background:var(--surface); color:var(--ink);
+  font-size:16px; margin:.7rem 0 .4rem;
+}
+.search-input:focus{ border-color:var(--accent); outline:none; }
+details.region-group{ border-bottom:1px solid var(--line); padding:.4rem 0; }
+details.region-group summary{
+  cursor:pointer; list-style:none; display:flex; align-items:center; gap:.5rem; font-family:var(--font-display); font-weight:600;
+  font-size:.98rem; padding:.45rem .3rem .45rem .7rem; border-left:5px solid var(--rc,var(--accent));
+}
+details.region-group summary::-webkit-details-marker{ display:none; }
+details.region-group summary .count{ color:var(--ink-soft); font-family:var(--font-body); font-weight:700; font-size:.76rem; }
+.lrow{
+  display:grid; grid-template-columns:1fr 1fr auto; gap:.5rem; align-items:start; padding:.55rem .5rem .55rem 1rem;
+  border-bottom:1px dashed var(--line); font-size:.9rem; cursor:pointer;
+}
+.lrow:last-child{ border-bottom:none; }
+.lrow .lc{ font-weight:800; }
+.lrow .lk{ font-weight:700; color:var(--accent); }
+.lrow .lk small{ display:block; color:var(--ink-soft); font-size:.68rem; font-weight:700; line-height:1.25; }
+.lrow .lb{ font-size:.8rem; min-width:1.3rem; text-align:right; }
+.hide-c .lrow:not(.revealed) .lc, .hide-k .lrow:not(.revealed) .lk{ filter:blur(7px); user-select:none; -webkit-user-select:none; }
+.list-note{ font-size:.74rem; color:var(--ink-soft); font-weight:700; margin:.1rem 0 .3rem; }
 
-  /* ---------- mode ecriture ---------- */
-  .ecriture-overlay{
-    position:fixed; inset:0; z-index:100; background:var(--bg); max-width:var(--shell-w); margin:0 auto;
-    display:flex; flex-direction:column; overflow-y:auto;
-  }
-  .ecriture-overlay.opening{ animation:overlayIn .3s ease both; }
-  @keyframes overlayIn{ from{ opacity:0; transform:scale(.97); } to{ opacity:1; transform:none; } }
-  .ecriture-top{ display:flex; align-items:center; justify-content:space-between; padding:.9rem 1rem; gap:.6rem; }
-  .ecriture-top .brand{ display:flex; align-items:center; gap:.4rem; font-family:var(--font-display); font-weight:600; font-size:.95rem; }
-  .ecriture-close{
-    background:var(--surface); border:1px solid var(--line); width:2.3rem; height:2.3rem; border-radius:50%;
-    font-size:1.1rem; cursor:pointer; color:var(--ink); line-height:1; flex-shrink:0;
-  }
-  .ecriture-progress-line{ font-weight:800; font-size:.78rem; color:var(--ink-soft); font-variant-numeric:tabular-nums; white-space:nowrap; }
-  .ecriture-body{ flex:1; display:flex; align-items:center; justify-content:center; padding:.5rem 1rem 2.5rem; }
-  .ecriture-stack{ position:relative; width:100%; }
-  .ecriture-ghost{ position:absolute; inset:0; background:var(--surface); border:1px solid var(--line); border-radius:24px; z-index:0; }
-  .ecriture-ghost-2{ transform:scale(.94) translateY(14px) rotate(-2deg); opacity:.5; }
-  .ecriture-ghost-1{ transform:scale(.97) translateY(7px) rotate(1.3deg); opacity:.8; }
-  .ecriture-card{
-    position:relative; z-index:1; background:var(--surface); border:1px solid var(--line); border-radius:24px;
-    box-shadow:0 14px 32px var(--shadow); padding:1.6rem 1.3rem; display:flex; flex-direction:column;
-    align-items:center; gap:1rem; text-align:center;
-  }
-  .ecriture-card.exit-success{ animation:cardFlyRight .55s cubic-bezier(.34,1.05,.4,1) forwards; }
-  @keyframes cardFlyRight{ 0%{ transform:rotate(0) translateX(0); opacity:1; } 100%{ transform:rotate(24deg) translateX(130%); opacity:0; } }
-  .ecriture-card.exit-miss{ animation:cardFadeDown .4s ease forwards; }
-  @keyframes cardFadeDown{ 0%{ transform:translateY(0); opacity:1; } 100%{ transform:translateY(14px); opacity:0; } }
-  .ecriture-flag{ font-size:3.8rem; line-height:1; }
-  .ecriture-name-display{ font-family:var(--font-display); font-size:1.3rem; font-weight:600; color:var(--ink); }
-  .ecriture-step{ width:100%; display:flex; flex-direction:column; gap:.6rem; align-items:center; }
-  .ecriture-input{
-    width:100%; padding:.8em 1em; border-radius:14px; border:2px solid var(--line); background:var(--surface-alt);
-    color:var(--ink); font-size:1rem; font-family:var(--font-body); text-align:center;
-  }
-  .ecriture-input:focus{ outline:none; border-color:var(--accent); }
-  .ecriture-input.shake{ animation:inputShake .4s ease; border-color:var(--accent); }
-  @keyframes inputShake{ 0%,100%{ transform:translateX(0); } 20%{ transform:translateX(-7px); } 40%{ transform:translateX(7px); } 60%{ transform:translateX(-5px); } 80%{ transform:translateX(5px); } }
-  .ecriture-hint{ font-size:.82rem; color:var(--accent); font-weight:800; min-height:1.2em; }
-  .ecriture-hint.ok{ color:var(--clover-dark); }
-  .ecriture-map-wrap{ width:100%; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--surface-alt); }
-  .ecriture-map-wrap svg{ width:100%; height:auto; display:block; overflow:visible; }
-  .display-shape{ fill:var(--surface-raised); stroke:var(--surface); stroke-width:1; pointer-events:none; }
-  .display-shape.target{ fill:var(--accent); animation:targetPulse 1.6s ease-in-out infinite; }
-  @keyframes targetPulse{ 0%,100%{ filter:brightness(1); } 50%{ filter:brightness(1.3); } }
-  .success-spin{
-    position:absolute; top:50%; left:50%; width:5rem; height:5rem; margin:-2.5rem 0 0 -2.5rem;
-    border-radius:50%; z-index:5; pointer-events:none; display:flex; align-items:center; justify-content:center;
-    animation:spinPop .6s ease forwards;
-  }
-  .success-spin::before{
-    content:""; position:absolute; inset:0; border-radius:50%;
-    background:conic-gradient(var(--clover) 0deg 300deg, transparent 300deg 360deg);
-  }
-  .success-spin::after{
-    content:"✓"; position:relative; color:#fff; font-size:1.7rem; font-weight:800; background:var(--clover-dark);
-    width:3.3rem; height:3.3rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  }
-  @keyframes spinPop{
-    0%{ transform:scale(.3) rotate(0deg); opacity:0; }
-    30%{ opacity:1; }
-    75%{ transform:scale(1.05) rotate(430deg); opacity:1; }
-    100%{ transform:scale(1.1) rotate(480deg); opacity:0; }
-  }
-  .ecriture-end{ display:flex; flex-direction:column; gap:.9rem; align-items:center; text-align:center; width:100%; }
-  .ecriture-end-emoji{ font-size:3rem; animation:popIn .4s ease; }
-  .ecriture-end-actions{ display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; width:100%; }
+/* ---------- mode écriture ---------- */
+.ec-overlay{
+  position:fixed; top:0; left:0; right:0; bottom:0; z-index:100; background:var(--bg); max-width:var(--shell-w); margin:0 auto;
+  display:flex; flex-direction:column; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+}
+.ec-overlay.opening{ animation:overlayIn .3s ease both; }
+@keyframes overlayIn{ from{ opacity:0; transform:scale(.97); } to{ opacity:1; transform:none; } }
+.ec-top{ display:flex; align-items:center; gap:.7rem; padding:.8rem 1rem .4rem; }
+.ec-close{
+  background:var(--surface); border:1px solid var(--line); width:2.3rem; height:2.3rem; border-radius:50%; font-size:1.05rem;
+  cursor:pointer; color:var(--ink); line-height:1; flex-shrink:0;
+}
+.ec-title{ font-family:var(--font-display); font-weight:600; font-size:1rem; flex:1; }
+.ec-count{ font-weight:800; font-size:.78rem; color:var(--ink-soft); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.ec-bar{ height:6px; margin:0 1rem; border-radius:99px; background:var(--surface-alt); overflow:hidden; }
+.ec-bar i{ display:block; height:100%; width:0; background:var(--clover); border-radius:99px; transition:width .35s ease; }
+.ec-screen{ padding:.9rem 1rem 2.2rem; flex:1; }
+.opt{
+  display:flex; gap:.8rem; align-items:center; text-align:left; width:100%; background:var(--surface); border:2px solid var(--line);
+  border-radius:18px; padding:.75rem .95rem; cursor:pointer; margin-bottom:.55rem; color:var(--ink);
+}
+.opt[aria-pressed="true"]{ border-color:var(--accent); background:var(--surface-alt); }
+.opt .opt-ico{ font-size:1.6rem; }
+.opt b{ display:block; font-family:var(--font-display); font-size:1rem; font-weight:600; }
+.opt small{ display:block; color:var(--ink-soft); font-size:.78rem; font-weight:700; line-height:1.25; }
+.setup-info{ text-align:center; font-weight:800; font-size:.85rem; color:var(--ink-soft); margin:.9rem 0 .6rem; }
+.ec-stack{ position:relative; width:100%; }
+.ec-ghost{ position:absolute; top:0; left:0; right:0; bottom:0; background:var(--surface); border:1px solid var(--line); border-radius:24px; z-index:0; }
+.ec-ghost.g2{ transform:scale(.94) translateY(14px) rotate(-2deg); opacity:.5; }
+.ec-ghost.g1{ transform:scale(.97) translateY(7px) rotate(1.3deg); opacity:.8; }
+.ec-card{
+  position:relative; z-index:1; background:var(--surface); border:1px solid var(--line); border-radius:24px;
+  box-shadow:0 14px 32px var(--shadow); padding:1.1rem 1rem 1rem; display:flex; flex-direction:column; align-items:center; gap:.7rem; text-align:center;
+}
+.ec-card.enter{ animation:cardIn .3s ease; }
+@keyframes cardIn{ from{ opacity:0; transform:translateY(14px) scale(.98); } to{ opacity:1; transform:none; } }
+.ec-card.exit-success{ animation:cardFlyRight .55s cubic-bezier(.34,1.05,.4,1) forwards; }
+@keyframes cardFlyRight{ 0%{ transform:rotate(0) translateX(0); opacity:1; } 100%{ transform:rotate(24deg) translateX(130%); opacity:0; } }
+.ec-card.exit-miss{ animation:cardFadeDown .4s ease forwards; }
+@keyframes cardFadeDown{ 0%{ transform:translateY(0); opacity:1; } 100%{ transform:translateY(14px); opacity:0; } }
+.ec-map{ width:100%; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--surface-alt); padding:.2rem; }
+.ec-map svg{ width:100%; height:auto; max-height:min(28vh,230px); max-height:min(28dvh,230px); display:block; overflow:visible; }
+.ec-country{ font-family:var(--font-display); font-weight:600; font-size:1.5rem; color:var(--accent); line-height:1.15; }
+.ec-form{ width:100%; display:flex; flex-direction:column; gap:.55rem; }
+.ec-field{ display:flex; flex-direction:column; gap:.2rem; text-align:left; width:100%; }
+.ec-field > span{ font-size:.7rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+.ec-field input{
+  width:100%; padding:.75em 1em; border-radius:14px; border:2px solid var(--line); background:var(--surface-alt); color:var(--ink);
+  font-size:16px; text-align:center;
+}
+.ec-field input:focus{ outline:none; border-color:var(--accent); }
+.ec-field input.shake{ animation:inputShake .4s ease; border-color:var(--accent); }
+@keyframes inputShake{ 0%,100%{ transform:translateX(0); } 20%{ transform:translateX(-7px); } 40%{ transform:translateX(7px); } 60%{ transform:translateX(-5px); } 80%{ transform:translateX(5px); } }
+.ec-field.ok input{ border-color:var(--clover); }
+.ec-field.bad input{ border-color:#E24C74; }
+.ec-fb{ font-style:normal; font-size:.82rem; font-weight:800; min-height:1.1em; text-align:center; line-height:1.3; }
+.ec-field.ok .ec-fb{ color:var(--good); }
+.ec-field.bad .ec-fb{ color:var(--bad); }
+.ec-fb small{ display:block; font-weight:700; color:var(--ink-soft); }
+.ec-actions{ display:flex; flex-direction:column; align-items:center; gap:.1rem; margin-top:.15rem; }
+.ec-actions .btn{ width:100%; }
+.success-spin{
+  position:absolute; top:50%; left:50%; width:5rem; height:5rem; margin:-2.5rem 0 0 -2.5rem; border-radius:50%; z-index:5;
+  pointer-events:none; display:flex; align-items:center; justify-content:center; animation:spinPop .6s ease forwards;
+}
+.success-spin::before{ content:""; position:absolute; top:0; left:0; right:0; bottom:0; border-radius:50%; background:conic-gradient(var(--clover) 0deg 300deg, transparent 300deg 360deg); }
+.success-spin::after{
+  content:"✓"; position:relative; color:#fff; font-size:1.7rem; font-weight:800; background:var(--clover-dark);
+  width:3.3rem; height:3.3rem; border-radius:50%; display:flex; align-items:center; justify-content:center;
+}
+@keyframes spinPop{
+  0%{ transform:scale(.3) rotate(0deg); opacity:0; }
+  30%{ opacity:1; }
+  75%{ transform:scale(1.05) rotate(430deg); opacity:1; }
+  100%{ transform:scale(1.1) rotate(480deg); opacity:0; }
+}
 
-  /* ---------- buttons ---------- */
-  .btn{
-    font-family:var(--font-display); font-weight:600; border-radius:999px; border:none; cursor:pointer;
-    padding:.75em 1.3em; font-size:.92rem; transition:transform .12s ease, box-shadow .12s ease; text-align:center;
-  }
-  .btn:active{ transform:translateY(1px) scale(.98); }
-  .btn-primary{ background:var(--accent); color:var(--accent-ink); box-shadow:0 4px 0 var(--clover-dark); }
-  .btn-primary:hover{ box-shadow:0 5px 0 var(--clover-dark); transform:translateY(-1px); }
-  .btn-ghost{ background:var(--surface-alt); color:var(--ink); }
-  .btn-ghost:hover{ background:var(--surface-raised); }
+footer{ text-align:center; padding:1.4rem 1rem 1rem; color:var(--ink-soft); font-size:.8rem; position:relative; z-index:2; }
+footer strong{ color:var(--accent); }
 
-  /* ---------- footer ---------- */
-  footer{
-    text-align:center; padding:1.6rem 1rem 1.2rem; color:var(--ink-soft); font-size:.8rem; position:relative; z-index:2;
-  }
-  footer strong{ color:var(--accent); }
-
-  @media (prefers-reduced-motion: reduce){
-    .clover-field{ display:none; }
-    .hero{ animation:none; }
-    .flashcard-inner{ transition:none; }
-    .flashcard.shuffle-pulse{ animation:none; }
-    .btn, .quiz-opt{ transition:none; }
-    .sticker{ animation:none; }
-    .country-shape{ animation:none; opacity:1; transition:none; }
-    .panel.enter{ animation:none; }
-    .progress-chip.bump{ animation:none; }
-    .quiz-opt.correct, .quiz-opt.wrong{ animation:none; }
-    .detail-flag, .quiz-flag, .quiz-end-emoji, .ecriture-end-emoji{ animation:none; }
-    .ecriture-overlay.opening{ animation:none; }
-    .ecriture-card.exit-success, .ecriture-card.exit-miss{ animation:none; opacity:0; }
-    .ecriture-input.shake{ animation:none; }
-    .success-spin{ animation:none; opacity:0; }
-    .country-detail.flash{ animation:none; }
-    .display-shape.target{ animation:none; }
-  }
+@media (prefers-reduced-motion: reduce){
+  .clover-field{ display:none; }
+  .hero, .panel.enter, .progress-chip.bump, .country-detail.flash, .detail-cap, .end-emoji, .ec-overlay.opening, .ec-card.enter{ animation:none; }
+  .fcard-inner{ transition:none; }
+  .fcard.pulse{ animation:none; }
+  .country-shape{ animation:none; opacity:1; transition:none; }
+  .quiz-opt.correct, .quiz-opt.wrong{ animation:none; }
+  .ec-card.exit-success, .ec-card.exit-miss{ animation:none; opacity:0; }
+  .ec-field input.shake{ animation:none; }
+  .success-spin{ animation:none; opacity:0; }
+  .display-shape.target, .target-ring, .cap-dot.pulse{ animation:none; }
+  .pbar-track i, .ec-bar i, .quiz-progress i{ transition:none; }
+}
 </style>
 </head>
 <body>
-
-
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs id="svgDefs"></defs></svg>
 <div class="clover-field" id="cloverField" aria-hidden="true"></div>
 
 <div class="app-shell">
   <header class="topbar">
     <div class="brand">🍀 <span>L'Afrique de <strong>Tayana</strong></span></div>
-    <span class="progress-chip" id="progressChip">🍀 0/55 récoltés</span>
+    <span class="progress-chip" id="progressChip" aria-live="polite">🍀 0/110</span>
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Salut Tayana 👋🌸</h1>
-      <p class="countdown-msg" id="countdownMsg">Entraîne-toi à ton rythme avant le test 🍀</p>
-      <div class="stat-row">
-        <div class="stat-chip"><span id="statCountries">0</span>pays</div>
-        <div class="stat-chip"><span id="statRegions">0</span>régions</div>
-        <div class="stat-chip"><span>🎯</span>sans-faute</div>
+    <!-- ============ CARTE ============ -->
+    <section id="panel-carte" class="panel" role="tabpanel">
+      <div class="hero">
+        <h1>Salut Tayana 👋</h1>
+        <p class="hero-msg" id="heroMsg"></p>
+        <div class="progress-duo">
+          <div class="pbar"><div class="pbar-top"><span>Pays</span><b id="pbCTxt">0/55</b></div><div class="pbar-track"><i id="pbCBar"></i></div></div>
+          <div class="pbar"><div class="pbar-top"><span>Capitales</span><b id="pbKTxt">0/55</b></div><div class="pbar-track"><i id="pbKBar"></i></div></div>
+        </div>
       </div>
-      <div class="hero-stickers" aria-hidden="true">
-        <div class="sticker">🇸🇳<small>Sénégal</small></div>
-        <div class="sticker">🇰🇪<small>Kenya</small></div>
-        <div class="sticker">🇲🇦<small>Maroc</small></div>
-        <div class="sticker">🇿🇦<small>Afr. du Sud</small></div>
-        <div class="sticker">🇬🇭<small>Ghana</small></div>
-        <div class="sticker">🇲🇬<small>Madagascar</small></div>
-      </div>
-    </section>
 
-    <section id="panel-carte" class="panel" role="tabpanel" aria-labelledby="carte">
       <div class="panel-head">
         <h2>La carte à explorer</h2>
-        <p>Touche un pays pour découvrir sa fiche. Les frontières sont réelles.</p>
+        <p>Touche un pays pour voir son nom et sa capitale.</p>
       </div>
       <div class="map-card">
+        <div class="map-tools">
+          <button class="chip" id="capToggle" aria-pressed="false">📍 Montrer les capitales</button>
+          <span class="hint" id="mapHint"></span>
+        </div>
         <svg id="africaMap" role="img" aria-label="Carte de l'Afrique avec les frontières des 55 pays"></svg>
       </div>
-      <aside class="country-detail" id="countryDetail"></aside>
+      <aside class="country-detail" id="countryDetail" aria-live="polite"></aside>
       <div class="map-legend" id="mapLegend"></div>
     </section>
 
-    <section id="panel-fiches" class="panel" role="tabpanel" aria-labelledby="fiches" hidden>
+    <!-- ============ FICHES ============ -->
+    <section id="panel-fiches" class="panel" role="tabpanel" hidden>
       <div class="panel-head">
         <h2>Les fiches mémo</h2>
-        <p>Touche une carte pour la retourner. Le bouton 🍀 garde ce que tu sais déjà.</p>
+        <p>Touche une carte pour la retourner et vérifier ta réponse.</p>
       </div>
-      <div class="fiches-controls">
-        <div class="region-filter" id="regionFilter"></div>
-        <label class="toggle"><input type="checkbox" id="onlyUnknown"> Seulement à revoir</label>
-        <button class="btn btn-ghost" id="shuffleBtn">🔀 Mélanger</button>
+      <div class="fiches-tools">
+        <div class="field-label" style="margin:.1rem 0 0">Je vois…</div>
+        <div class="seg" id="fichesMode" role="group" aria-label="Type de fiche">
+          <button data-mode="carte" aria-pressed="true">La carte</button>
+          <button data-mode="pays" aria-pressed="false">Le pays</button>
+          <button data-mode="capitale" aria-pressed="false">La capitale</button>
+        </div>
+        <div class="chips zone-chips" data-zone-chips></div>
+        <div class="tools-row">
+          <label class="check"><input type="checkbox" id="onlyReviewFiches"> À revoir seulement</label>
+          <button class="chip" id="shuffleBtn">🔀 Mélanger</button>
+        </div>
       </div>
       <div class="flash-grid" id="flashGrid"></div>
     </section>
 
-    <section id="panel-quiz" class="panel" role="tabpanel" aria-labelledby="quiz" hidden>
+    <!-- ============ QUIZ ============ -->
+    <section id="panel-quiz" class="panel" role="tabpanel" hidden>
       <div class="panel-head">
-        <h2>Entraînement — test blanc</h2>
-        <p>12 questions au hasard, comme un vrai petit contrôle. Rejoue autant de fois que tu veux&nbsp;!</p>
+        <h2>Quiz test blanc</h2>
+        <p>12 questions à choix multiple, notées sur 6 (barème vaudois).</p>
       </div>
-      <div class="quiz-card" id="quizStart">
-        <h2>Prête à t'entraîner&nbsp;? 🎓</h2>
-        <p>On te montre son emplacement sur la carte, tu retrouves le pays parmi 4 choix.</p>
-        <p class="quiz-best">Meilleur score&nbsp;: <strong id="quizBestScore">—</strong></p>
-        <button class="btn btn-primary" id="quizStartBtn">Commencer le quiz 🍀</button>
-      </div>
-      <div class="quiz-card" id="quizPlay" hidden>
-        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
-        <p class="quiz-meta">Question <span id="quizIndex">1</span>/12 · Score&nbsp;: <span id="quizScore">0</span></p>
-        <div class="ecriture-map-wrap"><svg id="quizMap" role="img" aria-label="Pays à deviner colorié sur la carte"></svg></div>
-        <h3>Quel est ce pays&nbsp;?</h3>
-        <div class="quiz-options" id="quizOptions"></div>
-        <button class="btn btn-ghost" id="quizNextBtn" hidden>Suivant →</button>
-      </div>
-      <div class="quiz-card" id="quizEnd" hidden>
-        <div class="quiz-end-emoji" id="quizEndEmoji">🎉</div>
-        <h2 id="quizEndTitle">Bravo Tayana&nbsp;!</h2>
-        <p id="quizEndText"></p>
-        <div class="note-card">
-          <div class="note-big" id="quizNoteBig">4.0/6</div>
-          <div class="note-label" id="quizNoteLabel">Barème vaudois</div>
+
+      <div class="card" id="quizStart">
+        <div>
+          <div class="field-label" style="margin-top:0">Je révise</div>
+          <div class="seg" id="quizModeSeg" role="group" aria-label="Type de quiz">
+            <button data-mode="pays" aria-pressed="false">Les pays</button>
+            <button data-mode="cap" aria-pressed="false">Capitales</button>
+            <button data-mode="mix" aria-pressed="true">Les deux</button>
+          </div>
+          <div class="field-label">Zone</div>
+          <div class="chips zone-chips" data-zone-chips></div>
         </div>
-        <button class="btn btn-primary" id="quizRetryBtn">Rejouer 🍀</button>
+        <p class="best-line" id="quizBest"></p>
+        <button class="btn btn-primary btn-block" id="quizStartBtn">Commencer 🍀</button>
+      </div>
+
+      <div class="card" id="quizPlay" hidden>
+        <div class="quiz-progress"><i id="qBar"></i></div>
+        <p class="quiz-meta" id="qMeta"></p>
+        <div class="q-map" id="qMapWrap"><svg id="quizMap" role="img" aria-label="Carte de l'Afrique"></svg></div>
+        <div class="q-block" id="qBlock" hidden><span class="eyebrow" id="qBlockLabel"></span><strong id="qBlockText"></strong></div>
+        <div class="q-question" id="qQuestion"></div>
+        <div class="quiz-options" id="qOptions"></div>
+        <div class="q-feedback" id="qFeedback" aria-live="polite"></div>
+        <button class="btn btn-primary btn-block" id="qNext" hidden>Suivant →</button>
+      </div>
+
+      <div class="card center" id="quizEnd" hidden>
+        <div class="end-emoji" id="qEndEmoji">🎉</div>
+        <h2 id="qEndTitle"></h2>
+        <p id="qEndText"></p>
+        <div class="note-card"><div class="note-big" id="qNoteBig"></div><div class="note-label" id="qNoteLabel"></div></div>
+        <div class="recap" id="qRecap" hidden></div>
+        <div class="end-actions">
+          <button class="btn btn-primary" id="qRetry">Rejouer 🍀</button>
+          <button class="btn btn-ghost" id="qMenu">Changer de type</button>
+        </div>
       </div>
     </section>
 
-    <section id="panel-repertoire" class="panel" role="tabpanel" aria-labelledby="repertoire" hidden>
+    <!-- ============ LISTE ============ -->
+    <section id="panel-liste" class="panel" role="tabpanel" hidden>
       <div class="panel-head">
-        <h2>Le répertoire complet</h2>
-        <p>Les 55 pays, classés par région avec leur capitale.</p>
+        <h2>Pays et capitales</h2>
+        <p>La liste complète. Cache une colonne pour t'interroger toi-même.</p>
       </div>
-      <input type="search" class="search-input" id="searchInput" placeholder="🔎 Cherche un pays ou une capitale…">
-      <div id="repertoireList"></div>
+      <div class="seg" id="hideSeg" role="group" aria-label="Colonne à cacher">
+        <button data-hide="none" aria-pressed="true">Tout voir</button>
+        <button data-hide="c" aria-pressed="false">Cacher pays</button>
+        <button data-hide="k" aria-pressed="false">Cacher capitales</button>
+      </div>
+      <input type="search" class="search-input" id="searchInput" placeholder="🔎 Cherche un pays ou une capitale…" autocomplete="off" autocapitalize="none" spellcheck="false">
+      <p class="list-note" id="listNote"></p>
+      <div id="listBody"></div>
     </section>
   </main>
 
-  <footer>
-    Fait avec 💗 et quelques 🍀 par <strong>Théodore</strong>, pour Tayana&nbsp;! 🌍
-  </footer>
+  <footer>Fait avec 💗 et quelques 🍀 par <strong>Théodore</strong>, pour Tayana&nbsp;! 🌍</footer>
 
   <nav class="bottom-nav" role="tablist" aria-label="Navigation">
     <button class="bnav-btn" role="tab" data-tab="carte" aria-selected="true"><span class="bnav-icon">🗺️</span><span>Carte</span></button>
     <button class="bnav-btn" role="tab" data-tab="fiches" aria-selected="false"><span class="bnav-icon">🎴</span><span>Fiches</span></button>
-    <button class="bnav-fab" id="openEcritureNav" type="button" aria-label="Mode Écriture">✍️</button>
+    <button class="bnav-fab" id="openEc" type="button" aria-label="Mode Écriture">✍️</button>
     <button class="bnav-btn" role="tab" data-tab="quiz" aria-selected="false"><span class="bnav-icon">🎯</span><span>Quiz</span></button>
-    <button class="bnav-btn" role="tab" data-tab="repertoire" aria-selected="false"><span class="bnav-icon">📖</span><span>Liste</span></button>
+    <button class="bnav-btn" role="tab" data-tab="liste" aria-selected="false"><span class="bnav-icon">📖</span><span>Liste</span></button>
   </nav>
 </div>
 
-<div class="ecriture-overlay" id="ecritureOverlay" hidden>
-  <div class="ecriture-top">
-    <div class="brand">✍️ Mode Écriture</div>
-    <span class="ecriture-progress-line" id="ecritureProgressLine">55 pays restants</span>
-    <button class="ecriture-close" id="ecritureCloseBtn" aria-label="Fermer le mode Écriture">✕</button>
+<!-- ============ MODE ÉCRITURE ============ -->
+<div class="ec-overlay" id="ecOverlay" role="dialog" aria-modal="true" aria-label="Mode Écriture" hidden>
+  <div class="ec-top">
+    <button class="ec-close" id="ecClose" aria-label="Fermer">✕</button>
+    <div class="ec-title">✍️ Mode Écriture</div>
+    <span class="ec-count" id="ecCount"></span>
   </div>
-  <div class="ecriture-body">
-    <div class="ecriture-stack" id="ecritureStack">
-      <div class="ecriture-ghost ecriture-ghost-2" aria-hidden="true"></div>
-      <div class="ecriture-ghost ecriture-ghost-1" aria-hidden="true"></div>
-      <div class="ecriture-card" id="ecritureCard">
-        <span class="eyebrow">Écris le nom de ce pays</span>
-        <div class="ecriture-map-wrap">
-          <svg id="ecritureMap" role="img" aria-label="Le pays à deviner est colorié sur la carte"></svg>
-        </div>
-        <div class="ecriture-step" id="ecritureStepName">
-          <input type="text" class="ecriture-input" id="ecritureInput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Nom du pays…">
-          <span class="ecriture-hint" id="ecritureHint"></span>
-          <button class="btn btn-primary" id="ecritureValidateBtn">Valider ✅</button>
-        </div>
+  <div class="ec-bar" id="ecBarWrap" hidden><i id="ecBar"></i></div>
 
-        <div class="ecriture-end" id="ecritureEnd" hidden>
-          <div class="ecriture-end-emoji" id="ecritureEndEmoji">🏆</div>
-          <h2 id="ecritureEndTitle">Tous les pays sont passés&nbsp;!</h2>
-          <p id="ecritureEndText"></p>
-          <div class="note-card">
-            <div class="note-big" id="ecritureNoteBig">4.0/6</div>
-            <div class="note-label" id="ecritureNoteLabel">Barème vaudois (première tentative)</div>
+  <div class="ec-screen" id="ecSetup">
+    <div class="field-label" style="margin-top:.2rem">Qu'est-ce qu'on révise ?</div>
+    <button class="opt" data-mode="pays" aria-pressed="false"><span class="opt-ico">🌍</span><span><b>Les pays</b><small>Je vois le pays sur la carte, j'écris son nom.</small></span></button>
+    <button class="opt" data-mode="cap" aria-pressed="false"><span class="opt-ico">🏛️</span><span><b>Les capitales</b><small>Je vois le pays, j'écris sa capitale.</small></span></button>
+    <button class="opt" data-mode="both" aria-pressed="true"><span class="opt-ico">🎯</span><span><b>Pays + capitales</b><small>Comme au vrai test : les deux sur la même carte.</small></span></button>
+    <div class="field-label">Zone</div>
+    <div class="chips zone-chips" data-zone-chips></div>
+    <label class="check" style="margin-top:.6rem"><input type="checkbox" id="ecOnlyReview"> Seulement ce que je ne maîtrise pas encore</label>
+    <p class="setup-info" id="ecInfo"></p>
+    <button class="btn btn-primary btn-block" id="ecStart">C'est parti 🍀</button>
+  </div>
+
+  <div class="ec-screen" id="ecPlay" hidden>
+    <div class="ec-stack">
+      <div class="ec-ghost g2" aria-hidden="true"></div>
+      <div class="ec-ghost g1" aria-hidden="true"></div>
+      <div class="ec-card" id="ecCard">
+        <span class="eyebrow" id="ecLabel"></span>
+        <div class="ec-map"><svg id="ecMap" role="img" aria-label="Le pays à trouver est colorié sur la carte"></svg></div>
+        <div class="ec-country" id="ecCountry" hidden></div>
+        <form class="ec-form" id="ecForm" autocomplete="off" novalidate>
+          <label class="ec-field" id="ecFieldC"><span>Pays</span>
+            <input id="ecInC" type="text" enterkeyhint="next" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Nom du pays…">
+            <em class="ec-fb" id="ecFbC"></em></label>
+          <label class="ec-field" id="ecFieldK"><span>Capitale</span>
+            <input id="ecInK" type="text" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Nom de la capitale…">
+            <em class="ec-fb" id="ecFbK"></em></label>
+          <div class="ec-actions">
+            <button type="submit" class="btn btn-primary" id="ecSubmit">Valider</button>
+            <button type="button" class="link-btn" id="ecGiveUp">Je ne sais pas</button>
           </div>
-          <div class="ecriture-end-actions">
-            <button class="btn btn-primary" id="ecritureReplayBtn">Rejouer 🍀</button>
-            <button class="btn btn-ghost" id="ecritureBackBtn">Retour</button>
-          </div>
-        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="ec-screen" id="ecEnd" hidden>
+    <div class="card center">
+      <div class="end-emoji" id="ecEndEmoji">🏆</div>
+      <h2 id="ecEndTitle"></h2>
+      <p id="ecEndText"></p>
+      <div class="note-card"><div class="note-big" id="ecNoteBig"></div><div class="note-label" id="ecNoteLabel"></div></div>
+      <div class="recap" id="ecRecap" hidden></div>
+      <div class="end-actions">
+        <button class="btn btn-primary" id="ecRedo" hidden>Refaire mes erreurs</button>
+        <button class="btn btn-primary" id="ecReplay">Rejouer 🍀</button>
+        <button class="btn btn-ghost" id="ecBack">Retour</button>
       </div>
     </div>
   </div>
 </div>
-
-<script src="map-data.js"></script>
 <script>
-(function(){
+var MAP_VIEWBOX = "0 0 640.0 558.0";
+var COUNTRY_PATHS = {"DZ":"M263.0,13.4 L260.3,16.5 L261.7,26.3 L260.6,29.8 L255.1,34.7 L255.0,36.6 L261.2,46.2 L266.5,49.7 L270.0,63.4 L268.5,64.2 L272.2,71.2 L272.7,90.2 L269.3,93.8 L275.5,105.4 L284.8,107.4 L288.3,113.4 L254.9,133.1 L242.6,143.5 L223.4,146.9 L222.5,140.7 L212.2,137.1 L207.8,133.5 L207.7,131.4 L134.5,85.3 L134.5,74.9 L137.6,72.7 L145.9,67.9 L149.7,68.3 L150.9,66.4 L158.6,65.4 L162.1,61.6 L171.8,57.9 L171.1,52.5 L176.7,51.4 L177.8,49.6 L190.0,49.4 L191.2,46.7 L186.6,40.4 L185.8,29.7 L182.6,27.1 L196.0,21.4 L198.8,21.7 L208.5,16.5 L227.3,13.7 L234.6,13.7 L238.6,15.6 L247.4,12.3 L263.0,13.4 Z","EG":"M473.8,124.7 L433.3,124.7 L433.0,123.2 L431.6,124.7 L385.2,124.7 L385.2,71.2 L383.1,63.6 L385.1,60.0 L384.2,55.2 L386.5,52.8 L392.0,53.0 L415.7,58.9 L430.6,53.2 L436.6,53.6 L438.5,55.1 L436.7,54.1 L435.8,55.5 L438.2,57.0 L439.1,55.5 L442.0,57.1 L453.8,55.2 L459.1,69.0 L454.0,81.7 L446.8,75.8 L441.7,65.3 L440.2,67.8 L444.2,75.8 L449.0,80.8 L452.1,90.1 L461.3,106.2 L465.7,110.2 L463.6,111.4 L465.0,117.6 L473.8,124.7 Z","LY":"M270.0,63.4 L275.2,59.3 L274.5,54.2 L275.7,52.5 L284.8,47.1 L284.8,41.4 L290.6,43.8 L298.1,43.4 L312.2,47.3 L316.1,54.5 L331.9,58.2 L341.6,63.1 L346.0,61.5 L348.9,57.9 L348.3,49.4 L356.0,44.4 L364.4,43.4 L371.1,45.6 L372.6,48.6 L385.0,50.5 L386.5,52.8 L384.2,55.2 L385.1,60.0 L383.1,63.6 L385.2,71.2 L385.2,139.6 L377.7,139.6 L377.7,143.3 L318.2,113.9 L305.0,120.1 L299.5,115.9 L288.3,113.4 L284.8,107.4 L276.0,105.8 L269.3,93.8 L272.8,88.6 L272.3,71.7 L268.5,64.2 L270.0,63.4 Z","MA":"M182.6,27.1 L185.8,29.7 L186.6,40.4 L191.2,46.7 L190.0,49.4 L177.8,49.6 L176.7,51.4 L171.1,52.5 L171.8,57.9 L162.1,61.6 L158.6,65.4 L150.9,66.4 L149.7,68.3 L145.9,67.9 L137.6,72.7 L134.5,74.9 L133.6,86.5 L126.0,88.6 L119.0,87.3 L114.3,88.3 L114.7,90.2 L111.9,94.1 L109.3,95.0 L106.6,103.6 L95.7,112.1 L93.2,122.4 L89.3,128.4 L72.5,129.0 L80.7,110.9 L88.1,104.4 L91.8,93.0 L98.0,89.4 L102.7,80.6 L113.1,77.7 L123.2,69.7 L127.1,64.3 L125.6,59.8 L126.1,54.5 L130.3,45.9 L135.7,40.9 L147.7,35.5 L155.0,22.0 L159.8,21.1 L160.0,23.3 L164.7,26.3 L173.9,26.3 L177.0,24.8 L178.0,26.9 L182.6,27.1 Z","SD":"M453.0,218.1 L451.4,217.7 L451.7,212.7 L445.9,208.5 L446.4,197.5 L442.9,197.5 L443.0,199.1 L438.0,199.1 L440.0,201.3 L440.6,205.9 L431.2,215.8 L428.2,216.1 L422.6,212.0 L414.0,219.1 L408.0,219.1 L406.8,217.0 L397.7,217.9 L391.3,210.9 L385.8,211.9 L381.9,222.3 L379.0,224.0 L374.4,222.9 L375.3,215.4 L369.4,207.2 L369.9,204.0 L367.4,202.3 L365.6,194.2 L361.7,193.3 L364.7,189.3 L363.8,185.8 L367.0,183.1 L365.8,180.2 L369.9,175.6 L369.9,172.8 L377.7,171.4 L377.7,139.6 L385.2,139.6 L385.2,124.7 L431.6,124.7 L433.0,123.2 L433.3,124.7 L473.8,124.7 L476.6,131.3 L476.2,138.7 L478.2,148.4 L486.7,154.4 L477.8,161.5 L474.8,161.5 L470.4,175.8 L471.2,182.4 L468.2,193.5 L464.8,194.5 L460.7,200.5 L459.3,207.6 L454.9,209.2 L453.0,218.1 Z","TN":"M284.8,41.4 L284.8,47.1 L275.7,52.5 L274.5,54.2 L275.2,59.3 L272.8,62.2 L270.0,63.4 L266.5,49.7 L261.2,46.2 L259.6,42.3 L256.7,40.8 L255.0,36.6 L255.1,34.7 L260.6,29.8 L261.7,26.3 L260.6,21.9 L261.3,17.7 L260.3,16.5 L263.0,13.4 L271.3,10.4 L272.4,10.7 L272.4,12.0 L272.7,11.1 L275.1,11.4 L276.7,15.0 L281.5,12.4 L282.0,13.9 L277.2,19.1 L278.0,21.3 L281.1,23.1 L282.0,26.1 L278.8,30.3 L274.5,33.2 L274.0,34.9 L275.9,37.3 L278.9,37.6 L279.0,38.9 L280.8,38.1 L282.6,40.9 L284.8,41.4 Z M283.1,29.7 L282.0,30.2 L282.2,29.8 L283.0,29.2 L283.1,29.7 Z M280.8,37.4 L280.0,37.6 L279.0,37.3 L279.2,36.1 L280.5,36.1 L281.2,36.6 L281.3,36.9 L280.8,37.4 Z","EH":"M133.5,82.6 L134.5,82.6 L134.5,94.9 L109.6,94.9 L109.6,113.8 L101.2,118.6 L102.2,129.6 L72.8,129.7 L71.8,133.2 L72.5,129.0 L89.3,128.4 L93.2,122.4 L95.7,112.1 L106.6,103.6 L109.3,95.0 L111.9,94.1 L114.7,90.2 L114.3,88.3 L119.0,87.3 L126.0,88.6 L133.6,86.5 L133.5,82.6 Z","BJ":"M211.2,242.2 L212.4,241.7 L210.5,236.5 L211.2,236.4 L211.1,221.1 L209.5,218.8 L209.0,214.1 L204.9,211.4 L205.0,208.8 L205.8,206.7 L209.8,203.3 L213.9,203.5 L216.7,200.4 L216.8,197.5 L220.0,196.3 L225.9,201.4 L225.1,203.7 L227.7,209.5 L225.8,211.9 L225.6,214.7 L224.1,215.5 L222.5,218.1 L221.8,220.9 L219.8,221.1 L219.3,241.1 L211.2,242.2 Z","BF":"M205.8,206.7 L196.9,205.4 L194.5,207.2 L178.1,206.6 L178.5,218.3 L175.1,214.8 L164.7,216.2 L161.2,212.3 L158.0,210.9 L159.8,200.4 L166.2,196.6 L165.8,194.2 L167.7,193.3 L166.9,190.8 L168.2,189.4 L174.5,189.6 L174.9,186.8 L177.2,186.9 L179.9,182.6 L183.4,183.0 L184.4,180.9 L194.2,176.3 L200.8,177.5 L200.4,180.6 L202.3,184.5 L208.1,189.1 L206.5,189.0 L206.5,191.4 L210.8,194.4 L214.6,193.8 L215.6,195.2 L214.5,196.5 L216.9,199.9 L216.2,201.5 L213.9,203.5 L209.8,203.3 L205.8,206.7 Z","CV":"M11.7,162.3 L10.6,162.4 L10.4,161.2 L12.1,160.5 L12.7,160.6 L13.1,161.2 L11.7,162.3 Z M24.5,176.8 L24.1,177.4 L23.1,177.4 L22.6,177.1 L22.0,176.2 L22.3,174.4 L23.8,175.8 L24.5,176.8 Z M13.8,163.3 L12.8,163.4 L12.2,163.2 L12.4,162.9 L13.4,162.5 L13.8,163.3 Z M28.4,167.6 L29.7,167.7 L30.1,168.1 L30.0,169.0 L29.2,169.5 L28.1,169.0 L28.5,168.3 L28.4,167.6 Z M18.1,177.9 L17.5,178.2 L17.1,178.0 L16.5,177.3 L16.7,177.0 L17.5,176.5 L17.9,176.7 L18.2,177.3 L18.1,177.9 Z M19.7,164.7 L20.1,165.1 L18.6,164.9 L18.0,165.7 L17.4,164.8 L17.6,164.3 L19.7,164.7 Z M28.7,164.5 L28.4,164.8 L28.0,164.2 L27.9,163.3 L28.3,163.1 L28.5,163.1 L28.7,164.5 Z M26.5,175.8 L26.0,175.5 L26.3,174.4 L26.8,174.5 L26.9,174.8 L27.0,175.6 L26.5,175.8 Z","CI":"M176.1,250.3 L175.9,250.6 L175.0,250.4 L175.2,250.2 L176.1,250.3 Z M139.6,212.8 L143.3,210.8 L146.9,213.0 L147.4,211.5 L149.3,211.5 L149.6,209.2 L151.3,209.9 L152.5,208.7 L153.6,212.6 L157.8,210.8 L161.2,212.3 L162.1,214.6 L164.7,216.2 L175.1,214.8 L178.2,218.3 L179.1,217.9 L178.7,221.2 L180.5,227.4 L178.4,229.5 L175.0,239.0 L176.8,246.0 L178.3,246.8 L178.2,250.2 L175.5,249.8 L175.3,248.7 L174.2,250.3 L168.5,249.0 L164.8,249.5 L169.1,249.6 L159.8,249.7 L161.4,250.3 L155.1,251.2 L142.9,256.1 L143.6,245.0 L141.1,244.0 L140.4,242.1 L135.1,240.1 L137.3,236.5 L135.9,232.2 L137.8,232.3 L139.5,228.4 L137.6,227.1 L137.8,225.6 L141.9,225.9 L139.9,223.1 L141.2,220.9 L140.3,218.4 L138.5,217.8 L138.4,214.3 L139.6,212.8 Z","GM":"M75.8,187.3 L83.6,187.3 L84.2,186.3 L86.6,185.7 L87.9,185.9 L91.8,188.0 L95.0,187.7 L96.2,188.7 L96.0,189.2 L93.0,190.0 L86.3,187.6 L85.3,188.8 L81.4,189.3 L81.2,190.5 L75.1,190.6 L74.3,191.2 L73.8,189.2 L75.0,188.2 L75.8,189.5 L76.9,189.7 L78.6,189.6 L78.8,188.9 L84.2,188.2 L79.0,188.4 L77.3,189.2 L76.7,189.1 L75.8,187.3 Z","GH":"M198.6,205.7 L198.5,209.0 L202.0,211.9 L200.9,218.1 L203.1,218.5 L201.9,223.3 L204.2,226.3 L202.9,232.3 L203.9,233.8 L203.1,237.5 L204.6,240.5 L208.0,243.2 L206.2,245.3 L201.1,245.7 L184.2,253.1 L175.9,250.6 L178.2,250.2 L178.6,248.1 L176.8,246.0 L175.0,237.8 L178.4,229.5 L180.5,227.4 L178.7,221.2 L178.5,212.3 L177.4,209.6 L178.1,206.6 L194.5,207.2 L196.9,205.4 L198.6,205.7 Z","GN":"M122.5,225.3 L119.4,226.5 L120.9,223.8 L119.1,220.8 L119.5,219.2 L115.7,214.2 L106.6,214.8 L102.1,220.7 L100.1,221.1 L99.1,218.4 L97.2,217.5 L97.2,214.6 L91.7,212.2 L89.1,207.1 L87.0,207.8 L89.8,202.8 L96.9,201.1 L96.8,199.1 L95.2,197.8 L97.0,196.8 L96.9,194.1 L101.7,194.4 L101.9,195.5 L106.8,196.6 L114.3,196.2 L113.5,197.7 L114.9,199.0 L117.7,197.6 L119.4,199.9 L122.6,197.6 L126.5,198.9 L129.4,197.3 L129.2,195.7 L131.8,196.2 L133.4,201.6 L136.6,203.9 L134.6,206.5 L137.0,206.7 L137.6,210.4 L139.7,212.0 L138.5,217.8 L140.3,218.4 L141.2,220.9 L139.9,223.1 L141.9,225.9 L138.0,225.4 L137.6,227.1 L139.5,228.4 L138.0,232.0 L134.6,231.3 L132.9,234.4 L131.2,234.8 L128.7,233.3 L129.4,231.2 L128.2,226.4 L126.3,224.9 L122.5,225.3 Z","GW":"M74.7,196.5 L83.1,195.5 L86.0,194.1 L96.9,194.1 L97.3,195.6 L97.0,196.8 L95.2,197.8 L96.8,199.1 L96.9,201.1 L92.9,201.7 L89.8,202.8 L87.1,207.1 L86.7,206.5 L87.0,205.6 L85.8,206.4 L85.8,205.4 L84.5,205.0 L84.8,203.7 L83.8,203.6 L84.2,202.9 L86.9,202.2 L85.7,201.5 L84.3,202.0 L83.7,201.2 L83.9,200.3 L85.8,200.1 L86.8,199.4 L84.2,199.6 L81.3,200.9 L80.4,200.8 L80.6,199.6 L78.9,199.8 L77.5,198.8 L78.1,197.4 L76.7,197.6 L74.7,196.5 Z M79.1,206.2 L78.5,206.3 L78.2,205.8 L79.5,205.1 L79.6,205.7 L79.1,206.2 Z M80.7,206.0 L80.7,206.2 L80.2,206.2 L80.4,205.2 L80.7,206.0 Z M82.0,205.0 L82.0,205.3 L81.6,205.2 L82.1,204.4 L82.5,204.5 L82.0,205.0 Z M83.3,202.6 L83.2,202.8 L82.8,202.6 L83.8,201.9 L83.8,202.4 L83.3,202.6 Z M80.7,203.1 L80.4,203.4 L79.8,203.1 L80.2,202.2 L80.6,202.2 L80.7,203.1 Z M80.1,200.0 L79.7,201.0 L79.2,200.9 L78.8,200.1 L80.1,200.0 Z","LR":"M113.4,237.1 L119.8,230.7 L120.4,228.4 L122.0,227.6 L122.5,225.3 L127.2,225.4 L128.2,226.4 L129.4,231.2 L128.7,233.3 L131.2,234.8 L132.9,234.4 L134.3,231.5 L135.2,231.4 L137.3,235.9 L137.1,237.9 L135.1,240.1 L140.4,242.1 L141.1,244.0 L143.6,245.0 L143.8,248.9 L142.6,252.6 L142.9,256.1 L137.6,254.4 L131.1,250.9 L122.6,243.3 L118.8,241.5 L118.3,240.4 L113.4,237.1 Z","ML":"M114.3,196.2 L114.3,192.1 L109.4,187.0 L109.6,182.7 L107.7,178.2 L110.2,177.7 L113.5,172.1 L117.6,175.7 L119.5,173.7 L128.8,173.4 L129.5,171.8 L130.8,173.1 L158.1,173.1 L159.2,167.3 L157.2,165.1 L150.0,102.4 L163.2,102.4 L207.7,131.4 L207.8,133.5 L212.2,137.1 L222.5,140.7 L223.4,146.9 L230.6,146.0 L230.3,165.0 L225.2,174.2 L208.8,174.8 L206.2,177.0 L200.8,177.5 L194.2,176.3 L184.4,180.9 L183.4,183.0 L179.9,182.6 L177.2,186.9 L174.9,186.8 L174.5,189.6 L169.7,188.7 L166.9,190.8 L167.7,193.3 L165.8,194.2 L166.2,196.6 L159.8,200.4 L158.0,210.9 L154.2,212.6 L152.7,212.1 L152.5,208.7 L149.6,209.2 L149.3,211.5 L146.9,213.0 L143.3,210.8 L139.6,212.8 L137.0,206.7 L134.6,206.5 L136.6,203.9 L133.4,201.6 L131.2,195.8 L129.2,195.7 L129.4,197.3 L126.8,198.8 L122.6,197.6 L119.4,199.9 L117.7,197.6 L114.9,199.0 L113.5,197.7 L114.3,196.2 Z","MR":"M77.2,141.8 L76.7,142.5 L76.4,141.7 L77.0,140.7 L77.4,140.6 L77.2,141.8 Z M107.7,178.2 L100.8,172.2 L99.3,168.9 L90.9,164.5 L78.2,165.4 L76.0,170.6 L79.6,152.8 L78.4,147.0 L76.1,144.3 L77.7,143.2 L76.7,143.5 L78.4,137.9 L73.1,131.3 L72.2,133.6 L72.8,129.7 L102.2,129.6 L101.2,118.6 L109.6,113.8 L109.6,94.9 L134.5,94.9 L134.5,85.3 L163.2,102.4 L150.0,102.4 L157.2,165.1 L159.2,167.3 L158.1,173.1 L130.8,173.1 L129.5,171.8 L128.8,173.4 L119.5,173.7 L117.6,175.7 L113.5,172.1 L110.2,177.7 L107.7,178.2 Z","NE":"M300.5,186.5 L292.0,191.0 L277.2,189.3 L270.8,193.1 L264.3,192.4 L257.5,189.2 L250.8,191.7 L246.1,186.8 L240.0,185.2 L233.9,186.3 L230.0,188.3 L229.2,192.2 L226.3,195.2 L225.9,201.4 L220.0,196.3 L216.8,197.5 L216.9,199.9 L214.6,196.9 L215.7,195.7 L214.8,193.9 L210.8,194.4 L206.5,191.4 L206.5,189.0 L208.1,189.1 L203.7,186.5 L200.4,180.6 L200.8,177.1 L206.2,177.0 L208.8,174.8 L225.2,174.2 L230.3,165.0 L230.6,146.0 L242.6,143.5 L254.9,133.1 L288.3,113.4 L299.5,115.9 L305.0,120.1 L310.7,117.3 L312.2,128.2 L318.0,137.0 L316.3,140.3 L314.4,162.6 L299.3,181.4 L300.5,186.5 Z","NG":"M253.5,255.6 L252.3,255.8 L253.0,254.8 L253.7,255.1 L253.5,255.6 Z M300.5,186.5 L303.9,191.1 L304.9,196.3 L308.0,198.0 L307.7,202.6 L301.2,207.6 L297.4,217.3 L295.4,218.3 L294.0,223.4 L291.5,224.5 L286.8,234.4 L287.5,235.5 L284.1,239.9 L281.9,240.4 L278.1,235.9 L276.7,237.3 L274.7,236.4 L266.6,243.8 L262.9,253.1 L260.5,252.0 L260.9,254.6 L253.4,254.7 L251.8,253.4 L252.4,254.9 L250.7,255.8 L249.5,253.3 L250.2,256.0 L248.1,255.2 L245.1,256.7 L240.8,253.9 L239.1,249.4 L240.5,247.8 L237.9,247.3 L239.8,246.7 L237.2,246.5 L232.1,241.3 L224.8,240.7 L226.8,239.4 L219.3,241.1 L219.8,221.1 L221.8,220.9 L227.3,210.8 L225.1,203.7 L226.3,195.2 L232.1,186.9 L240.0,185.2 L246.1,186.8 L250.8,191.7 L257.5,189.2 L264.3,192.4 L270.8,193.1 L277.2,189.3 L292.0,191.0 L300.5,186.5 Z","SN":"M107.7,178.2 L108.1,180.9 L109.6,182.7 L109.4,187.0 L111.0,189.4 L112.5,189.0 L114.3,192.1 L114.3,196.2 L107.6,196.7 L101.9,195.5 L101.7,194.4 L86.0,194.1 L83.1,195.5 L74.7,196.5 L74.3,195.2 L76.7,194.6 L75.5,193.8 L74.3,194.5 L74.3,191.2 L75.1,190.6 L81.2,190.5 L81.4,189.3 L85.3,188.8 L86.3,187.6 L93.0,190.0 L96.2,188.7 L86.6,185.7 L83.6,187.3 L75.8,187.3 L74.3,185.0 L75.4,184.0 L74.1,184.2 L71.3,179.5 L68.5,178.6 L71.4,177.4 L73.7,174.6 L78.2,165.4 L81.7,165.8 L87.7,164.3 L92.6,165.0 L95.8,168.3 L98.5,168.4 L100.8,172.2 L107.7,178.2 Z","SL":"M122.5,225.3 L122.0,227.6 L120.4,228.4 L119.8,230.7 L115.2,234.7 L113.4,237.1 L111.7,235.7 L106.1,233.5 L106.2,230.8 L104.6,231.1 L103.4,230.3 L102.6,227.9 L101.2,227.4 L100.3,225.8 L100.4,225.3 L101.7,225.8 L103.1,224.3 L101.0,224.7 L100.8,222.7 L101.9,222.4 L100.1,221.1 L102.1,220.7 L102.6,219.5 L104.1,218.7 L106.6,214.8 L115.2,214.1 L119.5,219.2 L119.1,220.8 L120.1,221.1 L120.9,223.8 L119.4,226.5 L120.5,226.6 L121.7,225.4 L122.5,225.3 Z M105.8,233.2 L105.7,233.3 L105.2,232.9 L102.7,232.2 L103.4,231.8 L105.2,231.7 L105.9,232.1 L105.8,233.2 Z","TG":"M205.8,206.7 L204.8,211.2 L209.0,214.1 L209.5,218.8 L211.1,221.1 L211.2,236.4 L210.5,236.5 L212.4,241.7 L208.0,243.2 L204.6,240.5 L203.1,237.5 L203.9,233.8 L202.9,232.3 L204.3,226.7 L201.9,223.3 L202.8,222.6 L203.1,218.5 L202.2,217.8 L200.9,218.1 L201.7,217.0 L201.1,216.7 L202.0,211.9 L198.5,208.7 L199.2,206.5 L198.6,205.7 L202.8,206.9 L205.8,206.7 Z","CM":"M262.9,253.1 L266.1,244.5 L272.0,238.2 L278.1,235.9 L282.8,240.5 L287.5,235.5 L290.3,226.9 L294.3,222.9 L301.2,207.6 L307.6,202.9 L308.0,198.0 L304.9,196.3 L303.9,191.1 L306.8,191.6 L311.5,200.3 L311.8,209.2 L315.7,214.0 L305.2,214.2 L303.2,216.4 L311.7,224.8 L315.0,230.9 L306.6,243.6 L311.3,259.1 L318.8,266.9 L319.3,275.7 L307.7,272.2 L273.5,272.4 L272.1,271.4 L273.0,264.4 L270.3,260.3 L271.3,258.3 L269.3,259.3 L266.2,258.1 L265.6,254.6 L263.0,254.8 L262.9,253.1 Z","CF":"M379.0,224.0 L380.1,226.8 L384.2,227.9 L387.4,233.2 L395.5,239.1 L396.6,243.3 L401.3,245.9 L403.2,250.5 L389.2,249.0 L385.8,251.5 L369.4,253.4 L366.1,257.7 L352.3,255.3 L344.4,250.3 L337.6,256.2 L337.7,262.6 L329.4,261.1 L322.9,262.4 L319.7,271.6 L318.8,266.9 L311.8,260.0 L311.3,256.6 L308.9,254.3 L306.7,243.2 L314.4,232.5 L318.0,232.6 L322.4,230.0 L324.2,232.3 L330.6,229.1 L337.4,228.6 L341.5,224.1 L339.8,222.3 L352.8,219.3 L363.3,207.9 L369.4,207.2 L375.3,215.4 L374.4,222.9 L379.0,224.0 Z","TD":"M377.7,143.3 L377.7,171.4 L369.9,172.8 L369.9,175.6 L365.8,180.2 L367.0,183.1 L363.8,185.8 L364.7,189.3 L361.7,193.3 L365.6,194.2 L367.4,202.3 L369.9,204.0 L369.4,207.2 L366.7,206.6 L361.3,209.3 L360.6,211.9 L350.6,220.6 L340.3,222.0 L341.5,224.1 L337.4,228.6 L330.6,229.1 L324.2,232.3 L322.4,230.0 L318.0,232.6 L314.4,232.5 L315.0,230.5 L311.7,224.8 L303.2,216.4 L305.2,214.2 L315.7,214.0 L311.8,209.2 L309.7,195.4 L306.8,191.6 L303.9,191.1 L300.5,186.5 L299.3,181.4 L314.4,162.6 L316.3,140.3 L318.0,137.0 L312.2,128.2 L310.7,117.3 L318.2,113.9 L377.7,143.3 Z","CG":"M282.0,317.7 L284.8,314.8 L287.6,315.8 L288.0,313.3 L285.1,309.7 L285.6,306.0 L291.8,305.9 L292.9,302.1 L295.9,305.8 L299.4,306.4 L301.4,304.5 L303.4,307.1 L306.3,302.6 L306.9,292.8 L302.4,290.1 L303.0,285.9 L306.6,281.8 L304.8,278.3 L297.6,279.2 L298.1,272.4 L307.7,272.2 L318.7,276.1 L322.9,262.4 L336.9,261.7 L337.8,263.9 L333.7,273.5 L331.4,292.6 L324.9,297.7 L319.9,304.8 L319.4,314.3 L317.4,317.8 L308.7,324.9 L306.5,324.5 L306.1,320.6 L301.3,321.7 L299.1,324.6 L294.5,321.5 L288.7,325.8 L282.0,317.7 Z","CD":"M428.2,349.6 L414.4,351.7 L414.2,354.0 L410.7,357.2 L412.4,361.8 L412.4,368.0 L410.3,374.1 L411.3,376.5 L415.6,380.5 L418.7,381.0 L421.1,379.1 L420.9,388.6 L419.3,387.2 L416.0,388.3 L410.8,381.8 L404.2,379.4 L401.4,374.8 L398.9,377.7 L393.0,377.1 L387.9,375.1 L387.5,372.0 L380.7,373.6 L380.6,371.4 L377.6,369.5 L365.1,371.9 L365.0,364.9 L361.6,359.1 L361.4,343.0 L352.6,342.7 L352.5,340.1 L347.2,340.6 L344.6,341.8 L343.2,347.9 L330.1,348.9 L321.5,332.5 L296.0,332.0 L292.3,333.3 L290.1,331.4 L292.3,331.0 L291.9,326.3 L294.7,323.8 L297.0,322.8 L299.1,324.6 L301.3,321.7 L306.1,320.6 L306.5,324.5 L308.7,324.9 L318.2,316.6 L319.9,304.8 L324.9,297.7 L331.4,292.6 L333.7,273.5 L337.8,263.9 L337.4,256.8 L341.2,252.1 L345.8,250.4 L352.3,255.3 L366.1,257.7 L369.4,253.4 L385.8,251.5 L389.2,249.0 L398.9,250.8 L401.1,249.8 L409.1,256.1 L420.2,254.4 L429.2,262.7 L428.0,270.3 L432.1,272.6 L422.2,282.4 L419.4,298.9 L414.1,306.8 L416.8,311.3 L419.2,335.6 L424.2,341.0 L428.2,349.6 Z","GQ":"M264.2,260.5 L265.5,260.5 L265.8,260.9 L265.8,261.5 L264.0,264.5 L262.3,264.2 L262.0,263.7 L262.2,262.8 L263.0,262.6 L263.8,260.7 L264.2,260.5 Z M283.5,272.4 L283.6,281.1 L273.8,281.1 L272.9,281.4 L272.2,281.1 L271.8,280.5 L270.6,280.9 L270.0,280.2 L269.0,280.1 L269.9,277.8 L270.9,276.9 L272.2,274.2 L272.1,271.4 L272.7,272.1 L273.5,272.4 L283.5,272.4 Z","GA":"M298.1,272.4 L297.6,279.2 L304.8,278.3 L306.6,281.8 L305.8,283.9 L303.0,285.9 L302.4,290.1 L306.9,292.8 L306.3,302.6 L303.4,307.1 L301.4,304.5 L299.4,306.4 L295.9,305.8 L292.9,302.1 L291.7,302.9 L291.8,305.9 L285.6,306.0 L285.1,309.7 L288.0,313.3 L287.6,315.8 L284.8,314.8 L282.0,317.7 L271.5,306.9 L274.1,307.5 L270.8,306.2 L268.4,302.7 L269.8,302.6 L268.1,302.1 L266.4,298.3 L268.5,300.7 L269.9,300.1 L268.4,299.8 L268.8,298.4 L266.7,298.2 L264.0,292.9 L265.8,293.7 L268.4,291.2 L268.8,286.0 L272.1,288.2 L273.6,287.1 L270.2,286.3 L268.6,284.4 L270.8,284.2 L270.6,280.9 L283.6,281.1 L283.7,271.4 L298.1,272.4 Z","ST":"M254.4,276.9 L254.2,277.1 L253.7,276.6 L254.4,275.9 L254.6,276.2 L254.4,276.9 Z M248.7,287.6 L248.0,288.2 L247.7,288.0 L247.3,286.8 L247.7,286.0 L248.9,285.5 L249.4,286.1 L249.4,286.7 L248.7,287.6 Z","BI":"M426.7,306.4 L425.7,308.2 L426.1,308.6 L425.8,309.9 L428.4,310.8 L428.5,312.9 L427.2,313.5 L427.3,314.0 L425.7,315.3 L423.7,319.0 L422.2,320.6 L420.5,321.7 L418.1,321.7 L417.6,319.0 L416.7,317.1 L416.8,311.3 L415.3,309.4 L415.6,307.9 L417.3,308.4 L418.0,309.5 L420.3,309.4 L421.6,308.8 L422.1,306.0 L423.5,306.5 L425.6,305.8 L426.7,306.4 Z","KM":"M530.4,378.5 L530.8,379.5 L530.6,380.6 L528.5,379.2 L529.7,379.1 L529.9,378.6 L530.4,378.5 Z M525.3,380.2 L525.8,380.7 L524.3,380.5 L524.1,379.8 L525.3,380.2 Z M522.9,377.2 L521.7,376.8 L521.1,376.1 L521.3,373.7 L521.6,373.3 L521.9,373.2 L522.3,373.5 L522.2,375.0 L523.1,376.9 L522.9,377.2 Z","DJ":"M521.2,202.9 L518.8,206.6 L516.1,206.0 L511.6,207.0 L510.5,206.8 L510.2,203.5 L510.4,201.5 L515.3,195.3 L517.2,196.3 L517.7,196.0 L518.4,194.5 L520.3,193.9 L522.0,196.4 L522.5,197.7 L522.2,198.5 L519.8,200.4 L517.9,201.1 L516.7,202.4 L515.8,202.3 L516.0,202.9 L516.3,202.9 L519.7,202.2 L521.2,202.9 Z","ER":"M471.2,182.4 L470.4,175.8 L474.1,167.2 L474.8,161.5 L477.8,161.5 L478.8,159.5 L484.1,157.6 L486.7,154.4 L489.9,161.3 L491.8,170.0 L495.5,175.9 L496.0,173.3 L498.6,176.7 L505.8,179.6 L509.4,184.4 L513.8,187.3 L514.9,190.1 L520.3,193.9 L517.2,196.3 L514.8,195.7 L503.2,183.4 L498.1,180.9 L491.1,180.7 L489.8,179.6 L485.4,181.1 L481.3,177.9 L479.0,183.2 L476.6,180.9 L474.9,182.2 L471.2,182.4 Z M497.6,168.8 L497.9,169.5 L497.0,169.1 L497.4,168.6 L497.6,168.8 Z M498.1,171.6 L498.4,172.0 L498.9,171.6 L500.1,172.1 L500.0,172.5 L496.9,172.3 L496.7,171.6 L497.2,171.9 L497.6,171.8 L497.2,171.4 L496.6,171.3 L496.6,170.9 L497.1,170.6 L496.7,170.2 L497.8,170.6 L498.0,170.9 L498.1,171.6 Z","ET":"M461.8,247.6 L457.7,238.9 L451.6,232.6 L445.0,229.3 L447.0,225.7 L453.1,224.6 L454.4,210.1 L456.6,207.5 L459.3,207.6 L460.7,200.5 L464.8,194.5 L468.1,193.8 L471.2,182.4 L476.6,180.9 L479.0,183.2 L481.3,177.9 L485.4,181.1 L490.2,179.6 L503.2,183.4 L514.8,195.7 L510.4,201.5 L510.5,206.8 L518.8,206.6 L516.8,209.6 L518.2,212.5 L526.7,221.4 L549.0,229.0 L556.5,229.0 L533.9,252.0 L523.7,252.4 L511.1,258.9 L505.6,259.0 L502.8,256.7 L495.9,259.9 L493.3,262.8 L482.8,261.4 L474.0,255.7 L467.4,255.3 L465.5,252.7 L465.4,248.7 L461.8,247.6 Z","KE":"M504.5,304.6 L504.2,304.7 L504.3,304.3 L505.1,303.7 L505.5,303.8 L505.4,304.2 L504.5,304.6 Z M451.6,296.0 L451.9,287.2 L459.7,275.3 L455.6,261.3 L452.2,257.1 L461.8,247.6 L465.4,248.7 L465.5,252.7 L467.4,255.3 L474.0,255.7 L482.8,261.4 L493.3,262.8 L495.9,259.9 L502.8,256.7 L505.6,259.0 L511.1,258.9 L504.2,267.6 L504.3,295.0 L508.5,301.2 L498.7,308.6 L492.4,323.0 L491.0,323.4 L480.7,315.9 L479.2,314.6 L479.5,311.2 L451.6,296.0 Z","MG":"M568.1,381.1 L571.1,385.9 L574.6,404.9 L572.9,407.4 L570.7,403.7 L569.0,404.1 L570.3,411.3 L567.4,416.9 L566.8,425.1 L550.5,473.2 L547.2,475.9 L535.2,478.8 L527.1,474.7 L524.4,469.5 L524.8,463.8 L521.4,455.3 L523.1,447.6 L525.4,446.3 L529.9,436.9 L526.7,418.1 L530.4,409.3 L542.9,405.8 L544.7,407.1 L545.3,404.1 L548.8,401.9 L549.9,403.5 L551.8,398.5 L552.8,400.3 L556.4,397.8 L555.0,395.6 L556.2,390.3 L558.5,390.7 L562.6,387.4 L562.5,381.4 L565.6,378.5 L568.1,381.1 Z M559.2,388.1 L559.2,388.3 L558.2,388.2 L558.1,387.3 L558.5,387.3 L558.7,386.9 L558.9,386.8 L559.2,388.1 Z M571.1,414.4 L570.2,415.8 L570.5,414.7 L571.4,413.0 L571.7,412.9 L571.1,414.4 Z","MW":"M457.7,378.7 L457.3,378.7 L457.4,378.0 L458.0,378.1 L457.7,378.7 Z M457.1,378.0 L457.0,378.4 L456.7,378.4 L456.4,378.1 L456.8,377.7 L457.1,378.0 Z M446.4,392.9 L444.9,393.0 L442.5,389.8 L444.7,387.0 L445.1,382.6 L448.7,380.5 L446.8,378.8 L446.7,373.6 L447.8,371.6 L446.9,369.7 L449.8,367.1 L444.7,358.5 L451.5,360.6 L452.3,359.3 L456.3,363.2 L456.9,371.1 L459.5,374.8 L457.0,375.1 L455.0,379.1 L456.6,388.0 L461.7,392.0 L466.5,399.5 L465.4,408.1 L462.5,408.9 L461.1,411.9 L461.8,416.0 L460.3,415.7 L460.4,413.9 L455.5,409.5 L454.2,406.9 L456.4,402.5 L456.1,397.3 L454.8,395.9 L449.7,397.0 L446.4,392.9 Z","MU":"M628.5,441.1 L626.5,441.3 L626.0,440.7 L626.4,440.5 L626.8,438.9 L627.3,438.6 L627.5,437.9 L628.0,437.5 L628.6,437.4 L629.6,439.1 L629.5,439.9 L628.5,441.1 Z","MZ":"M432.2,455.4 L440.7,447.2 L441.1,442.4 L444.9,437.4 L442.7,429.6 L444.9,425.3 L444.5,413.0 L431.8,407.9 L425.6,407.5 L424.3,400.2 L446.4,392.9 L449.7,397.0 L455.2,396.0 L456.5,401.3 L454.2,406.9 L461.8,416.0 L461.1,411.9 L462.5,408.9 L465.4,408.1 L466.5,399.5 L461.7,392.0 L456.6,388.0 L455.0,379.1 L457.0,375.1 L466.6,373.9 L469.5,375.7 L474.6,374.7 L477.5,375.8 L481.6,372.7 L485.8,373.5 L492.0,371.4 L500.5,366.5 L501.6,367.9 L500.1,372.9 L501.4,382.6 L500.3,385.2 L501.9,396.8 L502.8,395.9 L503.3,398.2 L501.2,403.8 L495.9,411.0 L490.2,415.0 L478.5,419.4 L470.3,428.3 L459.4,436.1 L457.2,435.3 L462.2,455.4 L463.2,453.3 L463.8,454.2 L463.5,467.8 L459.8,472.1 L443.4,479.5 L441.9,482.2 L443.8,484.2 L444.6,482.8 L444.1,488.5 L438.3,488.4 L437.4,470.7 L432.2,455.4 Z M457.1,378.0 L456.8,377.7 L456.4,378.1 L456.7,378.4 L457.0,378.4 L457.1,378.0 Z M457.7,378.7 L458.0,378.1 L457.4,378.0 L457.3,378.7 L457.7,378.7 Z","RW":"M419.4,298.9 L421.3,298.5 L422.1,299.5 L423.3,298.7 L425.3,296.5 L426.4,296.5 L426.1,297.0 L426.4,297.5 L428.6,300.2 L428.7,303.2 L429.1,304.5 L428.8,306.0 L426.7,306.4 L425.6,305.8 L423.5,306.5 L422.1,306.0 L421.6,308.8 L420.3,309.4 L418.0,309.5 L417.3,308.4 L415.9,307.9 L415.2,308.8 L414.5,308.5 L414.1,306.8 L416.1,304.9 L416.2,302.1 L417.7,299.8 L419.4,298.9 Z","SC":"M612.8,323.5 L612.8,324.2 L611.6,322.9 L612.2,322.5 L612.8,323.5 Z","SO":"M508.5,301.2 L504.3,295.0 L504.3,267.4 L512.1,257.7 L517.8,256.6 L523.7,252.4 L533.9,252.0 L556.5,229.0 L563.6,218.1 L563.6,204.7 L572.4,202.7 L577.4,199.3 L580.9,200.4 L579.2,210.7 L581.9,211.2 L578.5,211.6 L577.7,218.3 L556.5,255.0 L542.1,270.1 L522.9,283.9 L508.5,301.2 Z M563.6,204.7 L563.6,218.1 L556.5,229.0 L549.0,229.0 L527.0,221.6 L522.3,217.9 L516.8,209.6 L521.2,202.9 L525.8,208.2 L529.7,210.9 L533.9,210.8 L540.4,207.8 L546.0,208.5 L552.2,205.3 L563.6,204.7 Z","SS":"M452.2,257.1 L448.6,260.6 L444.9,259.6 L438.5,262.3 L436.0,260.2 L431.2,260.3 L428.8,262.5 L419.2,254.0 L416.8,255.8 L409.1,256.1 L403.9,251.5 L401.3,245.9 L396.6,243.3 L395.5,239.1 L387.4,233.2 L384.2,227.9 L380.1,226.8 L379.1,223.8 L381.9,222.3 L385.8,211.9 L391.3,210.9 L397.7,217.9 L406.8,217.0 L408.0,219.1 L414.0,219.1 L422.6,212.0 L428.2,216.1 L431.2,215.8 L440.6,205.9 L440.0,201.3 L438.0,199.1 L446.4,197.5 L445.9,208.5 L451.7,212.7 L453.1,223.9 L452.0,225.7 L447.0,225.7 L444.9,229.7 L451.6,232.6 L457.7,238.9 L461.8,247.6 L452.2,257.1 Z","TZ":"M493.3,334.5 L493.9,336.1 L493.8,336.4 L493.2,336.6 L492.8,335.8 L492.5,335.9 L491.9,335.3 L491.4,335.3 L491.0,334.5 L491.1,333.8 L491.0,332.7 L491.6,332.1 L491.9,331.2 L492.8,334.1 L493.3,334.5 Z M496.1,325.1 L496.0,327.7 L495.2,329.1 L494.4,328.5 L494.8,326.6 L494.6,325.2 L495.4,325.4 L496.1,325.1 Z M444.3,358.6 L429.8,352.2 L424.2,341.0 L419.2,335.6 L418.1,321.7 L422.2,320.6 L428.6,312.4 L425.7,309.6 L429.1,304.5 L426.5,296.5 L452.2,296.0 L479.5,311.2 L479.2,314.6 L491.3,323.5 L488.2,333.7 L493.7,340.9 L491.8,344.5 L492.9,348.2 L491.9,351.4 L495.0,363.0 L500.5,366.5 L492.0,371.4 L485.8,373.5 L481.6,372.7 L477.5,375.8 L474.6,374.7 L469.5,375.7 L466.6,373.9 L459.5,374.8 L456.9,371.1 L454.8,361.0 L452.3,359.3 L451.5,360.6 L444.3,358.6 Z M494.9,348.0 L494.5,348.1 L494.1,347.6 L496.4,345.5 L495.8,347.4 L495.3,347.5 L494.9,348.0 Z","UG":"M451.6,296.0 L428.6,295.9 L425.3,296.5 L422.1,299.5 L421.3,298.5 L419.4,298.9 L420.5,287.8 L422.2,282.4 L431.9,273.3 L431.3,271.6 L428.0,270.3 L428.8,262.5 L430.4,260.8 L434.1,261.1 L436.0,260.2 L438.5,262.3 L440.0,260.9 L444.9,259.6 L448.6,260.6 L452.2,257.1 L453.6,260.1 L455.6,261.3 L455.7,265.0 L459.1,270.1 L459.6,275.7 L458.3,279.3 L456.0,280.8 L451.9,287.2 L451.6,296.0 Z","ZM":"M425.5,405.0 L418.8,405.4 L414.5,407.6 L413.3,411.7 L407.2,414.4 L398.6,422.9 L391.8,422.2 L383.3,419.0 L373.3,419.9 L364.1,412.2 L363.3,409.7 L362.8,385.4 L377.6,385.3 L377.6,369.5 L380.6,371.4 L380.7,373.6 L387.5,372.0 L387.9,375.1 L393.0,377.1 L398.9,377.7 L401.4,374.8 L404.5,379.6 L410.8,381.8 L415.2,388.1 L419.3,387.2 L420.9,388.6 L421.1,379.1 L418.7,381.0 L415.6,380.5 L410.5,374.7 L412.5,367.1 L410.7,357.2 L414.2,354.0 L414.4,351.7 L428.2,349.6 L430.3,352.6 L446.4,360.2 L449.8,367.1 L446.9,369.7 L446.8,378.8 L448.7,380.5 L445.1,382.6 L444.7,387.0 L442.5,389.8 L446.4,392.9 L424.3,400.2 L425.5,405.0 Z","ZW":"M432.2,455.4 L417.8,453.8 L415.4,452.5 L415.3,450.9 L407.8,449.1 L405.2,445.4 L405.4,441.5 L402.3,441.1 L401.6,438.3 L394.0,434.1 L387.3,421.1 L400.4,422.3 L407.2,414.4 L413.3,411.7 L414.5,407.6 L420.6,405.1 L425.5,405.0 L425.8,407.7 L431.8,407.9 L444.5,413.0 L444.9,425.3 L442.7,429.6 L444.9,437.4 L441.1,442.4 L440.7,447.2 L432.2,455.4 Z","AO":"M296.5,323.1 L294.7,323.8 L293.0,325.6 L291.9,326.3 L292.4,326.9 L292.3,331.0 L290.1,331.4 L289.7,330.5 L290.1,329.3 L289.8,328.2 L288.7,325.8 L290.0,324.1 L290.8,324.0 L291.4,322.9 L293.3,322.3 L294.5,321.5 L295.1,321.6 L296.5,323.1 Z M377.6,369.5 L377.6,385.3 L362.8,385.4 L363.3,409.7 L364.1,412.2 L373.3,419.9 L353.7,422.7 L340.3,421.1 L336.2,418.1 L303.5,418.2 L296.7,414.9 L286.6,417.0 L286.7,406.5 L288.6,404.1 L292.6,388.6 L300.4,380.0 L302.3,370.9 L296.0,355.9 L298.8,350.9 L290.8,333.9 L297.3,332.2 L321.5,332.5 L330.1,348.9 L343.2,347.9 L344.6,341.8 L347.2,340.6 L352.5,340.1 L352.6,342.7 L361.4,343.0 L361.6,359.1 L365.0,364.9 L364.7,371.4 L377.6,369.5 Z","BW":"M387.3,421.1 L394.0,434.1 L401.6,438.3 L402.3,441.1 L405.4,441.5 L405.2,445.4 L407.8,449.1 L415.3,450.9 L417.8,453.8 L409.2,457.6 L400.9,464.1 L399.0,469.1 L392.1,472.9 L388.6,480.1 L380.4,480.3 L371.5,476.9 L367.4,483.2 L360.7,488.4 L353.2,488.3 L354.0,481.6 L351.3,475.8 L348.0,473.1 L347.9,452.4 L355.3,452.4 L355.4,425.0 L372.1,422.6 L374.9,426.0 L379.7,422.8 L387.3,421.1 Z","SZ":"M437.1,481.9 L437.9,482.3 L437.8,484.3 L438.3,486.1 L438.3,488.4 L437.4,488.3 L437.2,491.9 L433.5,491.8 L432.1,491.4 L430.5,490.5 L429.2,488.1 L428.5,487.9 L428.5,485.6 L430.7,482.0 L431.6,481.0 L432.9,480.3 L436.5,482.0 L437.1,481.9 Z","LS":"M413.2,512.7 L410.6,513.1 L408.1,516.7 L405.8,516.4 L403.1,514.3 L402.9,513.2 L401.2,510.8 L400.7,509.2 L402.4,508.4 L405.7,504.1 L412.3,501.4 L414.8,503.6 L417.4,505.2 L418.0,506.5 L417.3,508.8 L416.2,509.8 L415.9,511.4 L413.2,512.7 Z","NA":"M373.3,419.9 L383.3,419.0 L387.3,421.1 L379.7,422.8 L374.9,426.0 L372.1,422.6 L355.4,425.0 L355.3,452.4 L347.9,452.4 L348.0,500.4 L341.9,504.1 L334.0,503.6 L329.1,502.3 L328.4,499.1 L326.2,497.3 L321.6,501.7 L313.0,491.7 L307.1,468.8 L306.9,455.7 L286.8,422.6 L286.6,417.0 L296.7,414.9 L303.5,418.2 L336.2,418.1 L340.3,421.1 L353.7,422.7 L373.3,419.9 Z","ZA":"M417.8,453.8 L432.2,455.4 L437.2,470.1 L437.1,481.9 L431.6,481.0 L428.6,485.3 L428.6,488.0 L432.1,491.4 L435.6,491.9 L437.2,491.9 L437.4,488.3 L444.1,488.5 L440.3,500.8 L432.5,507.3 L424.7,519.2 L406.6,534.7 L397.4,539.6 L391.3,539.8 L389.6,542.0 L385.4,541.6 L382.3,543.1 L367.1,541.8 L361.4,544.5 L352.0,545.2 L348.3,547.6 L339.4,544.5 L338.8,542.4 L336.9,542.6 L336.6,544.4 L336.4,539.7 L332.1,533.0 L335.6,530.6 L334.8,525.0 L321.6,501.7 L324.8,498.0 L326.2,497.3 L328.4,499.1 L329.1,502.3 L342.5,503.8 L348.0,500.4 L348.0,473.1 L351.3,475.8 L354.0,481.6 L353.2,488.3 L360.7,488.4 L367.4,483.2 L370.9,477.1 L383.5,480.8 L388.6,480.1 L392.1,472.9 L399.0,469.1 L400.9,464.1 L409.2,457.6 L417.8,453.8 Z M413.2,512.7 L415.9,511.4 L416.2,509.8 L417.3,508.8 L418.0,506.5 L417.4,505.2 L414.8,503.6 L412.3,501.4 L405.7,504.1 L402.4,508.4 L400.7,509.2 L401.2,510.8 L402.9,513.2 L403.1,514.3 L405.8,516.4 L408.1,516.7 L410.6,513.1 L413.2,512.7 Z"};
+var COUNTRY_CENTROIDS = {"DZ":[218.4,78.8],"EG":[421.5,91.2],"LY":[333.2,87.2],"MA":[136.2,66.2],"SD":[422.1,169.5],"TN":[270.3,34.4],"EH":[108.2,108.1],"BJ":[216.4,216.7],"BF":[186.0,197.2],"CV":[23.1,176.2],"CI":[157.6,231.7],"GM":[84.4,188.4],"GH":[190.0,229.4],"GN":[117.7,210.9],"GW":[88.0,198.6],"LR":[129.8,240.5],"ML":[172.7,159.4],"MR":[122.1,137.7],"NE":[269.1,158.9],"NG":[259.3,217.1],"SN":[91.3,181.6],"SL":[111.4,224.8],"TG":[206.3,225.1],"CM":[294.0,246.3],"CF":[351.4,239.6],"TD":[338.1,174.3],"CG":[312.4,295.0],"CD":[375.2,310.0],"GQ":[277.1,276.9],"GA":[286.8,293.1],"ST":[248.4,286.8],"BI":[421.7,313.6],"KM":[521.9,375.3],"DJ":[516.1,201.0],"ER":[488.4,174.2],"ET":[494.2,224.3],"KE":[480.5,284.0],"MG":[546.9,432.8],"MW":[454.4,386.9],"MU":[628.0,439.5],"MZ":[463.9,417.1],"RW":[422.0,303.3],"SC":[612.3,323.2],"SO":[539.4,253.5],"SS":[424.5,234.1],"TZ":[458.3,335.3],"UG":[440.2,279.0],"ZM":[406.0,388.8],"ZW":[421.4,430.1],"AO":[329.9,380.4],"BW":[376.3,453.7],"SZ":[433.6,486.4],"LS":[409.4,508.9],"NA":[327.3,453.4],"ZA":[386.5,504.6]};
+var COUNTRY_BBOX = {"DZ":[134.5,12.3,288.3,146.9],"EG":[383.1,52.8,473.8,124.7],"LY":[268.5,41.4,386.5,143.3],"MA":[72.5,21.1,191.2,129.0],"SD":[361.7,123.2,486.7,224.0],"TN":[255.0,10.4,284.8,63.4],"EH":[71.8,82.6,134.5,133.2],"BJ":[204.9,196.3,227.7,242.2],"BF":[158.0,176.3,216.9,218.3],"CV":[10.4,160.5,30.1,178.2],"CI":[135.1,208.7,180.5,256.1],"GM":[73.8,185.7,96.2,191.2],"GH":[175.0,205.4,208.0,253.1],"GN":[87.0,194.1,141.9,234.8],"GW":[74.7,194.1,97.3,207.1],"LR":[113.4,225.3,143.8,256.1],"ML":[107.7,102.4,230.6,213.0],"MR":[72.2,85.3,163.2,178.2],"NE":[200.4,113.4,318.0,201.4],"NG":[219.3,185.2,308.0,256.7],"SN":[68.5,164.3,114.3,196.7],"SL":[100.1,214.1,122.5,237.1],"TG":[198.5,205.7,212.4,243.2],"CM":[262.9,191.1,319.3,275.7],"CF":[306.7,207.2,403.2,271.6],"TD":[299.3,113.9,377.7,232.6],"CG":[282.0,261.7,337.8,325.8],"CD":[290.1,249.0,432.1,388.6],"GQ":[262.0,260.5,283.6,281.4],"GA":[264.0,271.4,306.9,317.7],"ST":[247.3,275.9,254.6,288.2],"BI":[415.3,305.8,428.5,321.7],"KM":[521.1,373.2,530.8,380.7],"DJ":[510.2,193.9,522.5,207.0],"ER":[470.4,154.4,520.3,196.3],"ET":[445.0,177.9,556.5,262.8],"KE":[451.6,247.6,511.1,323.4],"MG":[521.4,378.5,574.6,478.8],"MW":[442.5,358.5,466.5,416.0],"MU":[626.0,437.4,629.6,441.3],"MZ":[424.3,366.5,503.3,488.5],"RW":[414.1,296.5,429.1,309.5],"SC":[611.6,322.5,612.8,324.2],"SO":[504.3,199.3,581.9,301.2],"SS":[379.1,197.5,461.8,262.5],"TZ":[418.1,296.0,500.5,375.8],"UG":[419.4,257.1,459.6,299.5],"ZM":[362.8,349.6,449.8,422.9],"ZW":[387.3,405.0,444.9,455.4],"AO":[286.6,321.5,377.6,422.7],"BW":[347.9,421.1,417.8,488.4],"SZ":[428.5,480.3,438.3,491.9],"LS":[400.7,501.4,418.0,516.7],"NA":[286.6,414.9,387.3,504.1],"ZA":[321.6,453.8,444.1,547.6]};
+var CAPITAL_POINTS = {"DZ":[221.9,14.8],"EG":[431.8,64.8],"LY":[297.4,43.6],"MA":[148.3,35.2],"SD":[441.6,173.1],"TN":[275.0,14.4],"EH":[106.7,103.6],"BJ":[218.5,240.1],"BF":[187.8,196.4],"CV":[24.0,177.3],"CI":[159.7,237.7],"GM":[76.5,188.4],"GH":[197.7,246.8],"GN":[98.0,216.7],"GW":[85.3,199.5],"LR":[119.8,241.5],"ML":[139.6,194.3],"MR":[80.1,153.8],"NE":[214.9,187.9],"NG":[254.3,220.9],"SN":[71.2,179.2],"SL":[102.7,225.3],"TG":[208.2,242.9],"CM":[284.9,259.7],"CF":[337.4,256.1],"TD":[311.3,198.2],"CG":[312.9,320.3],"CD":[319.4,319.6],"GQ":[264.5,260.6],"GA":[269.5,285.4],"ST":[249.3,286.0],"BI":[422.1,314.1],"KM":[521.3,375.7],"DJ":[517.5,201.4],"ER":[489.1,174.4],"ET":[487.7,221.3],"KE":[473.4,298.1],"MG":[553.0,429.2],"MW":[450.8,392.5],"MU":[627.4,438.7],"MZ":[441.7,482.0],"RW":[423.0,303.0],"SC":[612.1,322.9],"SO":[536.8,273.3],"SS":[434.3,252.4],"TZ":[465.4,334.4],"UG":[441.8,285.9],"ZM":[410.1,403.2],"ZW":[430.4,421.3],"AO":[297.7,354.4],"BW":[392.1,472.1],"SZ":[431.0,484.6],"LS":[403.8,506.8],"NA":[326.3,456.6],"ZA":[409.1,480.3]};
+var TINY_COUNTRIES = ["BI", "CV", "DJ", "GM", "GW", "KM", "LS", "MU", "RW", "SC", "ST", "SZ"];
+
+var TA = (function(){
   "use strict";
 
-  /* ================= DATA ================= */
   var REGION_ORDER = ["nord","ouest","centre","est","sud"];
   var REGIONS = {
-    nord:   { label:"Afrique du Nord",   color:"var(--region-nord)"   },
-    ouest:  { label:"Afrique de l'Ouest",color:"var(--region-ouest)"  },
-    centre: { label:"Afrique centrale",  color:"var(--region-centre)" },
-    est:    { label:"Afrique de l'Est",  color:"var(--region-est)"    },
-    sud:    { label:"Afrique australe",  color:"var(--region-sud)"    }
+    nord:   { label:"Afrique du Nord",    short:"Nord",    color:"var(--region-nord)"   },
+    ouest:  { label:"Afrique de l'Ouest", short:"Ouest",   color:"var(--region-ouest)"  },
+    centre: { label:"Afrique centrale",   short:"Centre",  color:"var(--region-centre)" },
+    est:    { label:"Afrique de l'Est",   short:"Est",     color:"var(--region-est)"    },
+    sud:    { label:"Afrique australe",   short:"Australe",color:"var(--region-sud)"    }
   };
 
+  // C(code, nom, capitale, région, options)
+  //  nameVariants : autres façons acceptées d'écrire le pays
+  //  capVariants  : autres orthographes acceptées de la capitale
+  //  capAlt       : autres villes acceptées (avec un rappel de la capitale officielle)
+  //  capNote      : précision affichée sous la capitale
+  function C(code, name, capital, region, o){
+    o = o || {};
+    return { code:code, name:name, capital:capital, region:region,
+             nameVariants:o.nameVariants||[], capVariants:o.capVariants||[],
+             capAlt:o.capAlt||[], capNote:o.capNote||"" };
+  }
+
   var COUNTRIES = [
-    {name:"Algérie",code:"DZ",capital:"Alger",region:"nord"},
-    {name:"Égypte",code:"EG",capital:"Le Caire",region:"nord"},
-    {name:"Libye",code:"LY",capital:"Tripoli",region:"nord"},
-    {name:"Maroc",code:"MA",capital:"Rabat",region:"nord"},
-    {name:"Soudan",code:"SD",capital:"Khartoum",region:"nord"},
-    {name:"Tunisie",code:"TN",capital:"Tunis",region:"nord"},
-    {name:"Sahara occidental",code:"EH",capital:"Laâyoune",region:"nord"},
-
-    {name:"Bénin",code:"BJ",capital:"Porto-Novo",region:"ouest"},
-    {name:"Burkina Faso",code:"BF",capital:"Ouagadougou",region:"ouest"},
-    {name:"Cap-Vert",code:"CV",capital:"Praia",region:"ouest"},
-    {name:"Côte d'Ivoire",code:"CI",capital:"Yamoussoukro",region:"ouest"},
-    {name:"Gambie",code:"GM",capital:"Banjul",region:"ouest"},
-    {name:"Ghana",code:"GH",capital:"Accra",region:"ouest"},
-    {name:"Guinée",code:"GN",capital:"Conakry",region:"ouest"},
-    {name:"Guinée-Bissau",code:"GW",capital:"Bissau",region:"ouest"},
-    {name:"Libéria",code:"LR",capital:"Monrovia",region:"ouest"},
-    {name:"Mali",code:"ML",capital:"Bamako",region:"ouest"},
-    {name:"Mauritanie",code:"MR",capital:"Nouakchott",region:"ouest"},
-    {name:"Niger",code:"NE",capital:"Niamey",region:"ouest"},
-    {name:"Nigéria",code:"NG",capital:"Abuja",region:"ouest"},
-    {name:"Sénégal",code:"SN",capital:"Dakar",region:"ouest"},
-    {name:"Sierra Leone",code:"SL",capital:"Freetown",region:"ouest"},
-    {name:"Togo",code:"TG",capital:"Lomé",region:"ouest"},
-
-    {name:"Cameroun",code:"CM",capital:"Yaoundé",region:"centre"},
-    {name:"République centrafricaine",code:"CF",capital:"Bangui",region:"centre"},
-    {name:"Tchad",code:"TD",capital:"N'Djamena",region:"centre"},
-    {name:"Congo",code:"CG",capital:"Brazzaville",region:"centre"},
-    {name:"République démocratique du Congo",code:"CD",capital:"Kinshasa",region:"centre"},
-    {name:"Guinée équatoriale",code:"GQ",capital:"Malabo",region:"centre"},
-    {name:"Gabon",code:"GA",capital:"Libreville",region:"centre"},
-    {name:"Sao Tomé-et-Principe",code:"ST",capital:"São Tomé",region:"centre"},
-
-    {name:"Burundi",code:"BI",capital:"Gitega",region:"est"},
-    {name:"Comores",code:"KM",capital:"Moroni",region:"est"},
-    {name:"Djibouti",code:"DJ",capital:"Djibouti",region:"est"},
-    {name:"Érythrée",code:"ER",capital:"Asmara",region:"est"},
-    {name:"Éthiopie",code:"ET",capital:"Addis-Abeba",region:"est"},
-    {name:"Kenya",code:"KE",capital:"Nairobi",region:"est"},
-    {name:"Madagascar",code:"MG",capital:"Antananarivo",region:"est"},
-    {name:"Malawi",code:"MW",capital:"Lilongwe",region:"est"},
-    {name:"Maurice",code:"MU",capital:"Port-Louis",region:"est"},
-    {name:"Mozambique",code:"MZ",capital:"Maputo",region:"est"},
-    {name:"Rwanda",code:"RW",capital:"Kigali",region:"est"},
-    {name:"Seychelles",code:"SC",capital:"Victoria",region:"est"},
-    {name:"Somalie",code:"SO",capital:"Mogadiscio",region:"est"},
-    {name:"Soudan du Sud",code:"SS",capital:"Djouba",region:"est"},
-    {name:"Tanzanie",code:"TZ",capital:"Dodoma",region:"est"},
-    {name:"Ouganda",code:"UG",capital:"Kampala",region:"est"},
-    {name:"Zambie",code:"ZM",capital:"Lusaka",region:"est"},
-    {name:"Zimbabwe",code:"ZW",capital:"Harare",region:"est"},
-
-    {name:"Angola",code:"AO",capital:"Luanda",region:"sud"},
-    {name:"Botswana",code:"BW",capital:"Gaborone",region:"sud"},
-    {name:"Eswatini",code:"SZ",capital:"Mbabane",region:"sud"},
-    {name:"Lesotho",code:"LS",capital:"Maseru",region:"sud"},
-    {name:"Namibie",code:"NA",capital:"Windhoek",region:"sud"},
-    {name:"Afrique du Sud",code:"ZA",capital:"Pretoria",region:"sud"}
+    // Afrique du Nord
+    C("DZ","Algérie","Alger","nord"),
+    C("EG","Égypte","Le Caire","nord",{capVariants:["Cairo"]}),
+    C("LY","Libye","Tripoli","nord"),
+    C("MA","Maroc","Rabat","nord"),
+    C("SD","Soudan","Khartoum","nord"),
+    C("TN","Tunisie","Tunis","nord"),
+    C("EH","Sahara occidental","Laâyoune","nord",{nameVariants:["Sahara"],capVariants:["El Aaiun","El Aaiún","Laayoune"],capNote:"Territoire disputé"}),
+    // Afrique de l'Ouest
+    C("BJ","Bénin","Porto-Novo","ouest",{capNote:"Le gouvernement siège à Cotonou",
+       capAlt:[{v:"Cotonou",tip:"Porto-Novo est la capitale officielle ; Cotonou est le siège du gouvernement."}]}),
+    C("BF","Burkina Faso","Ouagadougou","ouest",{nameVariants:["Burkina"]}),
+    C("CV","Cap-Vert","Praia","ouest",{nameVariants:["Cabo Verde"]}),
+    C("CI","Côte d'Ivoire","Yamoussoukro","ouest",{capNote:"Capitale économique : Abidjan",
+       capAlt:[{v:"Abidjan",tip:"Yamoussoukro est la capitale officielle ; Abidjan est la capitale économique."}]}),
+    C("GM","Gambie","Banjul","ouest"),
+    C("GH","Ghana","Accra","ouest"),
+    C("GN","Guinée","Conakry","ouest"),
+    C("GW","Guinée-Bissau","Bissau","ouest"),
+    C("LR","Libéria","Monrovia","ouest"),
+    C("ML","Mali","Bamako","ouest"),
+    C("MR","Mauritanie","Nouakchott","ouest"),
+    C("NE","Niger","Niamey","ouest"),
+    C("NG","Nigéria","Abuja","ouest"),
+    C("SN","Sénégal","Dakar","ouest"),
+    C("SL","Sierra Leone","Freetown","ouest"),
+    C("TG","Togo","Lomé","ouest"),
+    // Afrique centrale
+    C("CM","Cameroun","Yaoundé","centre"),
+    C("CF","République centrafricaine","Bangui","centre",{nameVariants:["Centrafrique","RCA"]}),
+    C("TD","Tchad","N'Djamena","centre"),
+    C("CG","Congo","Brazzaville","centre",{nameVariants:["République du Congo","Congo-Brazzaville","Congo Brazzaville"]}),
+    C("CD","République démocratique du Congo","Kinshasa","centre",{nameVariants:["Congo","RDC","RD Congo","Congo-Kinshasa","Congo Kinshasa"]}),
+    C("GQ","Guinée équatoriale","Malabo","centre"),
+    C("GA","Gabon","Libreville","centre"),
+    C("ST","Sao Tomé-et-Principe","São Tomé","centre",{nameVariants:["Sao Tomé","Sao Tome"],capVariants:["Sao Tomé","Sao Tome"]}),
+    // Afrique de l'Est
+    C("BI","Burundi","Gitega","est",{capNote:"Avant 2019 : Bujumbura",
+       capAlt:[{v:"Bujumbura",tip:"Gitega est la capitale depuis 2019 ; Bujumbura était l'ancienne capitale."}]}),
+    C("KM","Comores","Moroni","est"),
+    C("DJ","Djibouti","Djibouti","est"),
+    C("ER","Érythrée","Asmara","est"),
+    C("ET","Éthiopie","Addis-Abeba","est",{capVariants:["Addis Ababa","Addis-Abéba"]}),
+    C("KE","Kenya","Nairobi","est"),
+    C("MG","Madagascar","Antananarivo","est",{capVariants:["Tananarive"]}),
+    C("MW","Malawi","Lilongwe","est"),
+    C("MU","Maurice","Port-Louis","est",{nameVariants:["Île Maurice","Ile Maurice"]}),
+    C("MZ","Mozambique","Maputo","est"),
+    C("RW","Rwanda","Kigali","est"),
+    C("SC","Seychelles","Victoria","est"),
+    C("SO","Somalie","Mogadiscio","est",{capVariants:["Mogadishu","Mogadisho","Mogadisco"]}),
+    C("SS","Soudan du Sud","Djouba","est",{nameVariants:["Sud-Soudan","Sud Soudan"],capVariants:["Juba"]}),
+    C("TZ","Tanzanie","Dodoma","est",{capNote:"Plus grande ville : Dar es Salaam",
+       capAlt:[{v:"Dar es Salaam",tip:"Dodoma est la capitale officielle ; Dar es Salaam est la plus grande ville."}]}),
+    C("UG","Ouganda","Kampala","est"),
+    C("ZM","Zambie","Lusaka","est"),
+    C("ZW","Zimbabwe","Harare","est"),
+    // Afrique australe
+    C("AO","Angola","Luanda","sud"),
+    C("BW","Botswana","Gaborone","sud"),
+    C("SZ","Eswatini","Mbabane","sud",{nameVariants:["Swaziland"],capNote:"Capitale législative : Lobamba",
+       capAlt:[{v:"Lobamba",tip:"Mbabane est la capitale administrative ; Lobamba est la capitale législative et royale."}]}),
+    C("LS","Lesotho","Maseru","sud"),
+    C("NA","Namibie","Windhoek","sud"),
+    C("ZA","Afrique du Sud","Pretoria","sud",{capNote:"3 capitales : Pretoria (exécutive), Le Cap (législative), Bloemfontein (judiciaire)",
+       capAlt:[{v:"Le Cap",tip:"L'Afrique du Sud a 3 capitales : Pretoria (exécutive), Le Cap (législative) et Bloemfontein (judiciaire)."},
+               {v:"Cape Town",tip:"L'Afrique du Sud a 3 capitales : Pretoria (exécutive), Le Cap (législative) et Bloemfontein (judiciaire)."},
+               {v:"Bloemfontein",tip:"L'Afrique du Sud a 3 capitales : Pretoria (exécutive), Le Cap (législative) et Bloemfontein (judiciaire)."}]})
   ];
 
-  /* ================= MAP DATA (frontières réelles, générées depuis Natural Earth 1:50m) ================= */
+  COUNTRIES.sort(function(a,b){ return a.name.localeCompare(b.name,"fr"); });
 
-  /* ================= UTILITIES ================= */
-  function flagEmoji(code){
-    return code.toUpperCase().replace(/./g, function(c){
-      return String.fromCodePoint(127397 + c.charCodeAt(0));
-    });
-  }
+  var byCode = {};
+
+  // ---------- normalisation ----------
   function norm(s){
-    return s.normalize("NFD").replace(new RegExp("[\\u0300-\\u036f]","g"),"").toLowerCase();
+    return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
   }
-  function strictNorm(s){
-    return norm(s).replace(/[^a-z0-9]/g,"");
+  // clé de comparaison : sans accents, sans majuscules, sans ponctuation, sans article initial
+  function keyOf(s){
+    var t = norm(s).trim().replace(/^(le |la |les |l['’]\s*)/,"");
+    return t.replace(/[^a-z0-9]/g,"");
   }
   function levenshtein(a,b){
-    var m=a.length, n=b.length;
+    var m=a.length, n=b.length, i, j;
     if(m===0) return n;
     if(n===0) return m;
-    var prev = new Array(n+1);
-    var cur = new Array(n+1);
-    for(var j=0;j<=n;j++) prev[j]=j;
-    for(var i=1;i<=m;i++){
+    var prev=new Array(n+1), cur=new Array(n+1);
+    for(j=0;j<=n;j++) prev[j]=j;
+    for(i=1;i<=m;i++){
       cur[0]=i;
-      for(var j2=1;j2<=n;j2++){
-        var cost = a.charAt(i-1)===b.charAt(j2-1) ? 0 : 1;
-        cur[j2] = Math.min(prev[j2]+1, cur[j2-1]+1, prev[j2-1]+cost);
+      for(j=1;j<=n;j++){
+        var cost = a.charAt(i-1)===b.charAt(j-1) ? 0 : 1;
+        cur[j] = Math.min(prev[j]+1, cur[j-1]+1, prev[j-1]+cost);
       }
-      var tmp = prev; prev = cur; cur = tmp;
+      var t=prev; prev=cur; cur=t;
     }
     return prev[n];
   }
-  // tolère les accents manquants et les petites fautes de frappe, sans accepter un autre vrai pays
-  // noms courts/usuels tolérés en plus du nom officiel
-  var NAME_ALIASES = {
-    CD: ["congo","rdc","rd congo","congo kinshasa"],
-    CF: ["centrafrique","rca"],
-    SZ: ["swaziland"],
-    ST: ["sao tome","saotome"]
-  };
-  function isCloseEnough(input, correctCountry){
-    var a = strictNorm(input);
-    var b = strictNorm(correctCountry.name);
-    if(!a) return false;
-    if(a===b) return true;
-    var aliases = NAME_ALIASES[correctCountry.code];
-    if(aliases){
-      for(var k=0;k<aliases.length;k++){
-        if(a===strictNorm(aliases[k])) return true;
+  function threshold(len){ return len<=3 ? 0 : (len<=6 ? 1 : (len<=12 ? 2 : 3)); }
+
+  COUNTRIES.forEach(function(c){
+    byCode[c.code] = c;
+    c.nameKeys = [c.name].concat(c.nameVariants).map(keyOf);
+    c.capKeys  = [c.capital].concat(c.capVariants).map(keyOf);
+    c.altKeys  = c.capAlt.map(function(a){ return { key:keyOf(a.v), v:a.v, tip:a.tip }; });
+  });
+
+  // meilleure distance entre la saisie et une liste de clés acceptées (Infinity si trop loin)
+  function bestDistance(a, keys){
+    var best = Infinity;
+    for(var i=0;i<keys.length;i++){
+      var k = keys[i];
+      if(a===k) return 0;
+      var d = levenshtein(a,k);
+      if(d<=threshold(k.length) && d<best) best=d;
+    }
+    return best;
+  }
+  function closerElsewhere(a, best, c, pick){
+    for(var i=0;i<COUNTRIES.length;i++){
+      var o = COUNTRIES[i];
+      if(o.code===c.code) continue;
+      var keys = pick(o);
+      for(var j=0;j<keys.length;j++){
+        if(keys[j]===a) return true;
+        if(levenshtein(a,keys[j])<best) return true;
       }
     }
-    var maxLen = Math.max(a.length, b.length);
-    var threshold = maxLen<=6 ? 1 : (maxLen<=12 ? 2 : 3);
-    var distToTarget = levenshtein(a,b);
-    if(distToTarget > threshold) return false;
-    for(var i=0;i<COUNTRIES.length;i++){
-      var other = COUNTRIES[i];
-      if(other.code===correctCountry.code) continue;
-      var ob = strictNorm(other.name);
-      if(ob===a && distToTarget>0) return false;
-      if(levenshtein(a,ob) < distToTarget) return false;
-    }
-    return true;
+    return false;
   }
+
+  // Le pays : tolère accents, majuscules, articles, alias et petites fautes de frappe.
+  function checkName(input, c){
+    var a = keyOf(input);
+    if(!a) return { ok:false };
+    if(c.nameKeys.indexOf(a)!==-1) return { ok:true };
+    var best = bestDistance(a, c.nameKeys);
+    if(best===Infinity) return { ok:false };
+    if(closerElsewhere(a, best, c, function(o){ return o.nameKeys; })) return { ok:false };
+    return { ok:true };
+  }
+
+  // La capitale : idem, et accepte aussi les autres villes « officielles » avec un rappel.
+  function checkCapital(input, c){
+    var a = keyOf(input);
+    if(!a) return { ok:false };
+    if(c.capKeys.indexOf(a)!==-1) return { ok:true };
+    var i, alt;
+    for(i=0;i<c.altKeys.length;i++){
+      if(c.altKeys[i].key===a) return { ok:true, tip:c.altKeys[i].tip };
+    }
+    var pool = function(o){ return o.capKeys.concat(o.altKeys.map(function(x){ return x.key; })); };
+    var best = bestDistance(a, c.capKeys);
+    if(best!==Infinity){
+      if(closerElsewhere(a, best, c, pool)) return { ok:false };
+      return { ok:true };
+    }
+    for(i=0;i<c.altKeys.length;i++){
+      var d = bestDistance(a, [c.altKeys[i].key]);
+      if(d!==Infinity && !closerElsewhere(a, d, c, pool)) return { ok:true, tip:c.altKeys[i].tip };
+    }
+    return { ok:false };
+  }
+
+  // Barème vaudois : note de 1 à 6, arrondie au dixième (4 = suffisant).
+  function vaudNote(points, total){
+    if(!total) return 1;
+    var n = 1 + 5*points/total;
+    n = Math.max(1, Math.min(6, n));
+    return Math.round(n*10)/10;
+  }
+  function noteLabel(n){
+    if(n>=5.5) return "Excellent";
+    if(n>=4.5) return "Très bien";
+    if(n>=4)   return "Suffisant";
+    if(n>=3)   return "Insuffisant, presque !";
+    return "À retravailler";
+  }
+
   function shuffle(arr){
     var a = arr.slice();
     for(var i=a.length-1;i>0;i--){
@@ -708,621 +854,675 @@
     }
     return a;
   }
-  var byCode = {};
-  COUNTRIES.forEach(function(c){ byCode[c.code]=c; });
 
-  // barème vaudois : note = 1 + (points/max)*5, arrondie au dixième
-  function vaudNote(score, max){
-    var n = 1 + (score/max)*5;
-    n = Math.max(1, Math.min(6, n));
-    return Math.round(n*10)/10;
+  return {
+    REGION_ORDER:REGION_ORDER, REGIONS:REGIONS, COUNTRIES:COUNTRIES, byCode:byCode,
+    norm:norm, keyOf:keyOf, levenshtein:levenshtein,
+    checkName:checkName, checkCapital:checkCapital,
+    vaudNote:vaudNote, noteLabel:noteLabel, shuffle:shuffle
+  };
+})();
+
+(function(){
+  "use strict";
+
+  const COUNTRIES = TA.COUNTRIES, byCode = TA.byCode, REGIONS = TA.REGIONS, REGION_ORDER = TA.REGION_ORDER;
+  const shuffle = TA.shuffle, checkName = TA.checkName, checkCapital = TA.checkCapital;
+  const vaudNote = TA.vaudNote, noteLabel = TA.noteLabel;
+  const TEST_DATE = null; // ex. new Date(2026, 9, 15) pour afficher un compte à rebours
+  const TOTAL = COUNTRIES.length;
+
+  const $ = id => document.getElementById(id);
+  const qsa = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const VB = MAP_VIEWBOX.split(" ").map(Number), MAP_W = VB[2];
+  const TINY = {}; TINY_COUNTRIES.forEach(c => { TINY[c] = true; });
+
+  function svgEl(tag, cls, attrs){
+    const e = document.createElementNS(SVGNS, tag);
+    if(cls) e.setAttribute("class", cls);
+    if(attrs) for(const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
   }
-  function noteLabel(n){
-    if(n>=5.5) return "Excellent 🌟";
-    if(n>=4.5) return "Très bien";
-    if(n>=4)   return "Suffisant ✅";
-    if(n>=3)   return "Insuffisant, mais proche";
-    return "À retravailler";
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, ch => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" }[ch]));
   }
+  function restartAnim(el, cls){ el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
 
-  /* ================= STATE ================= */
-  var STORE_KEY = "tayanaAfrica.v3";
-  var state = { known:[], quizBest:0 };
-  try{
-    var raw = localStorage.getItem(STORE_KEY);
-    if(raw){ var parsed = JSON.parse(raw); if(parsed && parsed.known) state = parsed; }
-  }catch(e){}
-  function saveState(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} }
-  function isKnown(code){ return state.known.indexOf(code) !== -1; }
-  function toggleKnown(code){
-    var i = state.known.indexOf(code);
-    if(i!==-1) state.known.splice(i,1); else state.known.push(code);
-    saveState();
-    refreshKnownUI();
+  /* ================= ÉTAT (sauvegardé sur l'appareil) ================= */
+  const STORE_KEY = "tayanaAfrique.v4", OLD_KEY = "tayanaAfrica.v3";
+  function defaults(){
+    return { knownC:[], knownK:[], best:{},
+      prefs:{ zone:"all", ecMode:"both", quizMode:"mix", fichesMode:"carte", onlyReviewF:false, onlyReviewE:false, caps:false } };
   }
-  var progressChip = document.getElementById("progressChip");
-  var lastKnownCount = state.known.length;
-  function refreshKnownUI(){
-    var newCount = state.known.length;
-    progressChip.textContent = "🍀 " + newCount + "/55 récoltés";
-    if(newCount !== lastKnownCount){
-      progressChip.classList.remove("bump"); void progressChip.offsetWidth; progressChip.classList.add("bump");
-      lastKnownCount = newCount;
-    }
-    if(selectedCountry) renderDetail(selectedCountry);
-    document.querySelectorAll(".country-shape").forEach(function(g){
-      g.classList.toggle("known", isKnown(g.getAttribute("data-code")));
-    });
-    document.querySelectorAll(".flashcard").forEach(function(card){
-      var code = card.getAttribute("data-code");
-      var known = isKnown(code);
-      card.classList.toggle("known", known);
-      var btn = card.querySelector(".know-btn");
-      btn.textContent = known ? "✅ Retenue !" : "🍀 Je la sais";
-      btn.classList.toggle("is-known", known);
-    });
-    applyFlashFilter();
-    document.querySelectorAll(".country-row").forEach(function(row){
-      row.classList.toggle("is-known", isKnown(row.getAttribute("data-code")));
-    });
-  }
-
-  /* ================= COUNTDOWN ================= */
-  (function(){
-    var TEST_DATE = new Date(2026, 8, 8); // 8 septembre 2026
-    var now = new Date();
-    var today0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    var days = Math.round((TEST_DATE - today0) / 86400000);
-    var el = document.getElementById("countdownMsg");
-    if(days > 1){
-      el.innerHTML = "Encore <strong>" + days + " jours</strong> avant le test — on continue tranquillement 🍀";
-    } else if(days === 1){
-      el.innerHTML = "Ton test est <strong>demain</strong> — dernière ligne droite, tu gères 💪🍀";
-    } else if(days === 0){
-      el.innerHTML = "Ton test est <strong>aujourd'hui</strong> — un dernier tour et fonce 💪🌸";
-    } else {
-      el.innerHTML = "J'espère que ton test s'est <strong>super bien passé</strong> 🎉 — continue à réviser si tu veux !";
-    }
-  })();
-
-  /* ================= BOTTOM NAV ================= */
-  var navButtons = document.querySelectorAll(".bnav-btn");
-  var panelNames = ["carte","fiches","quiz","repertoire"];
-  navButtons.forEach(function(btn){
-    btn.addEventListener("click", function(){
-      var tab = btn.getAttribute("data-tab");
-      navButtons.forEach(function(b){ b.setAttribute("aria-selected", b===btn ? "true":"false"); });
-      panelNames.forEach(function(name){
-        var panel = document.getElementById("panel-"+name);
-        if(name===tab){
-          panel.hidden = false;
-          panel.classList.remove("enter"); void panel.offsetWidth; panel.classList.add("enter");
-        } else {
-          panel.hidden = true;
-        }
-      });
-      window.scrollTo({top:0, behavior: reduceMotion ? "auto" : "smooth"});
-    });
-  });
-
-  /* ================= CLOVER FIELD ================= */
-  var cloverField = document.getElementById("cloverField");
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var emojis = ["🍀","🍀","🍀","✨","🍀"];
-  function spawnClover(){
-    var span = document.createElement("span");
-    span.className = "clover-particle";
-    span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    var left = Math.random()*100;
-    var duration = 7 + Math.random()*7;
-    var drift = (Math.random()*100-50).toFixed(0)+"px";
-    var spin = (Math.random()*360).toFixed(0)+"deg";
-    span.style.left = left+"%";
-    span.style.fontSize = (1+Math.random()*1.0).toFixed(2)+"rem";
-    span.style.setProperty("--drift", drift);
-    span.style.setProperty("--spin", spin);
-    span.style.animationDuration = duration+"s";
-    cloverField.appendChild(span);
-    span.addEventListener("animationend", function(){ span.remove(); });
-  }
-  if(!reduceMotion){
-    setInterval(spawnClover, 1500);
-    for(var s=0;s<2;s++) setTimeout(spawnClover, s*500);
-  }
-
-  /* ================= MAP (frontières réelles) ================= */
-  var svgNS = "http://www.w3.org/2000/svg";
-  var selectedCountry = null;
-
-  function buildMapInto(svgEl, mode, onSelect){
-    svgEl.innerHTML = "";
-    svgEl.setAttribute("viewBox", MAP_VIEWBOX);
-    var group = document.createElementNS(svgNS,"g");
-    group.setAttribute("class", mode==="explore" ? "map-countries" : "");
-    svgEl.appendChild(group);
-
-    var hoverLabel = null;
-    if(mode==="explore"){
-      hoverLabel = document.createElementNS(svgNS,"text");
-      hoverLabel.setAttribute("class","hover-label");
-    }
-
-    var shapesByCode = {};
-    COUNTRIES.forEach(function(c, i){
-      var d = COUNTRY_PATHS[c.code];
-      if(!d) return;
-      var path = document.createElementNS(svgNS,"path");
-      path.setAttribute("d", d);
-      path.setAttribute("data-code", c.code);
-      if(mode==="explore"){
-        path.setAttribute("class","country-shape");
-        path.style.setProperty("--d", (i*0.012).toFixed(3)+"s");
-        path.setAttribute("fill", REGIONS[c.region].color);
-        path.setAttribute("tabindex","0");
-        path.setAttribute("role","button");
-        path.setAttribute("aria-label", c.name);
-        path.addEventListener("mouseenter", function(){
-          var ctr = COUNTRY_CENTROIDS[c.code];
-          if(ctr && hoverLabel){
-            hoverLabel.setAttribute("x", ctr[0]);
-            hoverLabel.setAttribute("y", ctr[1]);
-            hoverLabel.textContent = c.name;
-            hoverLabel.classList.add("visible");
-          }
-        });
-        path.addEventListener("mouseleave", function(){
-          if(hoverLabel) hoverLabel.classList.remove("visible");
-        });
-        var activate = function(){ if(onSelect) onSelect(c, path); };
-        path.addEventListener("mousedown", function(e){ e.preventDefault(); });
-        path.addEventListener("click", activate);
-        path.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); activate(); } });
-        group.appendChild(path);
+  let S = defaults();
+  (function load(){
+    try{
+      const raw = localStorage.getItem(STORE_KEY);
+      if(raw){
+        const p = JSON.parse(raw);
+        S.knownC = (p.knownC || []).filter(c => byCode[c]);
+        S.knownK = (p.knownK || []).filter(c => byCode[c]);
+        S.best = p.best || {};
+        S.prefs = Object.assign(defaults().prefs, p.prefs || {});
       } else {
-        path.setAttribute("class","display-shape");
-        svgEl.appendChild(path);
+        const old = JSON.parse(localStorage.getItem(OLD_KEY) || "null");
+        if(old && Array.isArray(old.known)) S.knownC = old.known.filter(c => byCode[c]);
       }
-      shapesByCode[c.code] = path;
+    }catch(e){}
+  })();
+  function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(S)); }catch(e){} }
+  const isC = code => S.knownC.indexOf(code) !== -1;
+  const isK = code => S.knownK.indexOf(code) !== -1;
+  function setKnown(kind, code, val){
+    const arr = kind === "c" ? S.knownC : S.knownK, i = arr.indexOf(code);
+    if(val && i === -1) arr.push(code); else if(!val && i !== -1) arr.splice(i, 1);
+  }
+  function commit(){ save(); refreshProgress(); }
+
+  /* ================= CARTE : outils communs ================= */
+  function buildDefs(){
+    const defs = $("svgDefs"); let all = "";
+    COUNTRIES.forEach(c => {
+      defs.appendChild(svgEl("path", null, { id:"p-" + c.code, d:COUNTRY_PATHS[c.code] }));
+      all += COUNTRY_PATHS[c.code] + " ";
     });
-    if(hoverLabel) svgEl.appendChild(hoverLabel);
-    return shapesByCode;
+    defs.appendChild(svgEl("path", null, { id:"p-all", d:all }));
+  }
+  function ringR(code){
+    const b = COUNTRY_BBOX[code];
+    return Math.max(16, Math.hypot(b[2] - b[0], b[3] - b[1]) * 0.75);
+  }
+  function miniMapHTML(code){
+    const ct = COUNTRY_CENTROIDS[code];
+    const ring = TINY[code] ? '<circle class="mm-ring" cx="' + ct[0] + '" cy="' + ct[1] + '" r="' + ringR(code) + '"/>' : "";
+    return '<svg class="mini-map" viewBox="' + MAP_VIEWBOX + '" aria-hidden="true">' +
+      '<use href="#p-all" xlink:href="#p-all" class="mm-base"/>' +
+      '<use href="#p-' + code + '" xlink:href="#p-' + code + '" class="mm-target"/>' + ring + '</svg>';
+  }
+  function placeCapital(dot, label, code, text){
+    const p = CAPITAL_POINTS[code];
+    dot.setAttribute("cx", p[0]); dot.setAttribute("cy", p[1]);
+    label.textContent = text;
+    const x = Math.min(MAP_W - 62, Math.max(62, p[0]));
+    let y = p[1] - 13; if(y < 24) y = p[1] + 30;
+    label.setAttribute("x", x); label.setAttribute("y", y);
+  }
+  // carte d'affichage : le pays visé est colorié, la capitale peut être révélée
+  function makeDisplayMap(svg){
+    svg.setAttribute("viewBox", MAP_VIEWBOX);
+    const shapes = {}, g = svgEl("g");
+    COUNTRIES.forEach(c => {
+      const p = svgEl("path", "display-shape", { d:COUNTRY_PATHS[c.code] });
+      g.appendChild(p); shapes[c.code] = p;
+    });
+    svg.appendChild(g);
+    const ring = svgEl("circle", "target-ring", { r:0 }), dot = svgEl("circle", "cap-dot sel pulse", { r:5.5 }), label = svgEl("text", "cap-label");
+    ring.style.display = "none"; dot.style.display = "none"; label.style.display = "none";
+    svg.appendChild(ring); svg.appendChild(dot); svg.appendChild(label);
+    const api = {
+      setTarget(code){
+        for(const k in shapes) shapes[k].classList.toggle("target", k === code);
+        if(code && TINY[code]){
+          const ct = COUNTRY_CENTROIDS[code];
+          ring.setAttribute("cx", ct[0]); ring.setAttribute("cy", ct[1]); ring.setAttribute("r", ringR(code)); ring.style.display = "";
+        } else ring.style.display = "none";
+        api.hideCapital();
+      },
+      showCapital(code){ placeCapital(dot, label, code, byCode[code].capital); dot.style.display = ""; label.style.display = ""; },
+      hideCapital(){ dot.style.display = "none"; label.style.display = "none"; }
+    };
+    return api;
   }
 
-  function buildDisplayMap(svgEl, targetCode){
-    var shapes = buildMapInto(svgEl, "display", null);
-    if(targetCode && shapes[targetCode]) shapes[targetCode].classList.add("target");
-    return shapes;
+  /* ================= ZONE (partagée entre les exercices) ================= */
+  const inZone = c => S.prefs.zone === "all" || c.region === S.prefs.zone;
+  const zoneList = () => COUNTRIES.filter(inZone);
+  function renderZoneChips(){
+    const opts = [["all", "Toute l'Afrique"]].concat(REGION_ORDER.map(k => [k, REGIONS[k].short]));
+    qsa("[data-zone-chips]").forEach(box => {
+      box.innerHTML = "";
+      opts.forEach(o => {
+        const b = document.createElement("button");
+        b.className = "chip"; b.textContent = o[1];
+        b.setAttribute("aria-pressed", S.prefs.zone === o[0] ? "true" : "false");
+        b.addEventListener("click", () => setZone(o[0]));
+        box.appendChild(b);
+      });
+    });
+  }
+  function setZone(z){
+    S.prefs.zone = z; save();
+    renderZoneChips(); renderFiches(); updateQuizStart(); updateEcSetup();
+  }
+  function setSeg(id, attr, value){
+    qsa("button", $(id)).forEach(b => b.setAttribute("aria-pressed", b.getAttribute(attr) === value ? "true" : "false"));
+  }
+  function onSeg(id, attr, fn){
+    $(id).addEventListener("click", e => {
+      const b = e.target.closest("button");
+      if(b && $(id).contains(b)) fn(b.getAttribute(attr));
+    });
   }
 
-  function renderDetail(c){
-    var el = document.getElementById("countryDetail");
-    var known = isKnown(c.code);
+  /* ================= NAVIGATION ================= */
+  const PANELS = ["carte", "fiches", "quiz", "liste"];
+  qsa(".bnav-btn").forEach(btn => btn.addEventListener("click", () => {
+    const tab = btn.getAttribute("data-tab");
+    qsa(".bnav-btn").forEach(b => b.setAttribute("aria-selected", b === btn ? "true" : "false"));
+    PANELS.forEach(name => {
+      const p = $("panel-" + name);
+      if(name === tab){ p.hidden = false; restartAnim(p, "enter"); } else p.hidden = true;
+    });
+    window.scrollTo(0, 0);
+  }));
+
+  /* ================= TRÈFLES ================= */
+  const cloverField = $("cloverField");
+  let ambientPaused = false;
+  function spawnClover(){
+    const span = document.createElement("span");
+    span.className = "clover-particle";
+    span.textContent = Math.random() < .15 ? "✨" : "🍀";
+    span.style.left = (Math.random() * 100) + "%";
+    span.style.fontSize = (1 + Math.random()).toFixed(2) + "rem";
+    span.style.setProperty("--drift", (Math.random() * 100 - 50).toFixed(0) + "px");
+    span.style.setProperty("--spin", (Math.random() * 360).toFixed(0) + "deg");
+    span.style.animationDuration = (7 + Math.random() * 7) + "s";
+    cloverField.appendChild(span);
+    span.addEventListener("animationend", () => span.remove());
+  }
+  function burst(n){ if(reduceMotion) return; for(let i = 0; i < n; i++) setTimeout(spawnClover, i * 45); }
+  if(!reduceMotion) setInterval(() => { if(!ambientPaused && !document.hidden) spawnClover(); }, 1700);
+
+  /* ================= PROGRESSION ================= */
+  let lastTotal = -1;
+  function heroMessage(){
+    const nc = S.knownC.length, nk = S.knownK.length;
+    let msg;
+    if(nc + nk === 0) msg = "Nouvelle mission : les <strong>capitales</strong> 🏛️ Explore la carte, puis lance un ✍️ Écriture.";
+    else if(nc === TOTAL && nk === TOTAL) msg = "🏆 Tout est maîtrisé, <strong>bravo</strong> ! Refais un test blanc pour rester au top.";
+    else msg = "Il te reste <strong>" + (TOTAL - nc) + " pays</strong> et <strong>" + (TOTAL - nk) + " capitales</strong> à maîtriser. Lance un ✍️ Écriture !";
+    if(TEST_DATE){
+      const now = new Date(), d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const days = Math.round((TEST_DATE - d0) / 86400000);
+      if(days > 1) msg = "⏳ Test dans <strong>" + days + " jours</strong>. " + msg;
+      else if(days === 1) msg = "⏳ Ton test est <strong>demain</strong> ! " + msg;
+      else if(days === 0) msg = "⏳ Ton test est <strong>aujourd'hui</strong> ! " + msg;
+    }
+    return msg;
+  }
+  function refreshProgress(){
+    const nc = S.knownC.length, nk = S.knownK.length, chip = $("progressChip");
+    chip.textContent = "🍀 " + (nc + nk) + "/" + (TOTAL * 2);
+    if(lastTotal !== -1 && lastTotal !== nc + nk) restartAnim(chip, "bump");
+    lastTotal = nc + nk;
+    $("pbCTxt").textContent = nc + "/" + TOTAL; $("pbKTxt").textContent = nk + "/" + TOTAL;
+    $("pbCBar").style.width = (nc / TOTAL * 100) + "%"; $("pbKBar").style.width = (nk / TOTAL * 100) + "%";
+    $("heroMsg").innerHTML = heroMessage();
+    updateExploreKnown(); updateDetailButtons(); updateFlashBadges(); updateListBadges();
+  }
+
+  /* ================= CARTE À EXPLORER ================= */
+  const exploreShapes = {}, capDots = {};
+  let selCode = null, selDot = null, selLabel = null, selRing = null;
+
+  function buildExplore(){
+    const svg = $("africaMap");
+    svg.setAttribute("viewBox", MAP_VIEWBOX);
+    const g = svgEl("g", "map-countries"), hits = svgEl("g"), capLayer = svgEl("g", "cap-layer");
+    COUNTRIES.forEach((c, i) => {
+      const p = svgEl("path", "country-shape", { d:COUNTRY_PATHS[c.code], "data-code":c.code, fill:REGIONS[c.region].color,
+        tabindex:"0", role:"button", "aria-label":c.name });
+      p.style.setProperty("--d", (i * 0.01).toFixed(3) + "s");
+      const pick = () => selectCountry(c.code, true);
+      p.addEventListener("mousedown", e => e.preventDefault());
+      p.addEventListener("click", pick);
+      p.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); pick(); } });
+      g.appendChild(p); exploreShapes[c.code] = p;
+      if(TINY[c.code]){
+        const ct = COUNTRY_CENTROIDS[c.code];
+        const h = svgEl("circle", "tiny-hit", { cx:ct[0], cy:ct[1], r:10 });
+        h.addEventListener("click", pick); hits.appendChild(h);
+      }
+      const cp = CAPITAL_POINTS[c.code];
+      const d = svgEl("circle", "cap-dot", { cx:cp[0], cy:cp[1], r:3.6 });
+      capLayer.appendChild(d); capDots[c.code] = d;
+    });
+    svg.appendChild(g); svg.appendChild(hits); svg.appendChild(capLayer);
+    selRing = svgEl("circle", "target-ring", { r:0 }); selRing.style.display = "none";
+    selDot = svgEl("circle", "cap-dot sel pulse", { r:5.5 }); selDot.style.display = "none";
+    selLabel = svgEl("text", "cap-label"); selLabel.style.display = "none";
+    svg.appendChild(selRing); svg.appendChild(selDot); svg.appendChild(selLabel);
+    svg.classList.toggle("show-caps", !!S.prefs.caps);
+
+    const legend = $("mapLegend");
+    REGION_ORDER.forEach(k => {
+      const it = document.createElement("span");
+      it.className = "legend-item";
+      it.innerHTML = '<span class="legend-dot" style="background:' + REGIONS[k].color + '"></span>' + esc(REGIONS[k].label);
+      legend.appendChild(it);
+    });
+  }
+  function selectCountry(code, byUser){
+    if(selCode) exploreShapes[selCode].classList.remove("active");
+    selCode = code; exploreShapes[code].classList.add("active");
+    renderDetail(code);
+    placeCapital(selDot, selLabel, code, byCode[code].capital);
+    selDot.style.display = ""; selLabel.style.display = "";
+    if(TINY[code]){
+      const ct = COUNTRY_CENTROIDS[code];
+      selRing.setAttribute("cx", ct[0]); selRing.setAttribute("cy", ct[1]); selRing.setAttribute("r", ringR(code)); selRing.style.display = "";
+    } else selRing.style.display = "none";
+    const el = $("countryDetail");
+    restartAnim(el, "flash");
+    if(byUser) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block:"nearest" });
+  }
+  function renderDetail(code){
+    const c = byCode[code], el = $("countryDetail");
     el.innerHTML =
-      '<div class="detail-flag">'+flagEmoji(c.code)+'</div>'+
-      '<h3>'+c.name+'</h3>'+
-      '<p class="detail-row"><span class="eyebrow">Capitale</span><br>'+c.capital+'</p>'+
-      '<span class="region-badge" style="--c:'+REGIONS[c.region].color+'">'+REGIONS[c.region].label+'</span>'+
-      '<button class="know-btn'+(known?' is-known':'')+'" id="detailKnowBtn">'+(known?'✅ Retenu !':'🍀 Marquer comme sue')+'</button>';
-    document.getElementById("detailKnowBtn").addEventListener("click", function(){ toggleKnown(c.code); });
+      '<div class="detail-top"><h3>' + esc(c.name) + '</h3><span class="region-badge" style="--c:' + REGIONS[c.region].color + '">' + esc(REGIONS[c.region].label) + '</span></div>' +
+      '<div class="detail-cap"><span class="eyebrow">Capitale</span><strong>' + esc(c.capital) + '</strong>' + (c.capNote ? '<small>' + esc(c.capNote) + '</small>' : "") + '</div>' +
+      '<div class="detail-actions"><button class="know-btn" data-kind="c"></button><button class="know-btn" data-kind="k"></button></div>';
+    qsa(".know-btn", el).forEach(b => b.addEventListener("click", () => {
+      const kind = b.getAttribute("data-kind");
+      setKnown(kind, code, !(kind === "c" ? isC(code) : isK(code))); commit();
+    }));
+    updateDetailButtons();
   }
-
-  function buildLegend(){
-    var legend = document.getElementById("mapLegend");
-    legend.innerHTML = "";
-    REGION_ORDER.forEach(function(key){
-      var r = REGIONS[key];
-      var item = document.createElement("span");
-      item.className = "legend-item";
-      item.innerHTML = '<span class="legend-dot" style="background:'+r.color+'"></span>'+r.label;
-      legend.appendChild(item);
-    });
+  function updateDetailButtons(){
+    if(!selCode) return;
+    const bc = document.querySelector('.know-btn[data-kind="c"]'), bk = document.querySelector('.know-btn[data-kind="k"]');
+    if(!bc || !bk) return;
+    bc.classList.toggle("is-known", isC(selCode)); bc.textContent = isC(selCode) ? "✅ Pays retenu" : "🍀 Je connais le pays";
+    bk.classList.toggle("is-known", isK(selCode)); bk.textContent = isK(selCode) ? "✅ Capitale retenue" : "🍀 Je connais la capitale";
   }
-
-  function selectCountry(c, path, fromUserClick){
-    Object.keys(exploreShapes).forEach(function(code){ exploreShapes[code].classList.remove("active"); });
-    path.classList.add("active");
-    selectedCountry = c;
-    renderDetail(c);
-    var detailEl = document.getElementById("countryDetail");
-    detailEl.classList.remove("flash"); void detailEl.offsetWidth; detailEl.classList.add("flash");
-    if(fromUserClick){
-      detailEl.scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block:"nearest"});
-    }
+  function updateExploreKnown(){
+    for(const code in exploreShapes) exploreShapes[code].classList.toggle("known-both", isC(code) && isK(code));
   }
-
-  var exploreShapes = buildMapInto(document.getElementById("africaMap"), "explore", function(c,path){ selectCountry(c,path,true); });
-  buildLegend();
-  var defaultCountry = byCode["SN"];
-  if(defaultCountry && exploreShapes["SN"]) selectCountry(defaultCountry, exploreShapes["SN"], false);
-
-  /* ================= FLASHCARDS ================= */
-  var flashGrid = document.getElementById("flashGrid");
-  var currentRegionFilter = "all";
-  var flashOrder = COUNTRIES.slice();
-
-  function buildRegionFilter(){
-    var wrap = document.getElementById("regionFilter");
-    var allBtn = document.createElement("button");
-    allBtn.className = "pill-btn"; allBtn.textContent = "Tous"; allBtn.setAttribute("aria-pressed","true");
-    allBtn.addEventListener("click", function(){ setRegionFilter("all", allBtn); });
-    wrap.appendChild(allBtn);
-    REGION_ORDER.forEach(function(key){
-      var btn = document.createElement("button");
-      btn.className = "pill-btn"; btn.textContent = REGIONS[key].label; btn.setAttribute("aria-pressed","false");
-      btn.addEventListener("click", function(){ setRegionFilter(key, btn); });
-      wrap.appendChild(btn);
-    });
-    function setRegionFilter(key, activeBtn){
-      currentRegionFilter = key;
-      wrap.querySelectorAll(".pill-btn").forEach(function(b){ b.setAttribute("aria-pressed", b===activeBtn?"true":"false"); });
-      applyFlashFilter();
-    }
-  }
-
-  function renderFlashcards(){
-    flashGrid.innerHTML = "";
-    flashOrder.forEach(function(c){
-      var card = document.createElement("div");
-      card.className = "flashcard";
-      card.setAttribute("data-code", c.code);
-      card.setAttribute("data-region", c.region);
-      card.innerHTML =
-        '<div class="flashcard-inner">'+
-          '<div class="flashcard-face flashcard-front" style="--region-color:'+REGIONS[c.region].color+'">'+
-            '<div class="mini-map-wrap"><svg class="mini-map"></svg></div>'+
-            '<span class="region-tag">'+REGIONS[c.region].label+'</span>'+
-          '</div>'+
-          '<div class="flashcard-face flashcard-back">'+
-            '<h3>'+flagEmoji(c.code)+' '+c.name+'</h3>'+
-            '<p>Capitale&nbsp;: '+c.capital+'</p>'+
-            '<button class="know-btn">🍀 Je la sais</button>'+
-          '</div>'+
-        '</div>';
-      var miniSvg = card.querySelector(".mini-map");
-      if(miniSvg) buildDisplayMap(miniSvg, c.code);
-      card.addEventListener("click", function(e){
-        if(e.target.classList.contains("know-btn")) return;
-        card.classList.toggle("flipped");
-      });
-      card.querySelector(".know-btn").addEventListener("click", function(e){
-        e.stopPropagation();
-        toggleKnown(c.code);
-      });
-      flashGrid.appendChild(card);
-    });
-    refreshKnownUI();
-  }
-
-  function applyFlashFilter(){
-    var onlyUnknown = document.getElementById("onlyUnknown").checked;
-    document.querySelectorAll(".flashcard").forEach(function(card){
-      var code = card.getAttribute("data-code");
-      var region = card.getAttribute("data-region");
-      var show = (currentRegionFilter==="all" || region===currentRegionFilter) && (!onlyUnknown || !isKnown(code));
-      card.style.display = show ? "" : "none";
-    });
-  }
-  document.getElementById("onlyUnknown").addEventListener("change", applyFlashFilter);
-  document.getElementById("shuffleBtn").addEventListener("click", function(){
-    flashOrder = shuffle(flashOrder);
-    renderFlashcards();
-    if(!reduceMotion){
-      document.querySelectorAll(".flashcard").forEach(function(card, i){
-        setTimeout(function(){
-          card.classList.remove("shuffle-pulse"); void card.offsetWidth; card.classList.add("shuffle-pulse");
-        }, i*12);
-      });
-    }
+  $("capToggle").addEventListener("click", () => {
+    S.prefs.caps = !S.prefs.caps; save();
+    $("africaMap").classList.toggle("show-caps", S.prefs.caps);
+    $("capToggle").setAttribute("aria-pressed", S.prefs.caps ? "true" : "false");
+    $("capToggle").textContent = S.prefs.caps ? "📍 Cacher les capitales" : "📍 Montrer les capitales";
+    $("mapHint").textContent = S.prefs.caps ? "1 point = 1 capitale" : "";
   });
 
-  buildRegionFilter();
-  renderFlashcards();
+  /* ================= FICHES ================= */
+  let flashOrder = COUNTRIES.map(c => c.code);
+  function frontHTML(c, mode){
+    if(mode === "pays") return '<span class="ico">🌍</span><span class="big">' + esc(c.name) + '</span><span class="tag">Capitale ?</span>';
+    if(mode === "capitale") return '<span class="ico">🏛️</span><span class="big">' + esc(c.capital) + '</span><span class="tag">Quel pays ?</span>';
+    return '<div class="mini-map-wrap">' + miniMapHTML(c.code) + '</div><span class="tag">' + esc(REGIONS[c.region].label) + '</span>';
+  }
+  function renderFiches(){
+    const grid = $("flashGrid"), mode = S.prefs.fichesMode;
+    grid.innerHTML = "";
+    let list = flashOrder.map(code => byCode[code]).filter(inZone);
+    if(S.prefs.onlyReviewF) list = list.filter(c => !(isC(c.code) && isK(c.code)));
+    if(!list.length){
+      grid.innerHTML = '<p class="empty">Rien à revoir ici 🎉<br>Décoche « À revoir seulement » ou change de zone.</p>';
+      return;
+    }
+    list.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "fcard"; card.setAttribute("data-code", c.code);
+      card.innerHTML =
+        '<div class="fcard-inner">' +
+          '<div class="fface ffront" style="--rc:' + REGIONS[c.region].color + '"><span class="badge"></span>' + frontHTML(c, mode) + '</div>' +
+          '<div class="fface fback"><h3>' + esc(c.name) + '</h3><p class="cap">🏛️ <b>' + esc(c.capital) + '</b></p>' +
+            (mode === "carte" ? "" : '<div class="mini-map-wrap small">' + miniMapHTML(c.code) + '</div>') +
+            '<button class="fknow"></button></div>' +
+        '</div>';
+      card.addEventListener("click", e => { if(!e.target.classList.contains("fknow")) card.classList.toggle("flipped"); });
+      card.querySelector(".fknow").addEventListener("click", e => {
+        e.stopPropagation();
+        const both = isC(c.code) && isK(c.code);
+        setKnown("c", c.code, !both); setKnown("k", c.code, !both); commit();
+      });
+      grid.appendChild(card);
+    });
+    updateFlashBadges();
+  }
+  function updateFlashBadges(){
+    qsa(".fcard").forEach(card => {
+      const code = card.getAttribute("data-code"), both = isC(code) && isK(code), one = isC(code) || isK(code);
+      card.querySelector(".badge").textContent = both ? "🍀" : (one ? "🌱" : "");
+      const b = card.querySelector(".fknow");
+      b.textContent = both ? "✅ Retenue" : "🍀 Je la sais"; b.classList.toggle("is-known", both);
+    });
+  }
+  onSeg("fichesMode", "data-mode", m => { S.prefs.fichesMode = m; save(); setSeg("fichesMode", "data-mode", m); renderFiches(); });
+  $("onlyReviewFiches").addEventListener("change", e => { S.prefs.onlyReviewF = e.target.checked; save(); renderFiches(); });
+  $("shuffleBtn").addEventListener("click", () => {
+    flashOrder = shuffle(flashOrder); renderFiches();
+    if(!reduceMotion) qsa(".fcard").forEach((c, i) => setTimeout(() => restartAnim(c, "pulse"), i * 12));
+  });
 
   /* ================= QUIZ ================= */
-  var quizQuestions = [], quizIndex = 0, quizScore = 0;
-  var quizStartEl = document.getElementById("quizStart");
-  var quizPlayEl = document.getElementById("quizPlay");
-  var quizEndEl = document.getElementById("quizEnd");
-  var quizBestScoreEl = document.getElementById("quizBestScore");
-  if(state.quizBest) quizBestScoreEl.textContent = state.quizBest + "/12 (" + vaudNote(state.quizBest,12).toFixed(1) + "/6)";
+  const Q = { mode:"mix", items:[], i:0, score:0, mistakes:[], answered:false, session:0 };
+  let quizView = null;
 
-  var quizShapes = null;
-  function ensureQuizMap(){
-    if(quizShapes) return;
-    quizShapes = buildMapInto(document.getElementById("quizMap"), "display", null);
-  }
-  function highlightQuizCountry(code){
-    Object.keys(quizShapes).forEach(function(k){
-      quizShapes[k].classList.toggle("target", k===code);
-    });
-  }
-
-  function startQuiz(){
-    ensureQuizMap();
-    quizQuestions = shuffle(COUNTRIES).slice(0,12);
-    quizIndex = 0; quizScore = 0;
-    quizStartEl.hidden = true; quizEndEl.hidden = true; quizPlayEl.hidden = false;
-    renderQuizQuestion();
-  }
-
-  function renderQuizQuestion(){
-    var c = quizQuestions[quizIndex];
-    document.getElementById("quizIndex").textContent = (quizIndex+1);
-    document.getElementById("quizScore").textContent = quizScore;
-    document.getElementById("quizProgressBar").style.width = ((quizIndex)/12*100)+"%";
-    highlightQuizCountry(c.code);
-    var others = shuffle(COUNTRIES.filter(function(x){ return x.code!==c.code; })).slice(0,3);
-    var options = shuffle(others.concat([c]));
-    var optWrap = document.getElementById("quizOptions");
-    optWrap.innerHTML = "";
-    var nextBtn = document.getElementById("quizNextBtn");
-    nextBtn.hidden = true;
-    options.forEach(function(o){
-      var btn = document.createElement("button");
-      btn.className = "quiz-opt";
-      btn.textContent = o.name;
-      btn.addEventListener("click", function(){
-        document.querySelectorAll(".quiz-opt").forEach(function(b){ b.disabled = true; });
-        if(o.code===c.code){
-          btn.classList.add("correct");
-          quizScore++;
-          if(!reduceMotion) for(var i=0;i<8;i++) setTimeout(spawnClover, i*60);
-        } else {
-          btn.classList.add("wrong");
-          optWrap.querySelectorAll(".quiz-opt").forEach(function(b){
-            if(b.textContent===c.name) b.classList.add("correct");
-          });
-        }
-        document.getElementById("quizScore").textContent = quizScore;
-        nextBtn.hidden = false;
-        nextBtn.focus();
-      });
-      optWrap.appendChild(btn);
-    });
-  }
-
-  document.getElementById("quizNextBtn").addEventListener("click", function(){
-    quizIndex++;
-    if(quizIndex>=quizQuestions.length){
-      endQuiz();
-    } else {
-      renderQuizQuestion();
+  function distractors(c, labelOf, n){
+    const seen = {}; seen[labelOf(c)] = true;
+    const same = shuffle(COUNTRIES.filter(o => o.code !== c.code && o.region === c.region));
+    const rest = shuffle(COUNTRIES.filter(o => o.region !== c.region));
+    const order = same.slice(0, 2).concat(rest, same.slice(2)), out = [];
+    for(let i = 0; i < order.length && out.length < n; i++){
+      const l = labelOf(order[i]);
+      if(!seen[l]){ seen[l] = true; out.push(order[i]); }
     }
-  });
-
+    return out;
+  }
+  function makeQuestion(c, type){
+    const labelOf = type === "cap" ? (o => o.capital) : (o => o.name);
+    const opts = shuffle(distractors(c, labelOf, 3).concat([c])).map(o => ({ label:labelOf(o), code:o.code }));
+    return { type:type, c:c, options:opts, correct:labelOf(c) };
+  }
+  function buildQuiz(mode){
+    const pool = shuffle(zoneList()).slice(0, 12);
+    const kinds = mode === "pays" ? ["place"] : (mode === "cap" ? ["cap"] : ["place", "cap", "rev"]);
+    const types = shuffle(pool.map((_, i) => kinds[i % kinds.length]));
+    return pool.map((c, i) => makeQuestion(c, types[i]));
+  }
+  function updateQuizStart(){
+    setSeg("quizModeSeg", "data-mode", S.prefs.quizMode);
+    const b = S.best[S.prefs.quizMode];
+    $("quizBest").innerHTML = b ? "Meilleure note : <strong>" + b.note.toFixed(1) + "/6</strong> (" + b.score + "/" + b.total + ")" : "Pas encore de note pour ce quiz. À toi de jouer !";
+  }
+  function showQuiz(which){
+    $("quizStart").hidden = which !== "start"; $("quizPlay").hidden = which !== "play"; $("quizEnd").hidden = which !== "end";
+  }
+  function startQuiz(){
+    Q.session++; Q.mode = S.prefs.quizMode; Q.items = buildQuiz(Q.mode); Q.i = 0; Q.score = 0; Q.mistakes = [];
+    showQuiz("play"); renderQ();
+  }
+  function renderQ(){
+    const q = Q.items[Q.i]; Q.answered = false;
+    $("qBar").style.width = (Q.i / Q.items.length * 100) + "%";
+    $("qMeta").textContent = "Question " + (Q.i + 1) + "/" + Q.items.length + " · Score : " + Q.score;
+    quizView.setTarget(q.type === "rev" ? null : q.c.code);
+    const blk = $("qBlock");
+    if(q.type === "place") blk.hidden = true;
+    else { blk.hidden = false; $("qBlockLabel").textContent = q.type === "cap" ? "Pays" : "Capitale"; $("qBlockText").textContent = q.type === "cap" ? q.c.name : q.c.capital; }
+    $("qQuestion").textContent = q.type === "place" ? "Quel est ce pays ?" : (q.type === "cap" ? "Quelle est sa capitale ?" : "De quel pays est-ce la capitale ?");
+    const box = $("qOptions"); box.innerHTML = "";
+    q.options.forEach(o => {
+      const b = document.createElement("button");
+      b.className = "quiz-opt"; b.textContent = o.label; b.setAttribute("data-code", o.code);
+      b.addEventListener("click", () => answerQ(b, o, q));
+      box.appendChild(b);
+    });
+    $("qFeedback").textContent = ""; $("qFeedback").className = "q-feedback"; $("qNext").hidden = true;
+  }
+  function answerQ(btn, o, q){
+    if(Q.answered) return; Q.answered = true;
+    const tok = Q.session, ok = o.code === q.c.code;
+    qsa(".quiz-opt").forEach(b => { b.disabled = true; if(b.getAttribute("data-code") === q.c.code) b.classList.add("correct"); });
+    if(!ok) btn.classList.add("wrong");
+    quizView.setTarget(q.c.code); quizView.showCapital(q.c.code);
+    const fb = $("qFeedback");
+    if(ok){
+      Q.score++; burst(6);
+      fb.className = "q-feedback ok"; fb.textContent = "✅ " + q.c.name + " → " + q.c.capital;
+      setTimeout(() => { if(tok === Q.session) nextQ(); }, 950);
+    } else {
+      Q.mistakes.push(q.c);
+      fb.className = "q-feedback bad"; fb.innerHTML = "❌ C'était : <b>" + esc(q.correct) + "</b><small>" + esc(q.c.name) + " → " + esc(q.c.capital) + "</small>";
+      $("qNext").hidden = false; $("qNext").focus();
+    }
+    $("qMeta").textContent = "Question " + (Q.i + 1) + "/" + Q.items.length + " · Score : " + Q.score;
+  }
+  function nextQ(){
+    Q.i++;
+    if(Q.i >= Q.items.length) endQuiz(); else renderQ();
+  }
+  function recapHTML(list, title){
+    if(!list.length) return "";
+    return "<h4>" + title + "</h4><ul>" + list.map(c => "<li><span>" + esc(c.name) + "</span><b>" + esc(c.capital) + "</b></li>").join("") + "</ul>";
+  }
   function endQuiz(){
-    document.getElementById("quizProgressBar").style.width = "100%";
-    quizPlayEl.hidden = true;
-    quizEndEl.hidden = false;
-    var title = document.getElementById("quizEndTitle");
-    var text = document.getElementById("quizEndText");
-    var emoji = document.getElementById("quizEndEmoji");
-    if(quizScore>state.quizBest){ state.quizBest = quizScore; saveState(); }
-    var note = vaudNote(quizScore, 12);
-    quizBestScoreEl.textContent = state.quizBest + "/12 (" + vaudNote(state.quizBest,12).toFixed(1) + "/6)";
-    document.getElementById("quizNoteBig").textContent = note.toFixed(1) + "/6";
-    document.getElementById("quizNoteLabel").textContent = "Barème vaudois — " + noteLabel(note);
-    if(quizScore>=11){ emoji.textContent="🏆"; title.textContent="Perfection, Tayana !"; text.textContent="Score : "+quizScore+"/12 — tu es prête à 200% pour le vrai test !"; }
-    else if(quizScore>=9){ emoji.textContent="🎉"; title.textContent="Super score !"; text.textContent="Score : "+quizScore+"/12 — tu es prête pour le test !"; }
-    else if(quizScore>=6){ emoji.textContent="💪"; title.textContent="Pas mal du tout !"; text.textContent="Score : "+quizScore+"/12 — encore un petit tour de fiches et ce sera parfait."; }
-    else { emoji.textContent="📚"; title.textContent="On continue !"; text.textContent="Score : "+quizScore+"/12 — direction les fiches mémo pour réviser encore un peu."; }
-    if(quizScore>=9 && !reduceMotion) for(var i=0;i<30;i++) setTimeout(spawnClover, i*40);
+    Q.session++;
+    const total = Q.items.length, note = vaudNote(Q.score, total);
+    $("qBar").style.width = "100%";
+    const prev = S.best[Q.mode];
+    if(!prev || note > prev.note){ S.best[Q.mode] = { note:note, score:Q.score, total:total }; save(); }
+    const good = note >= 5.5 ? ["🏆", "Perfection, Tayana !"] : note >= 4.5 ? ["🎉", "Super score !"] : note >= 4 ? ["💪", "C'est suffisant, on continue !"] : ["📚", "On retourne aux fiches !"];
+    $("qEndEmoji").textContent = good[0]; $("qEndTitle").textContent = good[1];
+    $("qEndText").textContent = Q.score + " bonne" + (Q.score > 1 ? "s" : "") + " réponse" + (Q.score > 1 ? "s" : "") + " sur " + total + ".";
+    $("qNoteBig").textContent = note.toFixed(1) + "/6"; $("qNoteLabel").textContent = "Barème vaudois · " + noteLabel(note);
+    const r = $("qRecap"); r.innerHTML = recapHTML(Q.mistakes, "À revoir"); r.hidden = !Q.mistakes.length;
+    showQuiz("end"); updateQuizStart();
+    if(note >= 4.5) burst(30);
   }
+  onSeg("quizModeSeg", "data-mode", m => { S.prefs.quizMode = m; save(); updateQuizStart(); });
+  $("quizStartBtn").addEventListener("click", startQuiz);
+  $("qNext").addEventListener("click", nextQ);
+  $("qRetry").addEventListener("click", startQuiz);
+  $("qMenu").addEventListener("click", () => { Q.session++; showQuiz("start"); });
 
-  document.getElementById("quizStartBtn").addEventListener("click", startQuiz);
-  document.getElementById("quizRetryBtn").addEventListener("click", startQuiz);
-
-  /* ================= REPERTOIRE ================= */
-  var repertoireList = document.getElementById("repertoireList");
-  function renderRepertoire(){
-    repertoireList.innerHTML = "";
-    REGION_ORDER.forEach(function(key){
-      var group = COUNTRIES.filter(function(c){ return c.region===key; });
-      var details = document.createElement("details");
-      details.className = "region-group";
-      details.open = true;
-      details.setAttribute("data-region", key);
-      var summary = document.createElement("summary");
-      summary.style.setProperty("--rc", REGIONS[key].color);
-      summary.innerHTML = REGIONS[key].label + ' <span class="count">('+group.length+' pays)</span>';
-      details.appendChild(summary);
-      group.forEach(function(c){
-        var row = document.createElement("div");
-        row.className = "country-row" + (isKnown(c.code) ? " is-known":"");
-        row.setAttribute("data-code", c.code);
-        row.setAttribute("data-search", norm(c.name+" "+c.capital));
-        row.innerHTML =
-          '<span class="flag">'+flagEmoji(c.code)+'</span>'+
-          '<span class="cname">'+c.name+'</span>'+
-          '<span class="cknown">🍀</span>'+
-          '<span class="ccap">Capitale : '+c.capital+'</span>';
-        details.appendChild(row);
+  /* ================= LISTE ================= */
+  let hideMode = "none";
+  function renderList(){
+    const body = $("listBody"); body.innerHTML = "";
+    REGION_ORDER.forEach(key => {
+      const group = COUNTRIES.filter(c => c.region === key);
+      const d = document.createElement("details");
+      d.className = "region-group"; d.open = true; d.setAttribute("data-region", key);
+      d.innerHTML = '<summary style="--rc:' + REGIONS[key].color + '">' + esc(REGIONS[key].label) + ' <span class="count">(' + group.length + ' pays)</span></summary>';
+      group.forEach(c => {
+        const row = document.createElement("div");
+        row.className = "lrow"; row.setAttribute("data-code", c.code);
+        row.setAttribute("data-search", TA.norm([c.name, c.capital].concat(c.nameVariants, c.capVariants, c.capAlt.map(a => a.v)).join(" ")));
+        row.innerHTML = '<span class="lc">' + esc(c.name) + '</span><span class="lk">' + esc(c.capital) + (c.capNote ? "<small>" + esc(c.capNote) + "</small>" : "") + '</span><span class="lb"></span>';
+        row.addEventListener("click", () => { if(hideMode !== "none") row.classList.toggle("revealed"); });
+        d.appendChild(row);
       });
-      repertoireList.appendChild(details);
+      body.appendChild(d);
+    });
+    updateListBadges();
+  }
+  function updateListBadges(){
+    qsa(".lrow").forEach(row => {
+      const code = row.getAttribute("data-code");
+      row.querySelector(".lb").textContent = isC(code) && isK(code) ? "🍀" : (isC(code) || isK(code) ? "🌱" : "");
     });
   }
-  document.getElementById("searchInput").addEventListener("input", function(e){
-    var q = norm(e.target.value.trim());
-    document.querySelectorAll(".region-group").forEach(function(group){
-      var anyVisible = false;
-      group.querySelectorAll(".country-row").forEach(function(row){
-        var match = !q || row.getAttribute("data-search").indexOf(q)!==-1;
-        row.hidden = !match;
-        if(match) anyVisible = true;
+  function applyHide(){
+    const body = $("listBody");
+    body.classList.toggle("hide-c", hideMode === "c"); body.classList.toggle("hide-k", hideMode === "k");
+    qsa(".lrow").forEach(r => r.classList.remove("revealed"));
+    $("listNote").textContent = hideMode === "none" ? "" : "Touche une ligne pour révéler la réponse cachée.";
+  }
+  onSeg("hideSeg", "data-hide", m => { hideMode = m; setSeg("hideSeg", "data-hide", m); applyHide(); });
+  $("searchInput").addEventListener("input", e => {
+    const q = TA.norm(e.target.value.trim());
+    let any = false;
+    qsa(".region-group").forEach(g => {
+      let vis = false;
+      qsa(".lrow", g).forEach(r => {
+        const m = !q || r.getAttribute("data-search").indexOf(q) !== -1;
+        r.hidden = !m; if(m) vis = true;
       });
-      group.hidden = !anyVisible;
-      group.open = true;
+      g.hidden = !vis; if(vis) any = true;
     });
+    $("listNote").textContent = any ? (hideMode === "none" ? "" : "Touche une ligne pour révéler la réponse cachée.") : "Aucun résultat.";
   });
-  renderRepertoire();
 
   /* ================= MODE ÉCRITURE ================= */
-  var ecritureShapes = null;
-  var ecriState = null;
+  const EC = { session:0, mode:"both", queue:[], total:0, done:0, current:null, phase:"idle", seen:{}, first:false,
+               points:0, maxPoints:0, missed:[], needsRequeue:false };
+  let ecView = null;
 
-  function ensureEcritureMap(){
-    if(ecritureShapes) return;
-    ecritureShapes = buildMapInto(document.getElementById("ecritureMap"), "display", null);
+  function ecPool(){
+    const m = S.prefs.ecMode;
+    let list = zoneList();
+    if(S.prefs.onlyReviewE) list = list.filter(c => m === "pays" ? !isC(c.code) : (m === "cap" ? !isK(c.code) : !(isC(c.code) && isK(c.code))));
+    return list;
   }
+  function updateEcSetup(){
+    qsa("#ecSetup .opt").forEach(b => b.setAttribute("aria-pressed", b.getAttribute("data-mode") === S.prefs.ecMode ? "true" : "false"));
+    $("ecOnlyReview").checked = !!S.prefs.onlyReviewE;
+    const n = ecPool().length, fields = S.prefs.ecMode === "both" ? 2 : 1;
+    $("ecInfo").textContent = n ? n + " pays · " + (n * fields) + " point" + (n * fields > 1 ? "s" : "") + " à gagner" : "Rien à revoir dans cette zone 🎉";
+    $("ecStart").disabled = !n;
+  }
+  function ecScreen(which){
+    $("ecSetup").hidden = which !== "setup"; $("ecPlay").hidden = which !== "play"; $("ecEnd").hidden = which !== "end";
+    $("ecBarWrap").hidden = which === "setup";
+    if(which === "setup") $("ecCount").textContent = "";
+    $("ecOverlay").scrollTop = 0;
+  }
+  function ecOpen(){
+    EC.session++; EC.phase = "idle"; ambientPaused = true;
+    $("ecOverlay").hidden = false; document.body.style.overflow = "hidden";
+    restartAnim($("ecOverlay"), "opening");
+    updateEcSetup(); ecScreen("setup");
+  }
+  function ecClose(){
+    EC.session++; EC.phase = "idle"; ambientPaused = false;
+    $("ecOverlay").hidden = true; document.body.style.overflow = "";
+  }
+  function ecLater(ms, fn){ const tok = EC.session; setTimeout(() => { if(tok === EC.session) fn(); }, ms); }
 
-  function highlightEcritureCountry(code){
-    Object.keys(ecritureShapes).forEach(function(k){
-      ecritureShapes[k].classList.toggle("target", k===code);
+  function ecStartWith(items, mode){
+    EC.session++; EC.mode = mode; EC.queue = shuffle(items); EC.total = items.length; EC.done = 0; EC.seen = {};
+    EC.points = 0; EC.maxPoints = items.length * (mode === "both" ? 2 : 1); EC.missed = []; EC.current = null;
+    ecScreen("play"); ecNext();
+  }
+  function ecUpdateCount(){
+    $("ecCount").textContent = (EC.total - EC.done) + " restant" + (EC.total - EC.done > 1 ? "s" : "");
+    $("ecBar").style.width = (EC.done / EC.total * 100) + "%";
+  }
+  function ecNext(){
+    const card = $("ecCard");
+    card.classList.remove("exit-success", "exit-miss");
+    if(!EC.queue.length){ ecFinish(); return; }
+    const c = EC.queue.shift();
+    EC.current = c; EC.first = !EC.seen[c.code]; EC.seen[c.code] = true; EC.needsRequeue = false; EC.phase = "answering";
+    ecUpdateCount();
+    const m = EC.mode;
+    $("ecLabel").textContent = m === "pays" ? "Quel est ce pays ?" : (m === "cap" ? "Quelle est sa capitale ?" : "Écris le pays et sa capitale");
+    ecView.setTarget(c.code);
+    const nm = $("ecCountry"); nm.hidden = m !== "cap"; nm.textContent = c.name;
+    ["C", "K"].forEach(w => {
+      const f = $("ecField" + w), inp = $("ecIn" + w);
+      f.classList.remove("ok", "bad"); f.hidden = (w === "C" && m === "cap") || (w === "K" && m === "pays");
+      inp.value = ""; inp.readOnly = false; inp.classList.remove("shake"); $("ecFb" + w).innerHTML = "";
     });
+    $("ecInC").setAttribute("enterkeyhint", m === "both" ? "next" : "done");
+    $("ecSubmit").textContent = "Valider"; $("ecGiveUp").hidden = false;
+    restartAnim(card, "enter");
+    setTimeout(() => { if(EC.phase === "answering"){ const t = m === "cap" ? $("ecInK") : $("ecInC"); try{ t.focus({ preventScroll:true }); }catch(e){ t.focus(); } } }, 80);
   }
-
-  function updateEcritureProgressLine(){
-    var remaining = ecriState.queue.length + (ecriState.current ? 1 : 0);
-    document.getElementById("ecritureProgressLine").textContent = remaining + " pays restant" + (remaining>1?"s":"");
+  function ecFeedback(which, r, correct, note){
+    if(!r) return;
+    const f = $("ecField" + which), fb = $("ecFb" + which), inp = $("ecIn" + which);
+    f.classList.remove("ok", "bad"); f.classList.add(r.ok ? "ok" : "bad"); inp.readOnly = true;
+    if(r.ok) fb.innerHTML = r.tip ? "✅ Accepté<small>" + esc(r.tip) + "</small>" : "✅ " + esc(correct);
+    else fb.innerHTML = "❌ C'était <b>" + esc(correct) + "</b>" + (note ? "<small>" + esc(note) + "</small>" : "");
   }
-
-  function openEcriture(){
-    ensureEcritureMap();
-    ecriState = {
-      queue: shuffle(COUNTRIES), current:null, attempts:0, hadMistake:false,
-      isFirstAttempt:true, seenCodes:{}, firstTryClean:0
-    };
-    var overlay = document.getElementById("ecritureOverlay");
-    overlay.hidden = false;
-    document.body.style.overflow = "hidden";
-    overlay.classList.remove("opening"); void overlay.offsetWidth; overlay.classList.add("opening");
-    document.getElementById("ecritureEnd").hidden = true;
-    document.getElementById("ecritureStepName").hidden = false;
-    nextEcritureCard();
-  }
-  function closeEcriture(){
-    document.getElementById("ecritureOverlay").hidden = true;
-    document.body.style.overflow = "";
-  }
-  document.getElementById("openEcritureNav").addEventListener("click", openEcriture);
-  document.getElementById("ecritureCloseBtn").addEventListener("click", closeEcriture);
-  document.getElementById("ecritureBackBtn").addEventListener("click", closeEcriture);
-  document.getElementById("ecritureReplayBtn").addEventListener("click", openEcriture);
-  document.addEventListener("keydown", function(e){
-    if(e.key==="Escape" && !document.getElementById("ecritureOverlay").hidden) closeEcriture();
-  });
-
-  function nextEcritureCard(){
-    var card = document.getElementById("ecritureCard");
-    card.classList.remove("exit-success","exit-miss");
-
-    if(ecriState.queue.length===0){
-      finishEcriture();
-      return;
+  function ecResolve(rC, rK){
+    const c = EC.current, all = (!rC || rC.ok) && (!rK || rK.ok);
+    ecFeedback("C", rC, c.name, ""); ecFeedback("K", rK, c.capital, c.capNote);
+    ecView.showCapital(c.code);
+    if(EC.first){
+      if(rC && rC.ok) EC.points++;
+      if(rK && rK.ok) EC.points++;
+      if(!all) EC.missed.push(c);
     }
-    var c = ecriState.queue.shift();
-    ecriState.current = c;
-    ecriState.hadMistake = false;
-    ecriState.isFirstAttempt = !ecriState.seenCodes[c.code];
-    ecriState.seenCodes[c.code] = true;
-    updateEcritureProgressLine();
-
-    highlightEcritureCountry(c.code);
-
-    var input = document.getElementById("ecritureInput");
-    input.value = "";
-    input.classList.remove("shake");
-    var hint = document.getElementById("ecritureHint");
-    hint.textContent = ""; hint.className = "ecriture-hint";
-    document.getElementById("ecritureValidateBtn").disabled = false;
-    document.getElementById("ecritureEnd").hidden = true;
-    setTimeout(function(){ input.focus(); }, 60);
-  }
-
-  function checkEcritureName(){
-    var c = ecriState.current;
-    if(!c) return;
-    if(document.getElementById("ecritureValidateBtn").disabled) return;
-    var input = document.getElementById("ecritureInput");
-    var hint = document.getElementById("ecritureHint");
-    var val = input.value.trim();
-    if(!val){
-      input.classList.remove("shake"); void input.offsetWidth; input.classList.add("shake");
-      return;
-    }
-    document.getElementById("ecritureValidateBtn").disabled = true;
-    if(isCloseEnough(val, c)){
-      hint.textContent = "Bien joué ! ✅ (" + c.name + ")";
-      hint.className = "ecriture-hint ok";
-      finalizeEcritureCard(true);
+    if(rC) setKnown("c", c.code, rC.ok);
+    if(rK) setKnown("k", c.code, rK.ok);
+    commit();
+    EC.needsRequeue = !all;
+    if(all) EC.done++; else EC.queue.push(c);
+    ecUpdateCount();
+    $("ecGiveUp").hidden = true;
+    if(all && !((rC && rC.tip) || (rK && rK.tip))){
+      EC.phase = "wait"; ecLater(380, ecAdvance);
     } else {
-      ecriState.hadMistake = true;
-      hint.textContent = "Pas tout à fait — c'était \"" + c.name + "\".";
-      hint.className = "ecriture-hint";
-      input.classList.remove("shake"); void input.offsetWidth; input.classList.add("shake");
-      setTimeout(function(){ finalizeEcritureCard(false); }, 1300);
+      EC.phase = "feedback"; $("ecSubmit").textContent = "Suivant →";
+      const s = $("ecSubmit"); try{ s.focus({ preventScroll:true }); }catch(e){ s.focus(); }
     }
   }
-  document.getElementById("ecritureValidateBtn").addEventListener("click", checkEcritureName);
-  document.getElementById("ecritureInput").addEventListener("keydown", function(e){
-    if(e.key==="Enter"){ e.preventDefault(); checkEcritureName(); }
-  });
-
-  function finalizeEcritureCard(success){
-    var card = document.getElementById("ecritureCard");
-    var current = ecriState.current;
-    ecriState.attempts++;
-    var cleanPass = success && !ecriState.hadMistake;
-    if(cleanPass && ecriState.isFirstAttempt){ ecriState.firstTryClean++; }
-    if(!success){
-      ecriState.queue.push(current);
-    } else if(cleanPass){
-      if(state.known.indexOf(current.code)===-1){
-        state.known.push(current.code); saveState(); refreshKnownUI();
-      }
-    }
-    ecriState.current = null;
-
+  function ecAdvance(){
+    const card = $("ecCard"), success = !EC.needsRequeue;
+    EC.phase = "transition";
     if(success){
       if(!reduceMotion){
-        var spin = document.createElement("div");
-        spin.className = "success-spin";
-        card.appendChild(spin);
-        spin.addEventListener("animationend", function(){ spin.remove(); });
+        const spin = document.createElement("div");
+        spin.className = "success-spin"; card.appendChild(spin);
+        spin.addEventListener("animationend", () => spin.remove());
       }
-      card.classList.add("exit-success");
-      if(!reduceMotion) for(var i=0;i<5;i++) setTimeout(spawnClover, i*70);
-    } else {
-      card.classList.add("exit-miss");
-    }
-
-    setTimeout(function(){
-      card.classList.remove("exit-success","exit-miss");
-      nextEcritureCard();
-    }, reduceMotion ? 60 : (success ? 600 : 460));
+      card.classList.add("exit-success"); burst(5);
+    } else card.classList.add("exit-miss");
+    ecLater(reduceMotion ? 60 : (success ? 600 : 420), ecNext);
   }
-
-  function finishEcriture(){
-    document.getElementById("ecritureStepName").hidden = true;
-    document.getElementById("ecritureEnd").hidden = false;
-    document.getElementById("ecritureProgressLine").textContent = "Terminé 🎉";
-    var note = vaudNote(ecriState.firstTryClean, 55);
-    document.getElementById("ecritureEndText").textContent =
-      "Les 55 pays sont passés, en " + ecriState.attempts + " cartes au total. " + ecriState.firstTryClean + "/55 réussis du premier coup.";
-    document.getElementById("ecritureNoteBig").textContent = note.toFixed(1) + "/6";
-    document.getElementById("ecritureNoteLabel").textContent = "Barème vaudois — " + noteLabel(note);
-    if(!reduceMotion) for(var i=0;i<30;i++) setTimeout(spawnClover, i*40);
+  function shakeInput(inp){ restartAnim(inp, "shake"); }
+  function ecSubmit(){
+    if(EC.phase === "feedback"){ ecAdvance(); return; }
+    if(EC.phase !== "answering") return;
+    const needC = EC.mode !== "cap", needK = EC.mode !== "pays", c = EC.current;
+    const vC = $("ecInC").value.trim(), vK = $("ecInK").value.trim();
+    const empty = needC && !vC ? $("ecInC") : (needK && !vK ? $("ecInK") : null);
+    if(empty){ shakeInput(empty); empty.focus(); return; }
+    ecResolve(needC ? checkName(vC, c) : null, needK ? checkCapital(vK, c) : null);
   }
-
-  /* ================= HERO STAT COUNTERS ================= */
-  function animateCount(el, target, duration){
-    if(!el) return;
-    if(reduceMotion){ el.textContent = target; return; }
-    var start = performance.now();
-    function step(now){
-      var t = Math.min(1, (now-start)/duration);
-      var eased = 1-Math.pow(1-t,3);
-      el.textContent = Math.round(eased*target);
-      if(t<1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+  function ecGiveUp(){
+    if(EC.phase !== "answering") return;
+    ecResolve(EC.mode !== "cap" ? { ok:false } : null, EC.mode !== "pays" ? { ok:false } : null);
   }
-  animateCount(document.getElementById("statCountries"), 55, 900);
-  animateCount(document.getElementById("statRegions"), 5, 700);
+  function ecFinish(){
+    EC.phase = "end";
+    const note = vaudNote(EC.points, EC.maxPoints);
+    $("ecBar").style.width = "100%"; $("ecCount").textContent = "Terminé";
+    const good = note >= 5.5 ? ["🏆", "Perfection, Tayana !"] : note >= 4.5 ? ["🎉", "Super travail !"] : note >= 4 ? ["💪", "C'est suffisant !"] : ["📚", "On s'accroche !"];
+    $("ecEndEmoji").textContent = good[0]; $("ecEndTitle").textContent = good[1];
+    $("ecEndText").textContent = EC.points + "/" + EC.maxPoints + " point" + (EC.maxPoints > 1 ? "s" : "") + " du premier coup. Tout est passé, même les erreurs !";
+    $("ecNoteBig").textContent = note.toFixed(1) + "/6"; $("ecNoteLabel").textContent = "Barème vaudois · " + noteLabel(note);
+    const r = $("ecRecap"); r.innerHTML = recapHTML(EC.missed, "Ratés du premier coup"); r.hidden = !EC.missed.length;
+    $("ecRedo").hidden = !EC.missed.length;
+    ecScreen("end");
+    if(note >= 4) burst(30);
+  }
+  qsa("#ecSetup .opt").forEach(b => b.addEventListener("click", () => { S.prefs.ecMode = b.getAttribute("data-mode"); save(); updateEcSetup(); }));
+  $("ecOnlyReview").addEventListener("change", e => { S.prefs.onlyReviewE = e.target.checked; save(); updateEcSetup(); });
+  $("ecStart").addEventListener("click", () => { const p = ecPool(); if(p.length) ecStartWith(p, S.prefs.ecMode); });
+  $("ecForm").addEventListener("submit", e => { e.preventDefault(); ecSubmit(); });
+  $("ecInC").addEventListener("keydown", e => {
+    if(e.key === "Enter" && EC.mode === "both" && EC.phase === "answering" && !$("ecInK").value.trim()){ e.preventDefault(); $("ecInK").focus(); }
+  });
+  $("ecGiveUp").addEventListener("click", ecGiveUp);
+  $("ecRedo").addEventListener("click", () => { if(EC.missed.length) ecStartWith(EC.missed.slice(), EC.mode); });
+  $("ecReplay").addEventListener("click", () => { EC.session++; updateEcSetup(); ecScreen("setup"); });
+  $("ecBack").addEventListener("click", ecClose);
+  $("ecClose").addEventListener("click", ecClose);
+  $("openEc").addEventListener("click", ecOpen);
+  document.addEventListener("keydown", e => { if(e.key === "Escape" && !$("ecOverlay").hidden) ecClose(); });
 
-  refreshKnownUI();
+  /* ================= DÉMARRAGE ================= */
+  buildDefs();
+  buildExplore();
+  quizView = makeDisplayMap($("quizMap"));
+  ecView = makeDisplayMap($("ecMap"));
+  renderZoneChips();
+  setSeg("fichesMode", "data-mode", S.prefs.fichesMode);
+  $("onlyReviewFiches").checked = !!S.prefs.onlyReviewF;
+  $("capToggle").setAttribute("aria-pressed", S.prefs.caps ? "true" : "false");
+  $("capToggle").textContent = S.prefs.caps ? "📍 Cacher les capitales" : "📍 Montrer les capitales";
+  $("mapHint").textContent = S.prefs.caps ? "1 point = 1 capitale" : "";
+  renderFiches();
+  renderList();
+  updateQuizStart();
+  updateEcSetup();
+  (function(){
+    const todo = COUNTRIES.filter(c => !(isC(c.code) && isK(c.code)));
+    const pool = todo.length ? todo : COUNTRIES;
+    selectCountry(pool[Math.floor(Math.random() * pool.length)].code, false);
+  })();
+  refreshProgress();
 })();
 </script>
-
 </body>
 </html>
